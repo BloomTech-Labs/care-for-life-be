@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var _prismaBinding=require("prisma-binding"),prisma=new _prismaBinding.Prisma({typeDefs:"prisma/generated.graphql",endpoint: process.env.ENDPOINT});exports.default=prisma;

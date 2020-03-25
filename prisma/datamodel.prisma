@@ -14,10 +14,10 @@ type Survey {
     dateTaken: DateTime! @createdAt
     survey_name: String!
     employee: Employee!
-    # questions: [Question!]! OR a query by survey ID
+    
 }
 
-# Employees are our users
+
 type Employee {
     employee_id: ID! @id
     name: String!
