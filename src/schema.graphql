@@ -1,13 +1,14 @@
-
 type Query {
     info: String!
     # - SELECT BY COMMUNITY FIELDS INCLUDE MORTALITY RATE
     family(filter: String): Family!
+    families: [Family!]!
+    
     # - SELECT FAMILIES WHERE VULNERABLE
     # - SELECT COMMUNITY ASSESSMENTS IN ASCENDING ORDER  
 }
 
-type Mutations {
+type Mutation {
     # Add Family
     addFamily(family_name: String!): Family!
     # Update Family
@@ -32,18 +33,18 @@ type Mutations {
 }
 
 type Family {
-    family_id: ID!
+    id: ID!
     family_name: String!
 }
 
 type People {
-    person_id: ID!
+    id: ID!
     person_name: String!
     family: Family!
 }
 
 type Survey {
-    survey_id: ID!
+    id: ID!
     dateTaken: String! 
     survey_name: String!
     employee: Employee!
@@ -52,7 +53,7 @@ type Survey {
 
 # Employees are our users
 type Employee {
-    employee_id: ID!
+    id: ID!
     name: String!
     type: String!
 }
@@ -63,18 +64,17 @@ type AuthPayload {
 }
 
 type Question {
-    question_id: ID!
+    id: ID!
     survey: Survey!
     family: Family!
     question_text: String!
 }
 
 type Answers {
-    response_id: ID!
+    id: ID!
     dateTaken: String! 
     answer: String!
     question: Question!
     family: Family!
     respondent: People!
 } 
-

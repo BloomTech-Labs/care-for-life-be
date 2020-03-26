@@ -1,41 +1,37 @@
-
 type Family {
-    family_id: ID! @id
+    id: ID! @id
     family_name: String!
 }
 
 type People {
-    person_id: ID! @id
+    id: ID! @id
     person_name: String!
     family: Family!
 }
 
 type Survey {
-    survey_id: ID! @id
+    id: ID! @id
     dateTaken: DateTime! @createdAt 
     survey_name: String!
     employee: Employee!
-    # questions: [Question!]! OR a query by survey ID
+  
 }
 
-# Employees are our users
 type Employee {
-    employee_id: ID! @id
+    id: ID! @id
     name: String!
     type: String!
 }
 
-
-
 type Question {
-    question_id: ID! @id
+    id: ID! @id
     survey: Survey!
     family: Family!
     question_text: String!
 }
 
 type Answers {
-    response_id: ID! @id
+    id: ID! @id
     dateTaken: DateTime! @createdAt
     answer: String!
     question: Question!

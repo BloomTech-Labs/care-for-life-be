@@ -7,4 +7,3 @@ async function addFamily(parent, args, context, info) {
 module.exports = {
     addFamily
 }
-
