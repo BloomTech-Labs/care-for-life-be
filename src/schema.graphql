@@ -1,9 +1,3 @@
-import {
-  GraphQLDate,
-  GraphQLTime,
-  GraphQLDateTime
-} from 'graphql-iso-date';
-
 
 type Query {
     info: String!
@@ -27,10 +21,13 @@ type Mutations {
     # Add Questions - ??? - Frontend?
 
     # Add Answers
+
     # Change Answers
 
     # Add Employees
+
     # Change Employees (User information)
+
     # Delete Employees
 }
 
@@ -47,7 +44,7 @@ type People {
 
 type Survey {
     survey_id: ID!
-    dateTaken: GraphQLDate! 
+    dateTaken: String! 
     survey_name: String!
     employee: Employee!
     # questions: [Question!]! OR a query by survey ID
@@ -73,7 +70,8 @@ type Question {
 }
 
 type Answers {
-    dateTaken: GraphQLDate! 
+    response_id: ID!
+    dateTaken: String! 
     answer: String!
     question: Question!
     family: Family!
