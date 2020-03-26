@@ -1,12 +1,2 @@
-node_modules
 
-
-dotenv
-.env
-
-
-docker-compose.yml
-prisma.yml
-
-yarn.lock
 
