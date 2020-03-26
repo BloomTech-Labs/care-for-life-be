@@ -16,10 +16,10 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
-  answers: (where?: AnswersWhereInput) => Promise<boolean>;
+  answer: (where?: AnswerWhereInput) => Promise<boolean>;
   employee: (where?: EmployeeWhereInput) => Promise<boolean>;
   family: (where?: FamilyWhereInput) => Promise<boolean>;
-  people: (where?: PeopleWhereInput) => Promise<boolean>;
+  person: (where?: PersonWhereInput) => Promise<boolean>;
   question: (where?: QuestionWhereInput) => Promise<boolean>;
   survey: (where?: SurveyWhereInput) => Promise<boolean>;
 }
@@ -43,25 +43,25 @@ export interface Prisma {
    * Queries
    */
 
-  answers: (where: AnswersWhereUniqueInput) => AnswersNullablePromise;
-  answerses: (args?: {
-    where?: AnswersWhereInput;
-    orderBy?: AnswersOrderByInput;
+  answer: (where: AnswerWhereUniqueInput) => AnswerNullablePromise;
+  answers: (args?: {
+    where?: AnswerWhereInput;
+    orderBy?: AnswerOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => FragmentableArray<Answers>;
-  answersesConnection: (args?: {
-    where?: AnswersWhereInput;
-    orderBy?: AnswersOrderByInput;
+  }) => FragmentableArray<Answer>;
+  answersConnection: (args?: {
+    where?: AnswerWhereInput;
+    orderBy?: AnswerOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => AnswersConnectionPromise;
+  }) => AnswerConnectionPromise;
   employee: (where: EmployeeWhereUniqueInput) => EmployeeNullablePromise;
   employees: (args?: {
     where?: EmployeeWhereInput;
@@ -100,25 +100,25 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => FamilyConnectionPromise;
-  people: (where: PeopleWhereUniqueInput) => PeopleNullablePromise;
-  peoples: (args?: {
-    where?: PeopleWhereInput;
-    orderBy?: PeopleOrderByInput;
+  person: (where: PersonWhereUniqueInput) => PersonNullablePromise;
+  persons: (args?: {
+    where?: PersonWhereInput;
+    orderBy?: PersonOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => FragmentableArray<People>;
-  peoplesConnection: (args?: {
-    where?: PeopleWhereInput;
-    orderBy?: PeopleOrderByInput;
+  }) => FragmentableArray<Person>;
+  personsConnection: (args?: {
+    where?: PersonWhereInput;
+    orderBy?: PersonOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => PeopleConnectionPromise;
+  }) => PersonConnectionPromise;
   question: (where: QuestionWhereUniqueInput) => QuestionNullablePromise;
   questions: (args?: {
     where?: QuestionWhereInput;
@@ -163,22 +163,22 @@ export interface Prisma {
    * Mutations
    */
 
-  createAnswers: (data: AnswersCreateInput) => AnswersPromise;
-  updateAnswers: (args: {
-    data: AnswersUpdateInput;
-    where: AnswersWhereUniqueInput;
-  }) => AnswersPromise;
-  updateManyAnswerses: (args: {
-    data: AnswersUpdateManyMutationInput;
-    where?: AnswersWhereInput;
+  createAnswer: (data: AnswerCreateInput) => AnswerPromise;
+  updateAnswer: (args: {
+    data: AnswerUpdateInput;
+    where: AnswerWhereUniqueInput;
+  }) => AnswerPromise;
+  updateManyAnswers: (args: {
+    data: AnswerUpdateManyMutationInput;
+    where?: AnswerWhereInput;
   }) => BatchPayloadPromise;
-  upsertAnswers: (args: {
-    where: AnswersWhereUniqueInput;
-    create: AnswersCreateInput;
-    update: AnswersUpdateInput;
-  }) => AnswersPromise;
-  deleteAnswers: (where: AnswersWhereUniqueInput) => AnswersPromise;
-  deleteManyAnswerses: (where?: AnswersWhereInput) => BatchPayloadPromise;
+  upsertAnswer: (args: {
+    where: AnswerWhereUniqueInput;
+    create: AnswerCreateInput;
+    update: AnswerUpdateInput;
+  }) => AnswerPromise;
+  deleteAnswer: (where: AnswerWhereUniqueInput) => AnswerPromise;
+  deleteManyAnswers: (where?: AnswerWhereInput) => BatchPayloadPromise;
   createEmployee: (data: EmployeeCreateInput) => EmployeePromise;
   updateEmployee: (args: {
     data: EmployeeUpdateInput;
@@ -211,22 +211,22 @@ export interface Prisma {
   }) => FamilyPromise;
   deleteFamily: (where: FamilyWhereUniqueInput) => FamilyPromise;
   deleteManyFamilies: (where?: FamilyWhereInput) => BatchPayloadPromise;
-  createPeople: (data: PeopleCreateInput) => PeoplePromise;
-  updatePeople: (args: {
-    data: PeopleUpdateInput;
-    where: PeopleWhereUniqueInput;
-  }) => PeoplePromise;
-  updateManyPeoples: (args: {
-    data: PeopleUpdateManyMutationInput;
-    where?: PeopleWhereInput;
+  createPerson: (data: PersonCreateInput) => PersonPromise;
+  updatePerson: (args: {
+    data: PersonUpdateInput;
+    where: PersonWhereUniqueInput;
+  }) => PersonPromise;
+  updateManyPersons: (args: {
+    data: PersonUpdateManyMutationInput;
+    where?: PersonWhereInput;
   }) => BatchPayloadPromise;
-  upsertPeople: (args: {
-    where: PeopleWhereUniqueInput;
-    create: PeopleCreateInput;
-    update: PeopleUpdateInput;
-  }) => PeoplePromise;
-  deletePeople: (where: PeopleWhereUniqueInput) => PeoplePromise;
-  deleteManyPeoples: (where?: PeopleWhereInput) => BatchPayloadPromise;
+  upsertPerson: (args: {
+    where: PersonWhereUniqueInput;
+    create: PersonCreateInput;
+    update: PersonUpdateInput;
+  }) => PersonPromise;
+  deletePerson: (where: PersonWhereUniqueInput) => PersonPromise;
+  deleteManyPersons: (where?: PersonWhereInput) => BatchPayloadPromise;
   createQuestion: (data: QuestionCreateInput) => QuestionPromise;
   updateQuestion: (args: {
     data: QuestionUpdateInput;
@@ -268,18 +268,18 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  answers: (
-    where?: AnswersSubscriptionWhereInput
-  ) => AnswersSubscriptionPayloadSubscription;
+  answer: (
+    where?: AnswerSubscriptionWhereInput
+  ) => AnswerSubscriptionPayloadSubscription;
   employee: (
     where?: EmployeeSubscriptionWhereInput
   ) => EmployeeSubscriptionPayloadSubscription;
   family: (
     where?: FamilySubscriptionWhereInput
   ) => FamilySubscriptionPayloadSubscription;
-  people: (
-    where?: PeopleSubscriptionWhereInput
-  ) => PeopleSubscriptionPayloadSubscription;
+  person: (
+    where?: PersonSubscriptionWhereInput
+  ) => PersonSubscriptionPayloadSubscription;
   question: (
     where?: QuestionSubscriptionWhereInput
   ) => QuestionSubscriptionPayloadSubscription;
@@ -296,13 +296,33 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type AnswersOrderByInput =
+export type SurveyOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "dateTaken_ASC"
+  | "dateTaken_DESC"
+  | "survey_name_ASC"
+  | "survey_name_DESC";
+
+export type QuestionOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "question_text_ASC"
+  | "question_text_DESC";
+
+export type AnswerOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "dateTaken_ASC"
   | "dateTaken_DESC"
   | "answer_ASC"
   | "answer_DESC";
+
+export type PersonOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "person_name_ASC"
+  | "person_name_DESC";
 
 export type EmployeeOrderByInput =
   | "id_ASC"
@@ -318,273 +338,56 @@ export type FamilyOrderByInput =
   | "family_name_ASC"
   | "family_name_DESC";
 
-export type PeopleOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "person_name_ASC"
-  | "person_name_DESC";
-
-export type QuestionOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "question_text_ASC"
-  | "question_text_DESC";
-
-export type SurveyOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "dateTaken_ASC"
-  | "dateTaken_DESC"
-  | "survey_name_ASC"
-  | "survey_name_DESC";
-
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface EmployeeCreateOneInput {
-  create?: Maybe<EmployeeCreateInput>;
-  connect?: Maybe<EmployeeWhereUniqueInput>;
-}
-
-export type AnswersWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface PeopleUpdateDataInput {
-  person_name?: Maybe<String>;
-  family?: Maybe<FamilyUpdateOneRequiredInput>;
-}
-
-export interface SurveyUpdateDataInput {
-  survey_name?: Maybe<String>;
-  employee?: Maybe<EmployeeUpdateOneRequiredInput>;
-}
-
-export type QuestionWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface PeopleCreateOneInput {
-  create?: Maybe<PeopleCreateInput>;
-  connect?: Maybe<PeopleWhereUniqueInput>;
-}
-
-export interface PeopleUpdateOneRequiredInput {
-  create?: Maybe<PeopleCreateInput>;
-  update?: Maybe<PeopleUpdateDataInput>;
-  upsert?: Maybe<PeopleUpsertNestedInput>;
-  connect?: Maybe<PeopleWhereUniqueInput>;
-}
-
-export interface SurveyWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  dateTaken?: Maybe<DateTimeInput>;
-  dateTaken_not?: Maybe<DateTimeInput>;
-  dateTaken_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  dateTaken_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  dateTaken_lt?: Maybe<DateTimeInput>;
-  dateTaken_lte?: Maybe<DateTimeInput>;
-  dateTaken_gt?: Maybe<DateTimeInput>;
-  dateTaken_gte?: Maybe<DateTimeInput>;
-  survey_name?: Maybe<String>;
-  survey_name_not?: Maybe<String>;
-  survey_name_in?: Maybe<String[] | String>;
-  survey_name_not_in?: Maybe<String[] | String>;
-  survey_name_lt?: Maybe<String>;
-  survey_name_lte?: Maybe<String>;
-  survey_name_gt?: Maybe<String>;
-  survey_name_gte?: Maybe<String>;
-  survey_name_contains?: Maybe<String>;
-  survey_name_not_contains?: Maybe<String>;
-  survey_name_starts_with?: Maybe<String>;
-  survey_name_not_starts_with?: Maybe<String>;
-  survey_name_ends_with?: Maybe<String>;
-  survey_name_not_ends_with?: Maybe<String>;
-  employee?: Maybe<EmployeeWhereInput>;
-  AND?: Maybe<SurveyWhereInput[] | SurveyWhereInput>;
-  OR?: Maybe<SurveyWhereInput[] | SurveyWhereInput>;
-  NOT?: Maybe<SurveyWhereInput[] | SurveyWhereInput>;
-}
-
-export interface QuestionUpsertNestedInput {
-  update: QuestionUpdateDataInput;
-  create: QuestionCreateInput;
-}
-
-export interface FamilyWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  family_name?: Maybe<String>;
-  family_name_not?: Maybe<String>;
-  family_name_in?: Maybe<String[] | String>;
-  family_name_not_in?: Maybe<String[] | String>;
-  family_name_lt?: Maybe<String>;
-  family_name_lte?: Maybe<String>;
-  family_name_gt?: Maybe<String>;
-  family_name_gte?: Maybe<String>;
-  family_name_contains?: Maybe<String>;
-  family_name_not_contains?: Maybe<String>;
-  family_name_starts_with?: Maybe<String>;
-  family_name_not_starts_with?: Maybe<String>;
-  family_name_ends_with?: Maybe<String>;
-  family_name_not_ends_with?: Maybe<String>;
-  AND?: Maybe<FamilyWhereInput[] | FamilyWhereInput>;
-  OR?: Maybe<FamilyWhereInput[] | FamilyWhereInput>;
-  NOT?: Maybe<FamilyWhereInput[] | FamilyWhereInput>;
-}
-
-export interface FamilyUpsertNestedInput {
-  update: FamilyUpdateDataInput;
-  create: FamilyCreateInput;
-}
-
-export interface SurveySubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<SurveyWhereInput>;
-  AND?: Maybe<SurveySubscriptionWhereInput[] | SurveySubscriptionWhereInput>;
-  OR?: Maybe<SurveySubscriptionWhereInput[] | SurveySubscriptionWhereInput>;
-  NOT?: Maybe<SurveySubscriptionWhereInput[] | SurveySubscriptionWhereInput>;
-}
-
-export interface FamilyUpdateDataInput {
-  family_name?: Maybe<String>;
-}
-
-export interface PeopleSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<PeopleWhereInput>;
-  AND?: Maybe<PeopleSubscriptionWhereInput[] | PeopleSubscriptionWhereInput>;
-  OR?: Maybe<PeopleSubscriptionWhereInput[] | PeopleSubscriptionWhereInput>;
-  NOT?: Maybe<PeopleSubscriptionWhereInput[] | PeopleSubscriptionWhereInput>;
-}
-
-export type SurveyWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface EmployeeSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<EmployeeWhereInput>;
-  AND?: Maybe<
-    EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput
+export interface AnswerUpdateManyWithoutSurveyInput {
+  create?: Maybe<
+    AnswerCreateWithoutSurveyInput[] | AnswerCreateWithoutSurveyInput
   >;
-  OR?: Maybe<EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput>;
-  NOT?: Maybe<
-    EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput
+  delete?: Maybe<AnswerWhereUniqueInput[] | AnswerWhereUniqueInput>;
+  connect?: Maybe<AnswerWhereUniqueInput[] | AnswerWhereUniqueInput>;
+  set?: Maybe<AnswerWhereUniqueInput[] | AnswerWhereUniqueInput>;
+  disconnect?: Maybe<AnswerWhereUniqueInput[] | AnswerWhereUniqueInput>;
+  update?: Maybe<
+    | AnswerUpdateWithWhereUniqueWithoutSurveyInput[]
+    | AnswerUpdateWithWhereUniqueWithoutSurveyInput
+  >;
+  upsert?: Maybe<
+    | AnswerUpsertWithWhereUniqueWithoutSurveyInput[]
+    | AnswerUpsertWithWhereUniqueWithoutSurveyInput
+  >;
+  deleteMany?: Maybe<AnswerScalarWhereInput[] | AnswerScalarWhereInput>;
+  updateMany?: Maybe<
+    | AnswerUpdateManyWithWhereNestedInput[]
+    | AnswerUpdateManyWithWhereNestedInput
   >;
 }
 
-export interface FamilyUpdateOneRequiredInput {
-  create?: Maybe<FamilyCreateInput>;
-  update?: Maybe<FamilyUpdateDataInput>;
-  upsert?: Maybe<FamilyUpsertNestedInput>;
-  connect?: Maybe<FamilyWhereUniqueInput>;
-}
-
-export interface SurveyUpdateManyMutationInput {
-  survey_name?: Maybe<String>;
-}
-
-export interface SurveyUpsertNestedInput {
-  update: SurveyUpdateDataInput;
-  create: SurveyCreateInput;
-}
-
-export interface SurveyUpdateInput {
-  survey_name?: Maybe<String>;
-  employee?: Maybe<EmployeeUpdateOneRequiredInput>;
-}
-
-export interface EmployeeUpsertNestedInput {
-  update: EmployeeUpdateDataInput;
-  create: EmployeeCreateInput;
-}
-
-export interface QuestionUpdateInput {
-  survey?: Maybe<SurveyUpdateOneRequiredInput>;
-  family?: Maybe<FamilyUpdateOneRequiredInput>;
-  question_text?: Maybe<String>;
-}
-
-export interface EmployeeUpdateDataInput {
-  name?: Maybe<String>;
-  type?: Maybe<String>;
-}
-
-export type FamilyWhereUniqueInput = AtLeastOne<{
+export type AnswerWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface FamilyUpdateManyMutationInput {
-  family_name?: Maybe<String>;
-}
-
-export interface EmployeeUpdateManyMutationInput {
-  name?: Maybe<String>;
-  type?: Maybe<String>;
-}
-
-export interface AnswersCreateInput {
-  id?: Maybe<ID_Input>;
-  answer: String;
-  question: QuestionCreateOneInput;
-  family: FamilyCreateOneInput;
-  respondent: PeopleCreateOneInput;
-}
-
-export interface EmployeeUpdateInput {
-  name?: Maybe<String>;
-  type?: Maybe<String>;
-}
-
-export interface QuestionCreateOneInput {
-  create?: Maybe<QuestionCreateInput>;
-  connect?: Maybe<QuestionWhereUniqueInput>;
-}
-
-export interface PeopleUpsertNestedInput {
-  update: PeopleUpdateDataInput;
-  create: PeopleCreateInput;
-}
-
-export interface QuestionCreateInput {
-  id?: Maybe<ID_Input>;
-  survey: SurveyCreateOneInput;
-  family: FamilyCreateOneInput;
-  question_text: String;
+export interface PersonUpdateManyWithoutFamilyInput {
+  create?: Maybe<
+    PersonCreateWithoutFamilyInput[] | PersonCreateWithoutFamilyInput
+  >;
+  delete?: Maybe<PersonWhereUniqueInput[] | PersonWhereUniqueInput>;
+  connect?: Maybe<PersonWhereUniqueInput[] | PersonWhereUniqueInput>;
+  set?: Maybe<PersonWhereUniqueInput[] | PersonWhereUniqueInput>;
+  disconnect?: Maybe<PersonWhereUniqueInput[] | PersonWhereUniqueInput>;
+  update?: Maybe<
+    | PersonUpdateWithWhereUniqueWithoutFamilyInput[]
+    | PersonUpdateWithWhereUniqueWithoutFamilyInput
+  >;
+  upsert?: Maybe<
+    | PersonUpsertWithWhereUniqueWithoutFamilyInput[]
+    | PersonUpsertWithWhereUniqueWithoutFamilyInput
+  >;
+  deleteMany?: Maybe<PersonScalarWhereInput[] | PersonScalarWhereInput>;
+  updateMany?: Maybe<
+    | PersonUpdateManyWithWhereNestedInput[]
+    | PersonUpdateManyWithWhereNestedInput
+  >;
 }
 
 export interface EmployeeWhereInput {
@@ -630,85 +433,20 @@ export interface EmployeeWhereInput {
   type_not_starts_with?: Maybe<String>;
   type_ends_with?: Maybe<String>;
   type_not_ends_with?: Maybe<String>;
+  surveys_every?: Maybe<SurveyWhereInput>;
+  surveys_some?: Maybe<SurveyWhereInput>;
+  surveys_none?: Maybe<SurveyWhereInput>;
   AND?: Maybe<EmployeeWhereInput[] | EmployeeWhereInput>;
   OR?: Maybe<EmployeeWhereInput[] | EmployeeWhereInput>;
   NOT?: Maybe<EmployeeWhereInput[] | EmployeeWhereInput>;
 }
 
-export interface SurveyCreateOneInput {
-  create?: Maybe<SurveyCreateInput>;
-  connect?: Maybe<SurveyWhereUniqueInput>;
+export interface PersonUpdateWithWhereUniqueWithoutFamilyInput {
+  where: PersonWhereUniqueInput;
+  data: PersonUpdateWithoutFamilyDataInput;
 }
 
-export interface QuestionSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<QuestionWhereInput>;
-  AND?: Maybe<
-    QuestionSubscriptionWhereInput[] | QuestionSubscriptionWhereInput
-  >;
-  OR?: Maybe<QuestionSubscriptionWhereInput[] | QuestionSubscriptionWhereInput>;
-  NOT?: Maybe<
-    QuestionSubscriptionWhereInput[] | QuestionSubscriptionWhereInput
-  >;
-}
-
-export interface SurveyCreateInput {
-  id?: Maybe<ID_Input>;
-  survey_name: String;
-  employee: EmployeeCreateOneInput;
-}
-
-export interface AnswersSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<AnswersWhereInput>;
-  AND?: Maybe<AnswersSubscriptionWhereInput[] | AnswersSubscriptionWhereInput>;
-  OR?: Maybe<AnswersSubscriptionWhereInput[] | AnswersSubscriptionWhereInput>;
-  NOT?: Maybe<AnswersSubscriptionWhereInput[] | AnswersSubscriptionWhereInput>;
-}
-
-export interface EmployeeUpdateOneRequiredInput {
-  create?: Maybe<EmployeeCreateInput>;
-  update?: Maybe<EmployeeUpdateDataInput>;
-  upsert?: Maybe<EmployeeUpsertNestedInput>;
-  connect?: Maybe<EmployeeWhereUniqueInput>;
-}
-
-export interface QuestionUpdateManyMutationInput {
-  question_text?: Maybe<String>;
-}
-
-export interface EmployeeCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  type: String;
-}
-
-export interface PeopleUpdateInput {
-  person_name?: Maybe<String>;
-  family?: Maybe<FamilyUpdateOneRequiredInput>;
-}
-
-export interface FamilyCreateOneInput {
-  create?: Maybe<FamilyCreateInput>;
-  connect?: Maybe<FamilyWhereUniqueInput>;
-}
-
-export type PeopleWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface FamilyCreateInput {
-  id?: Maybe<ID_Input>;
-  family_name: String;
-}
-
-export interface QuestionWhereInput {
+export interface FamilyWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -723,28 +461,33 @@ export interface QuestionWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  survey?: Maybe<SurveyWhereInput>;
-  family?: Maybe<FamilyWhereInput>;
-  question_text?: Maybe<String>;
-  question_text_not?: Maybe<String>;
-  question_text_in?: Maybe<String[] | String>;
-  question_text_not_in?: Maybe<String[] | String>;
-  question_text_lt?: Maybe<String>;
-  question_text_lte?: Maybe<String>;
-  question_text_gt?: Maybe<String>;
-  question_text_gte?: Maybe<String>;
-  question_text_contains?: Maybe<String>;
-  question_text_not_contains?: Maybe<String>;
-  question_text_starts_with?: Maybe<String>;
-  question_text_not_starts_with?: Maybe<String>;
-  question_text_ends_with?: Maybe<String>;
-  question_text_not_ends_with?: Maybe<String>;
-  AND?: Maybe<QuestionWhereInput[] | QuestionWhereInput>;
-  OR?: Maybe<QuestionWhereInput[] | QuestionWhereInput>;
-  NOT?: Maybe<QuestionWhereInput[] | QuestionWhereInput>;
+  family_name?: Maybe<String>;
+  family_name_not?: Maybe<String>;
+  family_name_in?: Maybe<String[] | String>;
+  family_name_not_in?: Maybe<String[] | String>;
+  family_name_lt?: Maybe<String>;
+  family_name_lte?: Maybe<String>;
+  family_name_gt?: Maybe<String>;
+  family_name_gte?: Maybe<String>;
+  family_name_contains?: Maybe<String>;
+  family_name_not_contains?: Maybe<String>;
+  family_name_starts_with?: Maybe<String>;
+  family_name_not_starts_with?: Maybe<String>;
+  family_name_ends_with?: Maybe<String>;
+  family_name_not_ends_with?: Maybe<String>;
+  family_members_every?: Maybe<PersonWhereInput>;
+  family_members_some?: Maybe<PersonWhereInput>;
+  family_members_none?: Maybe<PersonWhereInput>;
+  AND?: Maybe<FamilyWhereInput[] | FamilyWhereInput>;
+  OR?: Maybe<FamilyWhereInput[] | FamilyWhereInput>;
+  NOT?: Maybe<FamilyWhereInput[] | FamilyWhereInput>;
 }
 
-export interface AnswersWhereInput {
+export interface PersonUpdateWithoutFamilyDataInput {
+  person_name?: Maybe<String>;
+}
+
+export interface AnswerWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -783,10 +526,61 @@ export interface AnswersWhereInput {
   answer_not_ends_with?: Maybe<String>;
   question?: Maybe<QuestionWhereInput>;
   family?: Maybe<FamilyWhereInput>;
-  respondent?: Maybe<PeopleWhereInput>;
-  AND?: Maybe<AnswersWhereInput[] | AnswersWhereInput>;
-  OR?: Maybe<AnswersWhereInput[] | AnswersWhereInput>;
-  NOT?: Maybe<AnswersWhereInput[] | AnswersWhereInput>;
+  respondent?: Maybe<PersonWhereInput>;
+  survey?: Maybe<SurveyWhereInput>;
+  AND?: Maybe<AnswerWhereInput[] | AnswerWhereInput>;
+  OR?: Maybe<AnswerWhereInput[] | AnswerWhereInput>;
+  NOT?: Maybe<AnswerWhereInput[] | AnswerWhereInput>;
+}
+
+export interface FamilyCreateWithoutFamily_membersInput {
+  id?: Maybe<ID_Input>;
+  family_name: String;
+}
+
+export interface SurveyUpsertWithoutAnswersInput {
+  update: SurveyUpdateWithoutAnswersDataInput;
+  create: SurveyCreateWithoutAnswersInput;
+}
+
+export interface SurveyCreateOneWithoutAnswersInput {
+  create?: Maybe<SurveyCreateWithoutAnswersInput>;
+  connect?: Maybe<SurveyWhereUniqueInput>;
+}
+
+export interface PersonUpsertWithWhereUniqueWithoutFamilyInput {
+  where: PersonWhereUniqueInput;
+  update: PersonUpdateWithoutFamilyDataInput;
+  create: PersonCreateWithoutFamilyInput;
+}
+
+export interface SurveyCreateWithoutAnswersInput {
+  id?: Maybe<ID_Input>;
+  survey_name: String;
+  employee: EmployeeCreateOneWithoutSurveysInput;
+  questions?: Maybe<QuestionCreateManyWithoutSurveyInput>;
+}
+
+export interface QuestionSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<QuestionWhereInput>;
+  AND?: Maybe<
+    QuestionSubscriptionWhereInput[] | QuestionSubscriptionWhereInput
+  >;
+  OR?: Maybe<QuestionSubscriptionWhereInput[] | QuestionSubscriptionWhereInput>;
+  NOT?: Maybe<
+    QuestionSubscriptionWhereInput[] | QuestionSubscriptionWhereInput
+  >;
+}
+
+export interface QuestionCreateManyWithoutSurveyInput {
+  create?: Maybe<
+    QuestionCreateWithoutSurveyInput[] | QuestionCreateWithoutSurveyInput
+  >;
+  connect?: Maybe<QuestionWhereUniqueInput[] | QuestionWhereUniqueInput>;
 }
 
 export interface FamilySubscriptionWhereInput {
@@ -800,27 +594,36 @@ export interface FamilySubscriptionWhereInput {
   NOT?: Maybe<FamilySubscriptionWhereInput[] | FamilySubscriptionWhereInput>;
 }
 
-export interface PeopleCreateInput {
+export interface QuestionCreateWithoutSurveyInput {
   id?: Maybe<ID_Input>;
-  person_name: String;
   family: FamilyCreateOneInput;
+  question_text: String;
 }
 
-export interface PeopleUpdateManyMutationInput {
-  person_name?: Maybe<String>;
+export interface AnswerSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<AnswerWhereInput>;
+  AND?: Maybe<AnswerSubscriptionWhereInput[] | AnswerSubscriptionWhereInput>;
+  OR?: Maybe<AnswerSubscriptionWhereInput[] | AnswerSubscriptionWhereInput>;
+  NOT?: Maybe<AnswerSubscriptionWhereInput[] | AnswerSubscriptionWhereInput>;
 }
 
-export interface SurveyUpdateOneRequiredInput {
-  create?: Maybe<SurveyCreateInput>;
-  update?: Maybe<SurveyUpdateDataInput>;
-  upsert?: Maybe<SurveyUpsertNestedInput>;
-  connect?: Maybe<SurveyWhereUniqueInput>;
+export interface AnswerUpdateInput {
+  answer?: Maybe<String>;
+  question?: Maybe<QuestionUpdateOneRequiredInput>;
+  family?: Maybe<FamilyUpdateOneInput>;
+  respondent?: Maybe<PersonUpdateOneInput>;
+  survey?: Maybe<SurveyUpdateOneRequiredWithoutAnswersInput>;
 }
 
-export interface QuestionUpdateDataInput {
-  survey?: Maybe<SurveyUpdateOneRequiredInput>;
-  family?: Maybe<FamilyUpdateOneRequiredInput>;
-  question_text?: Maybe<String>;
+export interface SurveyUpdateInput {
+  survey_name?: Maybe<String>;
+  employee?: Maybe<EmployeeUpdateOneRequiredWithoutSurveysInput>;
+  questions?: Maybe<QuestionUpdateManyWithoutSurveyInput>;
+  answers?: Maybe<AnswerUpdateManyWithoutSurveyInput>;
 }
 
 export interface QuestionUpdateOneRequiredInput {
@@ -830,22 +633,212 @@ export interface QuestionUpdateOneRequiredInput {
   connect?: Maybe<QuestionWhereUniqueInput>;
 }
 
-export interface AnswersUpdateInput {
-  answer?: Maybe<String>;
-  question?: Maybe<QuestionUpdateOneRequiredInput>;
-  family?: Maybe<FamilyUpdateOneRequiredInput>;
-  respondent?: Maybe<PeopleUpdateOneRequiredInput>;
-}
-
-export interface FamilyUpdateInput {
-  family_name?: Maybe<String>;
-}
-
 export type EmployeeWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface PeopleWhereInput {
+export interface QuestionUpdateDataInput {
+  survey?: Maybe<SurveyUpdateOneRequiredWithoutQuestionsInput>;
+  family?: Maybe<FamilyUpdateOneRequiredInput>;
+  question_text?: Maybe<String>;
+}
+
+export interface QuestionUpdateInput {
+  survey?: Maybe<SurveyUpdateOneRequiredWithoutQuestionsInput>;
+  family?: Maybe<FamilyUpdateOneRequiredInput>;
+  question_text?: Maybe<String>;
+}
+
+export interface SurveyUpdateOneRequiredWithoutQuestionsInput {
+  create?: Maybe<SurveyCreateWithoutQuestionsInput>;
+  update?: Maybe<SurveyUpdateWithoutQuestionsDataInput>;
+  upsert?: Maybe<SurveyUpsertWithoutQuestionsInput>;
+  connect?: Maybe<SurveyWhereUniqueInput>;
+}
+
+export interface PersonUpdateInput {
+  person_name?: Maybe<String>;
+  family?: Maybe<FamilyUpdateOneRequiredWithoutFamily_membersInput>;
+}
+
+export interface SurveyUpdateWithoutQuestionsDataInput {
+  survey_name?: Maybe<String>;
+  employee?: Maybe<EmployeeUpdateOneRequiredWithoutSurveysInput>;
+  answers?: Maybe<AnswerUpdateManyWithoutSurveyInput>;
+}
+
+export interface FamilyUpdateManyMutationInput {
+  family_name?: Maybe<String>;
+}
+
+export interface EmployeeUpdateOneRequiredWithoutSurveysInput {
+  create?: Maybe<EmployeeCreateWithoutSurveysInput>;
+  update?: Maybe<EmployeeUpdateWithoutSurveysDataInput>;
+  upsert?: Maybe<EmployeeUpsertWithoutSurveysInput>;
+  connect?: Maybe<EmployeeWhereUniqueInput>;
+}
+
+export interface EmployeeUpdateManyMutationInput {
+  name?: Maybe<String>;
+  type?: Maybe<String>;
+}
+
+export interface EmployeeUpdateWithoutSurveysDataInput {
+  name?: Maybe<String>;
+  type?: Maybe<String>;
+}
+
+export type PersonWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface EmployeeUpsertWithoutSurveysInput {
+  update: EmployeeUpdateWithoutSurveysDataInput;
+  create: EmployeeCreateWithoutSurveysInput;
+}
+
+export interface SurveyScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  dateTaken?: Maybe<DateTimeInput>;
+  dateTaken_not?: Maybe<DateTimeInput>;
+  dateTaken_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateTaken_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateTaken_lt?: Maybe<DateTimeInput>;
+  dateTaken_lte?: Maybe<DateTimeInput>;
+  dateTaken_gt?: Maybe<DateTimeInput>;
+  dateTaken_gte?: Maybe<DateTimeInput>;
+  survey_name?: Maybe<String>;
+  survey_name_not?: Maybe<String>;
+  survey_name_in?: Maybe<String[] | String>;
+  survey_name_not_in?: Maybe<String[] | String>;
+  survey_name_lt?: Maybe<String>;
+  survey_name_lte?: Maybe<String>;
+  survey_name_gt?: Maybe<String>;
+  survey_name_gte?: Maybe<String>;
+  survey_name_contains?: Maybe<String>;
+  survey_name_not_contains?: Maybe<String>;
+  survey_name_starts_with?: Maybe<String>;
+  survey_name_not_starts_with?: Maybe<String>;
+  survey_name_ends_with?: Maybe<String>;
+  survey_name_not_ends_with?: Maybe<String>;
+  AND?: Maybe<SurveyScalarWhereInput[] | SurveyScalarWhereInput>;
+  OR?: Maybe<SurveyScalarWhereInput[] | SurveyScalarWhereInput>;
+  NOT?: Maybe<SurveyScalarWhereInput[] | SurveyScalarWhereInput>;
+}
+
+export interface EmployeeCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  type: String;
+  surveys?: Maybe<SurveyCreateManyWithoutEmployeeInput>;
+}
+
+export type QuestionWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface AnswerUpdateWithWhereUniqueWithoutSurveyInput {
+  where: AnswerWhereUniqueInput;
+  data: AnswerUpdateWithoutSurveyDataInput;
+}
+
+export interface SurveyUpdateWithWhereUniqueWithoutEmployeeInput {
+  where: SurveyWhereUniqueInput;
+  data: SurveyUpdateWithoutEmployeeDataInput;
+}
+
+export interface AnswerUpdateWithoutSurveyDataInput {
+  answer?: Maybe<String>;
+  question?: Maybe<QuestionUpdateOneRequiredInput>;
+  family?: Maybe<FamilyUpdateOneInput>;
+  respondent?: Maybe<PersonUpdateOneInput>;
+}
+
+export type SurveyWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface FamilyUpdateOneInput {
+  create?: Maybe<FamilyCreateInput>;
+  update?: Maybe<FamilyUpdateDataInput>;
+  upsert?: Maybe<FamilyUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<FamilyWhereUniqueInput>;
+}
+
+export interface SurveyCreateWithoutEmployeeInput {
+  id?: Maybe<ID_Input>;
+  survey_name: String;
+  questions?: Maybe<QuestionCreateManyWithoutSurveyInput>;
+  answers?: Maybe<AnswerCreateManyWithoutSurveyInput>;
+}
+
+export interface FamilyUpdateDataInput {
+  family_name?: Maybe<String>;
+  family_members?: Maybe<PersonUpdateManyWithoutFamilyInput>;
+}
+
+export interface QuestionCreateOneInput {
+  create?: Maybe<QuestionCreateInput>;
+  connect?: Maybe<QuestionWhereUniqueInput>;
+}
+
+export interface QuestionWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  survey?: Maybe<SurveyWhereInput>;
+  family?: Maybe<FamilyWhereInput>;
+  question_text?: Maybe<String>;
+  question_text_not?: Maybe<String>;
+  question_text_in?: Maybe<String[] | String>;
+  question_text_not_in?: Maybe<String[] | String>;
+  question_text_lt?: Maybe<String>;
+  question_text_lte?: Maybe<String>;
+  question_text_gt?: Maybe<String>;
+  question_text_gte?: Maybe<String>;
+  question_text_contains?: Maybe<String>;
+  question_text_not_contains?: Maybe<String>;
+  question_text_starts_with?: Maybe<String>;
+  question_text_not_starts_with?: Maybe<String>;
+  question_text_ends_with?: Maybe<String>;
+  question_text_not_ends_with?: Maybe<String>;
+  AND?: Maybe<QuestionWhereInput[] | QuestionWhereInput>;
+  OR?: Maybe<QuestionWhereInput[] | QuestionWhereInput>;
+  NOT?: Maybe<QuestionWhereInput[] | QuestionWhereInput>;
+}
+
+export interface SurveyCreateOneWithoutQuestionsInput {
+  create?: Maybe<SurveyCreateWithoutQuestionsInput>;
+  connect?: Maybe<SurveyWhereUniqueInput>;
+}
+
+export interface PersonWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -875,13 +868,525 @@ export interface PeopleWhereInput {
   person_name_ends_with?: Maybe<String>;
   person_name_not_ends_with?: Maybe<String>;
   family?: Maybe<FamilyWhereInput>;
-  AND?: Maybe<PeopleWhereInput[] | PeopleWhereInput>;
-  OR?: Maybe<PeopleWhereInput[] | PeopleWhereInput>;
-  NOT?: Maybe<PeopleWhereInput[] | PeopleWhereInput>;
+  AND?: Maybe<PersonWhereInput[] | PersonWhereInput>;
+  OR?: Maybe<PersonWhereInput[] | PersonWhereInput>;
+  NOT?: Maybe<PersonWhereInput[] | PersonWhereInput>;
 }
 
-export interface AnswersUpdateManyMutationInput {
+export interface EmployeeCreateOneWithoutSurveysInput {
+  create?: Maybe<EmployeeCreateWithoutSurveysInput>;
+  connect?: Maybe<EmployeeWhereUniqueInput>;
+}
+
+export interface SurveyWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  dateTaken?: Maybe<DateTimeInput>;
+  dateTaken_not?: Maybe<DateTimeInput>;
+  dateTaken_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateTaken_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateTaken_lt?: Maybe<DateTimeInput>;
+  dateTaken_lte?: Maybe<DateTimeInput>;
+  dateTaken_gt?: Maybe<DateTimeInput>;
+  dateTaken_gte?: Maybe<DateTimeInput>;
+  survey_name?: Maybe<String>;
+  survey_name_not?: Maybe<String>;
+  survey_name_in?: Maybe<String[] | String>;
+  survey_name_not_in?: Maybe<String[] | String>;
+  survey_name_lt?: Maybe<String>;
+  survey_name_lte?: Maybe<String>;
+  survey_name_gt?: Maybe<String>;
+  survey_name_gte?: Maybe<String>;
+  survey_name_contains?: Maybe<String>;
+  survey_name_not_contains?: Maybe<String>;
+  survey_name_starts_with?: Maybe<String>;
+  survey_name_not_starts_with?: Maybe<String>;
+  survey_name_ends_with?: Maybe<String>;
+  survey_name_not_ends_with?: Maybe<String>;
+  employee?: Maybe<EmployeeWhereInput>;
+  questions_every?: Maybe<QuestionWhereInput>;
+  questions_some?: Maybe<QuestionWhereInput>;
+  questions_none?: Maybe<QuestionWhereInput>;
+  answers_every?: Maybe<AnswerWhereInput>;
+  answers_some?: Maybe<AnswerWhereInput>;
+  answers_none?: Maybe<AnswerWhereInput>;
+  AND?: Maybe<SurveyWhereInput[] | SurveyWhereInput>;
+  OR?: Maybe<SurveyWhereInput[] | SurveyWhereInput>;
+  NOT?: Maybe<SurveyWhereInput[] | SurveyWhereInput>;
+}
+
+export interface AnswerCreateManyWithoutSurveyInput {
+  create?: Maybe<
+    AnswerCreateWithoutSurveyInput[] | AnswerCreateWithoutSurveyInput
+  >;
+  connect?: Maybe<AnswerWhereUniqueInput[] | AnswerWhereUniqueInput>;
+}
+
+export interface AnswerUpdateManyMutationInput {
   answer?: Maybe<String>;
+}
+
+export interface FamilyCreateOneInput {
+  create?: Maybe<FamilyCreateInput>;
+  connect?: Maybe<FamilyWhereUniqueInput>;
+}
+
+export interface PersonScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  person_name?: Maybe<String>;
+  person_name_not?: Maybe<String>;
+  person_name_in?: Maybe<String[] | String>;
+  person_name_not_in?: Maybe<String[] | String>;
+  person_name_lt?: Maybe<String>;
+  person_name_lte?: Maybe<String>;
+  person_name_gt?: Maybe<String>;
+  person_name_gte?: Maybe<String>;
+  person_name_contains?: Maybe<String>;
+  person_name_not_contains?: Maybe<String>;
+  person_name_starts_with?: Maybe<String>;
+  person_name_not_starts_with?: Maybe<String>;
+  person_name_ends_with?: Maybe<String>;
+  person_name_not_ends_with?: Maybe<String>;
+  AND?: Maybe<PersonScalarWhereInput[] | PersonScalarWhereInput>;
+  OR?: Maybe<PersonScalarWhereInput[] | PersonScalarWhereInput>;
+  NOT?: Maybe<PersonScalarWhereInput[] | PersonScalarWhereInput>;
+}
+
+export interface PersonCreateManyWithoutFamilyInput {
+  create?: Maybe<
+    PersonCreateWithoutFamilyInput[] | PersonCreateWithoutFamilyInput
+  >;
+  connect?: Maybe<PersonWhereUniqueInput[] | PersonWhereUniqueInput>;
+}
+
+export interface PersonUpdateManyWithWhereNestedInput {
+  where: PersonScalarWhereInput;
+  data: PersonUpdateManyDataInput;
+}
+
+export interface PersonCreateOneInput {
+  create?: Maybe<PersonCreateInput>;
+  connect?: Maybe<PersonWhereUniqueInput>;
+}
+
+export interface PersonUpdateManyDataInput {
+  person_name?: Maybe<String>;
+}
+
+export interface FamilyCreateOneWithoutFamily_membersInput {
+  create?: Maybe<FamilyCreateWithoutFamily_membersInput>;
+  connect?: Maybe<FamilyWhereUniqueInput>;
+}
+
+export interface FamilyUpsertNestedInput {
+  update: FamilyUpdateDataInput;
+  create: FamilyCreateInput;
+}
+
+export interface PersonSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<PersonWhereInput>;
+  AND?: Maybe<PersonSubscriptionWhereInput[] | PersonSubscriptionWhereInput>;
+  OR?: Maybe<PersonSubscriptionWhereInput[] | PersonSubscriptionWhereInput>;
+  NOT?: Maybe<PersonSubscriptionWhereInput[] | PersonSubscriptionWhereInput>;
+}
+
+export interface PersonUpdateOneInput {
+  create?: Maybe<PersonCreateInput>;
+  update?: Maybe<PersonUpdateDataInput>;
+  upsert?: Maybe<PersonUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<PersonWhereUniqueInput>;
+}
+
+export interface SurveyUpdateManyMutationInput {
+  survey_name?: Maybe<String>;
+}
+
+export interface PersonUpdateDataInput {
+  person_name?: Maybe<String>;
+  family?: Maybe<FamilyUpdateOneRequiredWithoutFamily_membersInput>;
+}
+
+export interface QuestionUpdateManyMutationInput {
+  question_text?: Maybe<String>;
+}
+
+export interface FamilyUpdateOneRequiredWithoutFamily_membersInput {
+  create?: Maybe<FamilyCreateWithoutFamily_membersInput>;
+  update?: Maybe<FamilyUpdateWithoutFamily_membersDataInput>;
+  upsert?: Maybe<FamilyUpsertWithoutFamily_membersInput>;
+  connect?: Maybe<FamilyWhereUniqueInput>;
+}
+
+export type FamilyWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface FamilyUpdateWithoutFamily_membersDataInput {
+  family_name?: Maybe<String>;
+}
+
+export interface SurveyUpdateManyDataInput {
+  survey_name?: Maybe<String>;
+}
+
+export interface FamilyUpsertWithoutFamily_membersInput {
+  update: FamilyUpdateWithoutFamily_membersDataInput;
+  create: FamilyCreateWithoutFamily_membersInput;
+}
+
+export interface SurveyUpsertWithWhereUniqueWithoutEmployeeInput {
+  where: SurveyWhereUniqueInput;
+  update: SurveyUpdateWithoutEmployeeDataInput;
+  create: SurveyCreateWithoutEmployeeInput;
+}
+
+export interface PersonUpsertNestedInput {
+  update: PersonUpdateDataInput;
+  create: PersonCreateInput;
+}
+
+export interface SurveyUpdateManyWithoutEmployeeInput {
+  create?: Maybe<
+    SurveyCreateWithoutEmployeeInput[] | SurveyCreateWithoutEmployeeInput
+  >;
+  delete?: Maybe<SurveyWhereUniqueInput[] | SurveyWhereUniqueInput>;
+  connect?: Maybe<SurveyWhereUniqueInput[] | SurveyWhereUniqueInput>;
+  set?: Maybe<SurveyWhereUniqueInput[] | SurveyWhereUniqueInput>;
+  disconnect?: Maybe<SurveyWhereUniqueInput[] | SurveyWhereUniqueInput>;
+  update?: Maybe<
+    | SurveyUpdateWithWhereUniqueWithoutEmployeeInput[]
+    | SurveyUpdateWithWhereUniqueWithoutEmployeeInput
+  >;
+  upsert?: Maybe<
+    | SurveyUpsertWithWhereUniqueWithoutEmployeeInput[]
+    | SurveyUpsertWithWhereUniqueWithoutEmployeeInput
+  >;
+  deleteMany?: Maybe<SurveyScalarWhereInput[] | SurveyScalarWhereInput>;
+  updateMany?: Maybe<
+    | SurveyUpdateManyWithWhereNestedInput[]
+    | SurveyUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface AnswerUpsertWithWhereUniqueWithoutSurveyInput {
+  where: AnswerWhereUniqueInput;
+  update: AnswerUpdateWithoutSurveyDataInput;
+  create: AnswerCreateWithoutSurveyInput;
+}
+
+export interface SurveyCreateManyWithoutEmployeeInput {
+  create?: Maybe<
+    SurveyCreateWithoutEmployeeInput[] | SurveyCreateWithoutEmployeeInput
+  >;
+  connect?: Maybe<SurveyWhereUniqueInput[] | SurveyWhereUniqueInput>;
+}
+
+export interface AnswerScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  dateTaken?: Maybe<DateTimeInput>;
+  dateTaken_not?: Maybe<DateTimeInput>;
+  dateTaken_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateTaken_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateTaken_lt?: Maybe<DateTimeInput>;
+  dateTaken_lte?: Maybe<DateTimeInput>;
+  dateTaken_gt?: Maybe<DateTimeInput>;
+  dateTaken_gte?: Maybe<DateTimeInput>;
+  answer?: Maybe<String>;
+  answer_not?: Maybe<String>;
+  answer_in?: Maybe<String[] | String>;
+  answer_not_in?: Maybe<String[] | String>;
+  answer_lt?: Maybe<String>;
+  answer_lte?: Maybe<String>;
+  answer_gt?: Maybe<String>;
+  answer_gte?: Maybe<String>;
+  answer_contains?: Maybe<String>;
+  answer_not_contains?: Maybe<String>;
+  answer_starts_with?: Maybe<String>;
+  answer_not_starts_with?: Maybe<String>;
+  answer_ends_with?: Maybe<String>;
+  answer_not_ends_with?: Maybe<String>;
+  AND?: Maybe<AnswerScalarWhereInput[] | AnswerScalarWhereInput>;
+  OR?: Maybe<AnswerScalarWhereInput[] | AnswerScalarWhereInput>;
+  NOT?: Maybe<AnswerScalarWhereInput[] | AnswerScalarWhereInput>;
+}
+
+export interface QuestionCreateInput {
+  id?: Maybe<ID_Input>;
+  survey: SurveyCreateOneWithoutQuestionsInput;
+  family: FamilyCreateOneInput;
+  question_text: String;
+}
+
+export interface AnswerUpdateManyWithWhereNestedInput {
+  where: AnswerScalarWhereInput;
+  data: AnswerUpdateManyDataInput;
+}
+
+export interface EmployeeCreateWithoutSurveysInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  type: String;
+}
+
+export interface AnswerUpdateManyDataInput {
+  answer?: Maybe<String>;
+}
+
+export interface FamilyCreateInput {
+  id?: Maybe<ID_Input>;
+  family_name: String;
+  family_members?: Maybe<PersonCreateManyWithoutFamilyInput>;
+}
+
+export interface SurveyUpsertWithoutQuestionsInput {
+  update: SurveyUpdateWithoutQuestionsDataInput;
+  create: SurveyCreateWithoutQuestionsInput;
+}
+
+export interface PersonCreateInput {
+  id?: Maybe<ID_Input>;
+  person_name: String;
+  family: FamilyCreateOneWithoutFamily_membersInput;
+}
+
+export interface FamilyUpdateOneRequiredInput {
+  create?: Maybe<FamilyCreateInput>;
+  update?: Maybe<FamilyUpdateDataInput>;
+  upsert?: Maybe<FamilyUpsertNestedInput>;
+  connect?: Maybe<FamilyWhereUniqueInput>;
+}
+
+export interface EmployeeSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<EmployeeWhereInput>;
+  AND?: Maybe<
+    EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput
+  >;
+  OR?: Maybe<EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput>;
+  NOT?: Maybe<
+    EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput
+  >;
+}
+
+export interface QuestionUpsertNestedInput {
+  update: QuestionUpdateDataInput;
+  create: QuestionCreateInput;
+}
+
+export interface PersonUpdateManyMutationInput {
+  person_name?: Maybe<String>;
+}
+
+export interface SurveyUpdateOneRequiredWithoutAnswersInput {
+  create?: Maybe<SurveyCreateWithoutAnswersInput>;
+  update?: Maybe<SurveyUpdateWithoutAnswersDataInput>;
+  upsert?: Maybe<SurveyUpsertWithoutAnswersInput>;
+  connect?: Maybe<SurveyWhereUniqueInput>;
+}
+
+export interface SurveyUpdateManyWithWhereNestedInput {
+  where: SurveyScalarWhereInput;
+  data: SurveyUpdateManyDataInput;
+}
+
+export interface SurveyUpdateWithoutAnswersDataInput {
+  survey_name?: Maybe<String>;
+  employee?: Maybe<EmployeeUpdateOneRequiredWithoutSurveysInput>;
+  questions?: Maybe<QuestionUpdateManyWithoutSurveyInput>;
+}
+
+export interface EmployeeUpdateInput {
+  name?: Maybe<String>;
+  type?: Maybe<String>;
+  surveys?: Maybe<SurveyUpdateManyWithoutEmployeeInput>;
+}
+
+export interface QuestionUpdateManyWithoutSurveyInput {
+  create?: Maybe<
+    QuestionCreateWithoutSurveyInput[] | QuestionCreateWithoutSurveyInput
+  >;
+  delete?: Maybe<QuestionWhereUniqueInput[] | QuestionWhereUniqueInput>;
+  connect?: Maybe<QuestionWhereUniqueInput[] | QuestionWhereUniqueInput>;
+  set?: Maybe<QuestionWhereUniqueInput[] | QuestionWhereUniqueInput>;
+  disconnect?: Maybe<QuestionWhereUniqueInput[] | QuestionWhereUniqueInput>;
+  update?: Maybe<
+    | QuestionUpdateWithWhereUniqueWithoutSurveyInput[]
+    | QuestionUpdateWithWhereUniqueWithoutSurveyInput
+  >;
+  upsert?: Maybe<
+    | QuestionUpsertWithWhereUniqueWithoutSurveyInput[]
+    | QuestionUpsertWithWhereUniqueWithoutSurveyInput
+  >;
+  deleteMany?: Maybe<QuestionScalarWhereInput[] | QuestionScalarWhereInput>;
+  updateMany?: Maybe<
+    | QuestionUpdateManyWithWhereNestedInput[]
+    | QuestionUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface SurveyCreateWithoutQuestionsInput {
+  id?: Maybe<ID_Input>;
+  survey_name: String;
+  employee: EmployeeCreateOneWithoutSurveysInput;
+  answers?: Maybe<AnswerCreateManyWithoutSurveyInput>;
+}
+
+export interface QuestionUpdateWithWhereUniqueWithoutSurveyInput {
+  where: QuestionWhereUniqueInput;
+  data: QuestionUpdateWithoutSurveyDataInput;
+}
+
+export interface PersonCreateWithoutFamilyInput {
+  id?: Maybe<ID_Input>;
+  person_name: String;
+}
+
+export interface QuestionUpdateWithoutSurveyDataInput {
+  family?: Maybe<FamilyUpdateOneRequiredInput>;
+  question_text?: Maybe<String>;
+}
+
+export interface SurveyCreateInput {
+  id?: Maybe<ID_Input>;
+  survey_name: String;
+  employee: EmployeeCreateOneWithoutSurveysInput;
+  questions?: Maybe<QuestionCreateManyWithoutSurveyInput>;
+  answers?: Maybe<AnswerCreateManyWithoutSurveyInput>;
+}
+
+export interface QuestionUpdateManyDataInput {
+  question_text?: Maybe<String>;
+}
+
+export interface QuestionUpdateManyWithWhereNestedInput {
+  where: QuestionScalarWhereInput;
+  data: QuestionUpdateManyDataInput;
+}
+
+export interface QuestionScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  question_text?: Maybe<String>;
+  question_text_not?: Maybe<String>;
+  question_text_in?: Maybe<String[] | String>;
+  question_text_not_in?: Maybe<String[] | String>;
+  question_text_lt?: Maybe<String>;
+  question_text_lte?: Maybe<String>;
+  question_text_gt?: Maybe<String>;
+  question_text_gte?: Maybe<String>;
+  question_text_contains?: Maybe<String>;
+  question_text_not_contains?: Maybe<String>;
+  question_text_starts_with?: Maybe<String>;
+  question_text_not_starts_with?: Maybe<String>;
+  question_text_ends_with?: Maybe<String>;
+  question_text_not_ends_with?: Maybe<String>;
+  AND?: Maybe<QuestionScalarWhereInput[] | QuestionScalarWhereInput>;
+  OR?: Maybe<QuestionScalarWhereInput[] | QuestionScalarWhereInput>;
+  NOT?: Maybe<QuestionScalarWhereInput[] | QuestionScalarWhereInput>;
+}
+
+export interface QuestionUpsertWithWhereUniqueWithoutSurveyInput {
+  where: QuestionWhereUniqueInput;
+  update: QuestionUpdateWithoutSurveyDataInput;
+  create: QuestionCreateWithoutSurveyInput;
+}
+
+export interface FamilyUpdateInput {
+  family_name?: Maybe<String>;
+  family_members?: Maybe<PersonUpdateManyWithoutFamilyInput>;
+}
+
+export interface SurveySubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<SurveyWhereInput>;
+  AND?: Maybe<SurveySubscriptionWhereInput[] | SurveySubscriptionWhereInput>;
+  OR?: Maybe<SurveySubscriptionWhereInput[] | SurveySubscriptionWhereInput>;
+  NOT?: Maybe<SurveySubscriptionWhereInput[] | SurveySubscriptionWhereInput>;
+}
+
+export interface AnswerCreateWithoutSurveyInput {
+  id?: Maybe<ID_Input>;
+  answer: String;
+  question: QuestionCreateOneInput;
+  family?: Maybe<FamilyCreateOneInput>;
+  respondent?: Maybe<PersonCreateOneInput>;
+}
+
+export interface AnswerCreateInput {
+  id?: Maybe<ID_Input>;
+  answer: String;
+  question: QuestionCreateOneInput;
+  family?: Maybe<FamilyCreateOneInput>;
+  respondent?: Maybe<PersonCreateOneInput>;
+  survey: SurveyCreateOneWithoutAnswersInput;
+}
+
+export interface SurveyUpdateWithoutEmployeeDataInput {
+  survey_name?: Maybe<String>;
+  questions?: Maybe<QuestionUpdateManyWithoutSurveyInput>;
+  answers?: Maybe<AnswerUpdateManyWithoutSurveyInput>;
 }
 
 export interface NodeNode {
@@ -910,52 +1415,20 @@ export interface SurveyPreviousValuesSubscription
   survey_name: () => Promise<AsyncIterator<String>>;
 }
 
-export interface EmployeeConnection {
-  pageInfo: PageInfo;
-  edges: EmployeeEdge[];
+export interface AggregateAnswer {
+  count: Int;
 }
 
-export interface EmployeeConnectionPromise
-  extends Promise<EmployeeConnection>,
+export interface AggregateAnswerPromise
+  extends Promise<AggregateAnswer>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<EmployeeEdge>>() => T;
-  aggregate: <T = AggregateEmployeePromise>() => T;
+  count: () => Promise<Int>;
 }
 
-export interface EmployeeConnectionSubscription
-  extends Promise<AsyncIterator<EmployeeConnection>>,
+export interface AggregateAnswerSubscription
+  extends Promise<AsyncIterator<AggregateAnswer>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<EmployeeEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateEmployeeSubscription>() => T;
-}
-
-export interface People {
-  id: ID_Output;
-  person_name: String;
-}
-
-export interface PeoplePromise extends Promise<People>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  person_name: () => Promise<String>;
-  family: <T = FamilyPromise>() => T;
-}
-
-export interface PeopleSubscription
-  extends Promise<AsyncIterator<People>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  person_name: () => Promise<AsyncIterator<String>>;
-  family: <T = FamilySubscription>() => T;
-}
-
-export interface PeopleNullablePromise
-  extends Promise<People | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  person_name: () => Promise<String>;
-  family: <T = FamilyPromise>() => T;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface Employee {
@@ -968,6 +1441,15 @@ export interface EmployeePromise extends Promise<Employee>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   type: () => Promise<String>;
+  surveys: <T = FragmentableArray<Survey>>(args?: {
+    where?: SurveyWhereInput;
+    orderBy?: SurveyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface EmployeeSubscription
@@ -976,6 +1458,15 @@ export interface EmployeeSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   type: () => Promise<AsyncIterator<String>>;
+  surveys: <T = Promise<AsyncIterator<SurveySubscription>>>(args?: {
+    where?: SurveyWhereInput;
+    orderBy?: SurveyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface EmployeeNullablePromise
@@ -984,6 +1475,203 @@ export interface EmployeeNullablePromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   type: () => Promise<String>;
+  surveys: <T = FragmentableArray<Survey>>(args?: {
+    where?: SurveyWhereInput;
+    orderBy?: SurveyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface Survey {
+  id: ID_Output;
+  dateTaken: DateTimeOutput;
+  survey_name: String;
+}
+
+export interface SurveyPromise extends Promise<Survey>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  dateTaken: () => Promise<DateTimeOutput>;
+  survey_name: () => Promise<String>;
+  employee: <T = EmployeePromise>() => T;
+  questions: <T = FragmentableArray<Question>>(args?: {
+    where?: QuestionWhereInput;
+    orderBy?: QuestionOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  answers: <T = FragmentableArray<Answer>>(args?: {
+    where?: AnswerWhereInput;
+    orderBy?: AnswerOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface SurveySubscription
+  extends Promise<AsyncIterator<Survey>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  dateTaken: () => Promise<AsyncIterator<DateTimeOutput>>;
+  survey_name: () => Promise<AsyncIterator<String>>;
+  employee: <T = EmployeeSubscription>() => T;
+  questions: <T = Promise<AsyncIterator<QuestionSubscription>>>(args?: {
+    where?: QuestionWhereInput;
+    orderBy?: QuestionOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  answers: <T = Promise<AsyncIterator<AnswerSubscription>>>(args?: {
+    where?: AnswerWhereInput;
+    orderBy?: AnswerOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface SurveyNullablePromise
+  extends Promise<Survey | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  dateTaken: () => Promise<DateTimeOutput>;
+  survey_name: () => Promise<String>;
+  employee: <T = EmployeePromise>() => T;
+  questions: <T = FragmentableArray<Question>>(args?: {
+    where?: QuestionWhereInput;
+    orderBy?: QuestionOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  answers: <T = FragmentableArray<Answer>>(args?: {
+    where?: AnswerWhereInput;
+    orderBy?: AnswerOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface Family {
+  id: ID_Output;
+  family_name: String;
+}
+
+export interface FamilyPromise extends Promise<Family>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  family_name: () => Promise<String>;
+  family_members: <T = FragmentableArray<Person>>(args?: {
+    where?: PersonWhereInput;
+    orderBy?: PersonOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface FamilySubscription
+  extends Promise<AsyncIterator<Family>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  family_name: () => Promise<AsyncIterator<String>>;
+  family_members: <T = Promise<AsyncIterator<PersonSubscription>>>(args?: {
+    where?: PersonWhereInput;
+    orderBy?: PersonOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface FamilyNullablePromise
+  extends Promise<Family | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  family_name: () => Promise<String>;
+  family_members: <T = FragmentableArray<Person>>(args?: {
+    where?: PersonWhereInput;
+    orderBy?: PersonOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface AnswerEdge {
+  node: Answer;
+  cursor: String;
+}
+
+export interface AnswerEdgePromise extends Promise<AnswerEdge>, Fragmentable {
+  node: <T = AnswerPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface AnswerEdgeSubscription
+  extends Promise<AsyncIterator<AnswerEdge>>,
+    Fragmentable {
+  node: <T = AnswerSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface QuestionPreviousValues {
+  id: ID_Output;
+  question_text: String;
+}
+
+export interface QuestionPreviousValuesPromise
+  extends Promise<QuestionPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  question_text: () => Promise<String>;
+}
+
+export interface QuestionPreviousValuesSubscription
+  extends Promise<AsyncIterator<QuestionPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  question_text: () => Promise<AsyncIterator<String>>;
 }
 
 export interface SurveyEdge {
@@ -1001,22 +1689,6 @@ export interface SurveyEdgeSubscription
     Fragmentable {
   node: <T = SurveySubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateSurvey {
-  count: Int;
-}
-
-export interface AggregateSurveyPromise
-  extends Promise<AggregateSurvey>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateSurveySubscription
-  extends Promise<AsyncIterator<AggregateSurvey>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface QuestionSubscriptionPayload {
@@ -1044,43 +1716,6 @@ export interface QuestionSubscriptionPayloadSubscription
   previousValues: <T = QuestionPreviousValuesSubscription>() => T;
 }
 
-export interface SurveyConnection {
-  pageInfo: PageInfo;
-  edges: SurveyEdge[];
-}
-
-export interface SurveyConnectionPromise
-  extends Promise<SurveyConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<SurveyEdge>>() => T;
-  aggregate: <T = AggregateSurveyPromise>() => T;
-}
-
-export interface SurveyConnectionSubscription
-  extends Promise<AsyncIterator<SurveyConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<SurveyEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateSurveySubscription>() => T;
-}
-
-export interface AggregateAnswers {
-  count: Int;
-}
-
-export interface AggregateAnswersPromise
-  extends Promise<AggregateAnswers>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateAnswersSubscription
-  extends Promise<AsyncIterator<AggregateAnswers>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
 export interface AggregateQuestion {
   count: Int;
 }
@@ -1095,6 +1730,29 @@ export interface AggregateQuestionSubscription
   extends Promise<AsyncIterator<AggregateQuestion>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface QuestionConnection {
@@ -1118,166 +1776,86 @@ export interface QuestionConnectionSubscription
   aggregate: <T = AggregateQuestionSubscription>() => T;
 }
 
-export interface AnswersEdge {
-  node: Answers;
-  cursor: String;
-}
-
-export interface AnswersEdgePromise extends Promise<AnswersEdge>, Fragmentable {
-  node: <T = AnswersPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface AnswersEdgeSubscription
-  extends Promise<AsyncIterator<AnswersEdge>>,
-    Fragmentable {
-  node: <T = AnswersSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregatePeople {
-  count: Int;
-}
-
-export interface AggregatePeoplePromise
-  extends Promise<AggregatePeople>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregatePeopleSubscription
-  extends Promise<AsyncIterator<AggregatePeople>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Answers {
+export interface Answer {
   id: ID_Output;
   dateTaken: DateTimeOutput;
   answer: String;
 }
 
-export interface AnswersPromise extends Promise<Answers>, Fragmentable {
+export interface AnswerPromise extends Promise<Answer>, Fragmentable {
   id: () => Promise<ID_Output>;
   dateTaken: () => Promise<DateTimeOutput>;
   answer: () => Promise<String>;
   question: <T = QuestionPromise>() => T;
   family: <T = FamilyPromise>() => T;
-  respondent: <T = PeoplePromise>() => T;
+  respondent: <T = PersonPromise>() => T;
+  survey: <T = SurveyPromise>() => T;
 }
 
-export interface AnswersSubscription
-  extends Promise<AsyncIterator<Answers>>,
+export interface AnswerSubscription
+  extends Promise<AsyncIterator<Answer>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   dateTaken: () => Promise<AsyncIterator<DateTimeOutput>>;
   answer: () => Promise<AsyncIterator<String>>;
   question: <T = QuestionSubscription>() => T;
   family: <T = FamilySubscription>() => T;
-  respondent: <T = PeopleSubscription>() => T;
+  respondent: <T = PersonSubscription>() => T;
+  survey: <T = SurveySubscription>() => T;
 }
 
-export interface AnswersNullablePromise
-  extends Promise<Answers | null>,
+export interface AnswerNullablePromise
+  extends Promise<Answer | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   dateTaken: () => Promise<DateTimeOutput>;
   answer: () => Promise<String>;
   question: <T = QuestionPromise>() => T;
   family: <T = FamilyPromise>() => T;
-  respondent: <T = PeoplePromise>() => T;
+  respondent: <T = PersonPromise>() => T;
+  survey: <T = SurveyPromise>() => T;
 }
 
-export interface PeopleConnection {
-  pageInfo: PageInfo;
-  edges: PeopleEdge[];
+export interface PersonEdge {
+  node: Person;
+  cursor: String;
 }
 
-export interface PeopleConnectionPromise
-  extends Promise<PeopleConnection>,
+export interface PersonEdgePromise extends Promise<PersonEdge>, Fragmentable {
+  node: <T = PersonPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface PersonEdgeSubscription
+  extends Promise<AsyncIterator<PersonEdge>>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PeopleEdge>>() => T;
-  aggregate: <T = AggregatePeoplePromise>() => T;
+  node: <T = PersonSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PeopleConnectionSubscription
-  extends Promise<AsyncIterator<PeopleConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PeopleEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePeopleSubscription>() => T;
-}
-
-export interface AnswersSubscriptionPayload {
+export interface AnswerSubscriptionPayload {
   mutation: MutationType;
-  node: Answers;
+  node: Answer;
   updatedFields: String[];
-  previousValues: AnswersPreviousValues;
+  previousValues: AnswerPreviousValues;
 }
 
-export interface AnswersSubscriptionPayloadPromise
-  extends Promise<AnswersSubscriptionPayload>,
+export interface AnswerSubscriptionPayloadPromise
+  extends Promise<AnswerSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = AnswersPromise>() => T;
+  node: <T = AnswerPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = AnswersPreviousValuesPromise>() => T;
+  previousValues: <T = AnswerPreviousValuesPromise>() => T;
 }
 
-export interface AnswersSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<AnswersSubscriptionPayload>>,
+export interface AnswerSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AnswerSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = AnswersSubscription>() => T;
+  node: <T = AnswerSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = AnswersPreviousValuesSubscription>() => T;
-}
-
-export interface Family {
-  id: ID_Output;
-  family_name: String;
-}
-
-export interface FamilyPromise extends Promise<Family>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  family_name: () => Promise<String>;
-}
-
-export interface FamilySubscription
-  extends Promise<AsyncIterator<Family>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  family_name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface FamilyNullablePromise
-  extends Promise<Family | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  family_name: () => Promise<String>;
-}
-
-export interface AnswersPreviousValues {
-  id: ID_Output;
-  dateTaken: DateTimeOutput;
-  answer: String;
-}
-
-export interface AnswersPreviousValuesPromise
-  extends Promise<AnswersPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  dateTaken: () => Promise<DateTimeOutput>;
-  answer: () => Promise<String>;
-}
-
-export interface AnswersPreviousValuesSubscription
-  extends Promise<AsyncIterator<AnswersPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  dateTaken: () => Promise<AsyncIterator<DateTimeOutput>>;
-  answer: () => Promise<AsyncIterator<String>>;
+  previousValues: <T = AnswerPreviousValuesSubscription>() => T;
 }
 
 export interface AggregateFamily {
@@ -1296,23 +1874,26 @@ export interface AggregateFamilySubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface QuestionPreviousValues {
+export interface AnswerPreviousValues {
   id: ID_Output;
-  question_text: String;
+  dateTaken: DateTimeOutput;
+  answer: String;
 }
 
-export interface QuestionPreviousValuesPromise
-  extends Promise<QuestionPreviousValues>,
+export interface AnswerPreviousValuesPromise
+  extends Promise<AnswerPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  question_text: () => Promise<String>;
+  dateTaken: () => Promise<DateTimeOutput>;
+  answer: () => Promise<String>;
 }
 
-export interface QuestionPreviousValuesSubscription
-  extends Promise<AsyncIterator<QuestionPreviousValues>>,
+export interface AnswerPreviousValuesSubscription
+  extends Promise<AsyncIterator<AnswerPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  question_text: () => Promise<AsyncIterator<String>>;
+  dateTaken: () => Promise<AsyncIterator<DateTimeOutput>>;
+  answer: () => Promise<AsyncIterator<String>>;
 }
 
 export interface FamilyConnection {
@@ -1334,6 +1915,43 @@ export interface FamilyConnectionSubscription
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<FamilyEdgeSubscription>>>() => T;
   aggregate: <T = AggregateFamilySubscription>() => T;
+}
+
+export interface AnswerConnection {
+  pageInfo: PageInfo;
+  edges: AnswerEdge[];
+}
+
+export interface AnswerConnectionPromise
+  extends Promise<AnswerConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<AnswerEdge>>() => T;
+  aggregate: <T = AggregateAnswerPromise>() => T;
+}
+
+export interface AnswerConnectionSubscription
+  extends Promise<AsyncIterator<AnswerConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<AnswerEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateAnswerSubscription>() => T;
+}
+
+export interface AggregateEmployee {
+  count: Int;
+}
+
+export interface AggregateEmployeePromise
+  extends Promise<AggregateEmployee>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateEmployeeSubscription
+  extends Promise<AsyncIterator<AggregateEmployee>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface EmployeeSubscriptionPayload {
@@ -1361,20 +1979,25 @@ export interface EmployeeSubscriptionPayloadSubscription
   previousValues: <T = EmployeePreviousValuesSubscription>() => T;
 }
 
-export interface AggregateEmployee {
-  count: Int;
+export interface EmployeeConnection {
+  pageInfo: PageInfo;
+  edges: EmployeeEdge[];
 }
 
-export interface AggregateEmployeePromise
-  extends Promise<AggregateEmployee>,
+export interface EmployeeConnectionPromise
+  extends Promise<EmployeeConnection>,
     Fragmentable {
-  count: () => Promise<Int>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<EmployeeEdge>>() => T;
+  aggregate: <T = AggregateEmployeePromise>() => T;
 }
 
-export interface AggregateEmployeeSubscription
-  extends Promise<AsyncIterator<AggregateEmployee>>,
+export interface EmployeeConnectionSubscription
+  extends Promise<AsyncIterator<EmployeeConnection>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<EmployeeEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateEmployeeSubscription>() => T;
 }
 
 export interface EmployeePreviousValues {
@@ -1399,63 +2022,68 @@ export interface EmployeePreviousValuesSubscription
   type: () => Promise<AsyncIterator<String>>;
 }
 
-export interface QuestionEdge {
-  node: Question;
-  cursor: String;
+export interface SurveyConnection {
+  pageInfo: PageInfo;
+  edges: SurveyEdge[];
 }
 
-export interface QuestionEdgePromise
-  extends Promise<QuestionEdge>,
+export interface SurveyConnectionPromise
+  extends Promise<SurveyConnection>,
     Fragmentable {
-  node: <T = QuestionPromise>() => T;
-  cursor: () => Promise<String>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<SurveyEdge>>() => T;
+  aggregate: <T = AggregateSurveyPromise>() => T;
 }
 
-export interface QuestionEdgeSubscription
-  extends Promise<AsyncIterator<QuestionEdge>>,
+export interface SurveyConnectionSubscription
+  extends Promise<AsyncIterator<SurveyConnection>>,
     Fragmentable {
-  node: <T = QuestionSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SurveyEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSurveySubscription>() => T;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
+export interface Person {
+  id: ID_Output;
+  person_name: String;
 }
 
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
+export interface PersonPromise extends Promise<Person>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  person_name: () => Promise<String>;
+  family: <T = FamilyPromise>() => T;
 }
 
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
+export interface PersonSubscription
+  extends Promise<AsyncIterator<Person>>,
     Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  person_name: () => Promise<AsyncIterator<String>>;
+  family: <T = FamilySubscription>() => T;
 }
 
-export interface PeopleEdge {
-  node: People;
-  cursor: String;
-}
-
-export interface PeopleEdgePromise extends Promise<PeopleEdge>, Fragmentable {
-  node: <T = PeoplePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PeopleEdgeSubscription
-  extends Promise<AsyncIterator<PeopleEdge>>,
+export interface PersonNullablePromise
+  extends Promise<Person | null>,
     Fragmentable {
-  node: <T = PeopleSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<ID_Output>;
+  person_name: () => Promise<String>;
+  family: <T = FamilyPromise>() => T;
+}
+
+export interface AggregatePerson {
+  count: Int;
+}
+
+export interface AggregatePersonPromise
+  extends Promise<AggregatePerson>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregatePersonSubscription
+  extends Promise<AsyncIterator<AggregatePerson>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface FamilySubscriptionPayload {
@@ -1481,6 +2109,86 @@ export interface FamilySubscriptionPayloadSubscription
   node: <T = FamilySubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
   previousValues: <T = FamilyPreviousValuesSubscription>() => T;
+}
+
+export interface FamilyEdge {
+  node: Family;
+  cursor: String;
+}
+
+export interface FamilyEdgePromise extends Promise<FamilyEdge>, Fragmentable {
+  node: <T = FamilyPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface FamilyEdgeSubscription
+  extends Promise<AsyncIterator<FamilyEdge>>,
+    Fragmentable {
+  node: <T = FamilySubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface EmployeeEdge {
+  node: Employee;
+  cursor: String;
+}
+
+export interface EmployeeEdgePromise
+  extends Promise<EmployeeEdge>,
+    Fragmentable {
+  node: <T = EmployeePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface EmployeeEdgeSubscription
+  extends Promise<AsyncIterator<EmployeeEdge>>,
+    Fragmentable {
+  node: <T = EmployeeSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PersonPreviousValues {
+  id: ID_Output;
+  person_name: String;
+}
+
+export interface PersonPreviousValuesPromise
+  extends Promise<PersonPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  person_name: () => Promise<String>;
+}
+
+export interface PersonPreviousValuesSubscription
+  extends Promise<AsyncIterator<PersonPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  person_name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PersonSubscriptionPayload {
+  mutation: MutationType;
+  node: Person;
+  updatedFields: String[];
+  previousValues: PersonPreviousValues;
+}
+
+export interface PersonSubscriptionPayloadPromise
+  extends Promise<PersonSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = PersonPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = PersonPreviousValuesPromise>() => T;
+}
+
+export interface PersonSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<PersonSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = PersonSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = PersonPreviousValuesSubscription>() => T;
 }
 
 export interface Question {
@@ -1513,102 +2221,6 @@ export interface QuestionNullablePromise
   question_text: () => Promise<String>;
 }
 
-export interface Survey {
-  id: ID_Output;
-  dateTaken: DateTimeOutput;
-  survey_name: String;
-}
-
-export interface SurveyPromise extends Promise<Survey>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  dateTaken: () => Promise<DateTimeOutput>;
-  survey_name: () => Promise<String>;
-  employee: <T = EmployeePromise>() => T;
-}
-
-export interface SurveySubscription
-  extends Promise<AsyncIterator<Survey>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  dateTaken: () => Promise<AsyncIterator<DateTimeOutput>>;
-  survey_name: () => Promise<AsyncIterator<String>>;
-  employee: <T = EmployeeSubscription>() => T;
-}
-
-export interface SurveyNullablePromise
-  extends Promise<Survey | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  dateTaken: () => Promise<DateTimeOutput>;
-  survey_name: () => Promise<String>;
-  employee: <T = EmployeePromise>() => T;
-}
-
-export interface PeoplePreviousValues {
-  id: ID_Output;
-  person_name: String;
-}
-
-export interface PeoplePreviousValuesPromise
-  extends Promise<PeoplePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  person_name: () => Promise<String>;
-}
-
-export interface PeoplePreviousValuesSubscription
-  extends Promise<AsyncIterator<PeoplePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  person_name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PeopleSubscriptionPayload {
-  mutation: MutationType;
-  node: People;
-  updatedFields: String[];
-  previousValues: PeoplePreviousValues;
-}
-
-export interface PeopleSubscriptionPayloadPromise
-  extends Promise<PeopleSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = PeoplePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PeoplePreviousValuesPromise>() => T;
-}
-
-export interface PeopleSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PeopleSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PeopleSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PeoplePreviousValuesSubscription>() => T;
-}
-
-export interface AnswersConnection {
-  pageInfo: PageInfo;
-  edges: AnswersEdge[];
-}
-
-export interface AnswersConnectionPromise
-  extends Promise<AnswersConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<AnswersEdge>>() => T;
-  aggregate: <T = AggregateAnswersPromise>() => T;
-}
-
-export interface AnswersConnectionSubscription
-  extends Promise<AsyncIterator<AnswersConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<AnswersEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateAnswersSubscription>() => T;
-}
-
 export interface FamilyPreviousValues {
   id: ID_Output;
   family_name: String;
@@ -1628,56 +2240,20 @@ export interface FamilyPreviousValuesSubscription
   family_name: () => Promise<AsyncIterator<String>>;
 }
 
-export interface EmployeeEdge {
-  node: Employee;
-  cursor: String;
+export interface AggregateSurvey {
+  count: Int;
 }
 
-export interface EmployeeEdgePromise
-  extends Promise<EmployeeEdge>,
+export interface AggregateSurveyPromise
+  extends Promise<AggregateSurvey>,
     Fragmentable {
-  node: <T = EmployeePromise>() => T;
-  cursor: () => Promise<String>;
+  count: () => Promise<Int>;
 }
 
-export interface EmployeeEdgeSubscription
-  extends Promise<AsyncIterator<EmployeeEdge>>,
+export interface AggregateSurveySubscription
+  extends Promise<AsyncIterator<AggregateSurvey>>,
     Fragmentable {
-  node: <T = EmployeeSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface FamilyEdge {
-  node: Family;
-  cursor: String;
-}
-
-export interface FamilyEdgePromise extends Promise<FamilyEdge>, Fragmentable {
-  node: <T = FamilyPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface FamilyEdgeSubscription
-  extends Promise<AsyncIterator<FamilyEdge>>,
-    Fragmentable {
-  node: <T = FamilySubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface SurveySubscriptionPayload {
@@ -1705,11 +2281,52 @@ export interface SurveySubscriptionPayloadSubscription
   previousValues: <T = SurveyPreviousValuesSubscription>() => T;
 }
 
+export interface PersonConnection {
+  pageInfo: PageInfo;
+  edges: PersonEdge[];
+}
+
+export interface PersonConnectionPromise
+  extends Promise<PersonConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<PersonEdge>>() => T;
+  aggregate: <T = AggregatePersonPromise>() => T;
+}
+
+export interface PersonConnectionSubscription
+  extends Promise<AsyncIterator<PersonConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PersonEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePersonSubscription>() => T;
+}
+
+export interface QuestionEdge {
+  node: Question;
+  cursor: String;
+}
+
+export interface QuestionEdgePromise
+  extends Promise<QuestionEdge>,
+    Fragmentable {
+  node: <T = QuestionPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface QuestionEdgeSubscription
+  extends Promise<AsyncIterator<QuestionEdge>>,
+    Fragmentable {
+  node: <T = QuestionSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
 /*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
 */
-export type ID_Input = string | number;
-export type ID_Output = string;
+export type Int = number;
+
+export type Long = string;
 
 /*
 DateTime scalar input type, allowing Date
@@ -1726,17 +2343,16 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 */
 export type String = string;
 
-export type Long = string;
+/*
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+*/
+export type ID_Input = string | number;
+export type ID_Output = string;
 
 /*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
 
 /**
  * Model Metadata
@@ -1748,7 +2364,7 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "People",
+    name: "Person",
     embedded: false
   },
   {
@@ -1764,7 +2380,7 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "Answers",
+    name: "Answer",
     embedded: false
   }
 ];

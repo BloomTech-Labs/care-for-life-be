@@ -9,7 +9,7 @@ var models = [
     embedded: false
   },
   {
-    name: "People",
+    name: "Person",
     embedded: false
   },
   {
@@ -25,13 +25,13 @@ var models = [
     embedded: false
   },
   {
-    name: "Answers",
+    name: "Answer",
     embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://us1.prisma.sh/peter-gambino/care-for-life-test/dev`
+  endpoint: `https://us1.prisma.sh/peter-gambino/care-for-life-test-3/dev`
 });
 exports.prisma = new exports.Prisma();

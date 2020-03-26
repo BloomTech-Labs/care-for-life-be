@@ -3,7 +3,7 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateAnswers {
+/* GraphQL */ `type AggregateAnswer {
   count: Int!
 }
 
@@ -15,7 +15,7 @@ type AggregateFamily {
   count: Int!
 }
 
-type AggregatePeople {
+type AggregatePerson {
   count: Int!
 }
 
@@ -27,35 +27,50 @@ type AggregateSurvey {
   count: Int!
 }
 
-type Answers {
+type Answer {
   id: ID!
   dateTaken: DateTime!
   answer: String!
   question: Question!
-  family: Family!
-  respondent: People!
+  family: Family
+  respondent: Person
+  survey: Survey!
 }
 
-type AnswersConnection {
+type AnswerConnection {
   pageInfo: PageInfo!
-  edges: [AnswersEdge]!
-  aggregate: AggregateAnswers!
+  edges: [AnswerEdge]!
+  aggregate: AggregateAnswer!
 }
 
-input AnswersCreateInput {
+input AnswerCreateInput {
   id: ID
   answer: String!
   question: QuestionCreateOneInput!
-  family: FamilyCreateOneInput!
-  respondent: PeopleCreateOneInput!
+  family: FamilyCreateOneInput
+  respondent: PersonCreateOneInput
+  survey: SurveyCreateOneWithoutAnswersInput!
 }
 
-type AnswersEdge {
-  node: Answers!
+input AnswerCreateManyWithoutSurveyInput {
+  create: [AnswerCreateWithoutSurveyInput!]
+  connect: [AnswerWhereUniqueInput!]
+}
+
+input AnswerCreateWithoutSurveyInput {
+  id: ID
+  answer: String!
+  question: QuestionCreateOneInput!
+  family: FamilyCreateOneInput
+  respondent: PersonCreateOneInput
+}
+
+type AnswerEdge {
+  node: Answer!
   cursor: String!
 }
 
-enum AnswersOrderByInput {
+enum AnswerOrderByInput {
   id_ASC
   id_DESC
   dateTaken_ASC
@@ -64,42 +79,124 @@ enum AnswersOrderByInput {
   answer_DESC
 }
 
-type AnswersPreviousValues {
+type AnswerPreviousValues {
   id: ID!
   dateTaken: DateTime!
   answer: String!
 }
 
-type AnswersSubscriptionPayload {
-  mutation: MutationType!
-  node: Answers
-  updatedFields: [String!]
-  previousValues: AnswersPreviousValues
+input AnswerScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  dateTaken: DateTime
+  dateTaken_not: DateTime
+  dateTaken_in: [DateTime!]
+  dateTaken_not_in: [DateTime!]
+  dateTaken_lt: DateTime
+  dateTaken_lte: DateTime
+  dateTaken_gt: DateTime
+  dateTaken_gte: DateTime
+  answer: String
+  answer_not: String
+  answer_in: [String!]
+  answer_not_in: [String!]
+  answer_lt: String
+  answer_lte: String
+  answer_gt: String
+  answer_gte: String
+  answer_contains: String
+  answer_not_contains: String
+  answer_starts_with: String
+  answer_not_starts_with: String
+  answer_ends_with: String
+  answer_not_ends_with: String
+  AND: [AnswerScalarWhereInput!]
+  OR: [AnswerScalarWhereInput!]
+  NOT: [AnswerScalarWhereInput!]
 }
 
-input AnswersSubscriptionWhereInput {
+type AnswerSubscriptionPayload {
+  mutation: MutationType!
+  node: Answer
+  updatedFields: [String!]
+  previousValues: AnswerPreviousValues
+}
+
+input AnswerSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: AnswersWhereInput
-  AND: [AnswersSubscriptionWhereInput!]
-  OR: [AnswersSubscriptionWhereInput!]
-  NOT: [AnswersSubscriptionWhereInput!]
+  node: AnswerWhereInput
+  AND: [AnswerSubscriptionWhereInput!]
+  OR: [AnswerSubscriptionWhereInput!]
+  NOT: [AnswerSubscriptionWhereInput!]
 }
 
-input AnswersUpdateInput {
+input AnswerUpdateInput {
   answer: String
   question: QuestionUpdateOneRequiredInput
-  family: FamilyUpdateOneRequiredInput
-  respondent: PeopleUpdateOneRequiredInput
+  family: FamilyUpdateOneInput
+  respondent: PersonUpdateOneInput
+  survey: SurveyUpdateOneRequiredWithoutAnswersInput
 }
 
-input AnswersUpdateManyMutationInput {
+input AnswerUpdateManyDataInput {
   answer: String
 }
 
-input AnswersWhereInput {
+input AnswerUpdateManyMutationInput {
+  answer: String
+}
+
+input AnswerUpdateManyWithoutSurveyInput {
+  create: [AnswerCreateWithoutSurveyInput!]
+  delete: [AnswerWhereUniqueInput!]
+  connect: [AnswerWhereUniqueInput!]
+  set: [AnswerWhereUniqueInput!]
+  disconnect: [AnswerWhereUniqueInput!]
+  update: [AnswerUpdateWithWhereUniqueWithoutSurveyInput!]
+  upsert: [AnswerUpsertWithWhereUniqueWithoutSurveyInput!]
+  deleteMany: [AnswerScalarWhereInput!]
+  updateMany: [AnswerUpdateManyWithWhereNestedInput!]
+}
+
+input AnswerUpdateManyWithWhereNestedInput {
+  where: AnswerScalarWhereInput!
+  data: AnswerUpdateManyDataInput!
+}
+
+input AnswerUpdateWithoutSurveyDataInput {
+  answer: String
+  question: QuestionUpdateOneRequiredInput
+  family: FamilyUpdateOneInput
+  respondent: PersonUpdateOneInput
+}
+
+input AnswerUpdateWithWhereUniqueWithoutSurveyInput {
+  where: AnswerWhereUniqueInput!
+  data: AnswerUpdateWithoutSurveyDataInput!
+}
+
+input AnswerUpsertWithWhereUniqueWithoutSurveyInput {
+  where: AnswerWhereUniqueInput!
+  update: AnswerUpdateWithoutSurveyDataInput!
+  create: AnswerCreateWithoutSurveyInput!
+}
+
+input AnswerWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -138,13 +235,14 @@ input AnswersWhereInput {
   answer_not_ends_with: String
   question: QuestionWhereInput
   family: FamilyWhereInput
-  respondent: PeopleWhereInput
-  AND: [AnswersWhereInput!]
-  OR: [AnswersWhereInput!]
-  NOT: [AnswersWhereInput!]
+  respondent: PersonWhereInput
+  survey: SurveyWhereInput
+  AND: [AnswerWhereInput!]
+  OR: [AnswerWhereInput!]
+  NOT: [AnswerWhereInput!]
 }
 
-input AnswersWhereUniqueInput {
+input AnswerWhereUniqueInput {
   id: ID
 }
 
@@ -158,6 +256,7 @@ type Employee {
   id: ID!
   name: String!
   type: String!
+  surveys(where: SurveyWhereInput, orderBy: SurveyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Survey!]
 }
 
 type EmployeeConnection {
@@ -170,11 +269,18 @@ input EmployeeCreateInput {
   id: ID
   name: String!
   type: String!
+  surveys: SurveyCreateManyWithoutEmployeeInput
 }
 
-input EmployeeCreateOneInput {
-  create: EmployeeCreateInput
+input EmployeeCreateOneWithoutSurveysInput {
+  create: EmployeeCreateWithoutSurveysInput
   connect: EmployeeWhereUniqueInput
+}
+
+input EmployeeCreateWithoutSurveysInput {
+  id: ID
+  name: String!
+  type: String!
 }
 
 type EmployeeEdge {
@@ -215,14 +321,10 @@ input EmployeeSubscriptionWhereInput {
   NOT: [EmployeeSubscriptionWhereInput!]
 }
 
-input EmployeeUpdateDataInput {
-  name: String
-  type: String
-}
-
 input EmployeeUpdateInput {
   name: String
   type: String
+  surveys: SurveyUpdateManyWithoutEmployeeInput
 }
 
 input EmployeeUpdateManyMutationInput {
@@ -230,16 +332,21 @@ input EmployeeUpdateManyMutationInput {
   type: String
 }
 
-input EmployeeUpdateOneRequiredInput {
-  create: EmployeeCreateInput
-  update: EmployeeUpdateDataInput
-  upsert: EmployeeUpsertNestedInput
+input EmployeeUpdateOneRequiredWithoutSurveysInput {
+  create: EmployeeCreateWithoutSurveysInput
+  update: EmployeeUpdateWithoutSurveysDataInput
+  upsert: EmployeeUpsertWithoutSurveysInput
   connect: EmployeeWhereUniqueInput
 }
 
-input EmployeeUpsertNestedInput {
-  update: EmployeeUpdateDataInput!
-  create: EmployeeCreateInput!
+input EmployeeUpdateWithoutSurveysDataInput {
+  name: String
+  type: String
+}
+
+input EmployeeUpsertWithoutSurveysInput {
+  update: EmployeeUpdateWithoutSurveysDataInput!
+  create: EmployeeCreateWithoutSurveysInput!
 }
 
 input EmployeeWhereInput {
@@ -285,6 +392,9 @@ input EmployeeWhereInput {
   type_not_starts_with: String
   type_ends_with: String
   type_not_ends_with: String
+  surveys_every: SurveyWhereInput
+  surveys_some: SurveyWhereInput
+  surveys_none: SurveyWhereInput
   AND: [EmployeeWhereInput!]
   OR: [EmployeeWhereInput!]
   NOT: [EmployeeWhereInput!]
@@ -297,6 +407,7 @@ input EmployeeWhereUniqueInput {
 type Family {
   id: ID!
   family_name: String!
+  family_members(where: PersonWhereInput, orderBy: PersonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Person!]
 }
 
 type FamilyConnection {
@@ -308,11 +419,22 @@ type FamilyConnection {
 input FamilyCreateInput {
   id: ID
   family_name: String!
+  family_members: PersonCreateManyWithoutFamilyInput
 }
 
 input FamilyCreateOneInput {
   create: FamilyCreateInput
   connect: FamilyWhereUniqueInput
+}
+
+input FamilyCreateOneWithoutFamily_membersInput {
+  create: FamilyCreateWithoutFamily_membersInput
+  connect: FamilyWhereUniqueInput
+}
+
+input FamilyCreateWithoutFamily_membersInput {
+  id: ID
+  family_name: String!
 }
 
 type FamilyEdge {
@@ -352,14 +474,25 @@ input FamilySubscriptionWhereInput {
 
 input FamilyUpdateDataInput {
   family_name: String
+  family_members: PersonUpdateManyWithoutFamilyInput
 }
 
 input FamilyUpdateInput {
   family_name: String
+  family_members: PersonUpdateManyWithoutFamilyInput
 }
 
 input FamilyUpdateManyMutationInput {
   family_name: String
+}
+
+input FamilyUpdateOneInput {
+  create: FamilyCreateInput
+  update: FamilyUpdateDataInput
+  upsert: FamilyUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: FamilyWhereUniqueInput
 }
 
 input FamilyUpdateOneRequiredInput {
@@ -369,9 +502,25 @@ input FamilyUpdateOneRequiredInput {
   connect: FamilyWhereUniqueInput
 }
 
+input FamilyUpdateOneRequiredWithoutFamily_membersInput {
+  create: FamilyCreateWithoutFamily_membersInput
+  update: FamilyUpdateWithoutFamily_membersDataInput
+  upsert: FamilyUpsertWithoutFamily_membersInput
+  connect: FamilyWhereUniqueInput
+}
+
+input FamilyUpdateWithoutFamily_membersDataInput {
+  family_name: String
+}
+
 input FamilyUpsertNestedInput {
   update: FamilyUpdateDataInput!
   create: FamilyCreateInput!
+}
+
+input FamilyUpsertWithoutFamily_membersInput {
+  update: FamilyUpdateWithoutFamily_membersDataInput!
+  create: FamilyCreateWithoutFamily_membersInput!
 }
 
 input FamilyWhereInput {
@@ -403,6 +552,9 @@ input FamilyWhereInput {
   family_name_not_starts_with: String
   family_name_ends_with: String
   family_name_not_ends_with: String
+  family_members_every: PersonWhereInput
+  family_members_some: PersonWhereInput
+  family_members_none: PersonWhereInput
   AND: [FamilyWhereInput!]
   OR: [FamilyWhereInput!]
   NOT: [FamilyWhereInput!]
@@ -415,12 +567,12 @@ input FamilyWhereUniqueInput {
 scalar Long
 
 type Mutation {
-  createAnswers(data: AnswersCreateInput!): Answers!
-  updateAnswers(data: AnswersUpdateInput!, where: AnswersWhereUniqueInput!): Answers
-  updateManyAnswerses(data: AnswersUpdateManyMutationInput!, where: AnswersWhereInput): BatchPayload!
-  upsertAnswers(where: AnswersWhereUniqueInput!, create: AnswersCreateInput!, update: AnswersUpdateInput!): Answers!
-  deleteAnswers(where: AnswersWhereUniqueInput!): Answers
-  deleteManyAnswerses(where: AnswersWhereInput): BatchPayload!
+  createAnswer(data: AnswerCreateInput!): Answer!
+  updateAnswer(data: AnswerUpdateInput!, where: AnswerWhereUniqueInput!): Answer
+  updateManyAnswers(data: AnswerUpdateManyMutationInput!, where: AnswerWhereInput): BatchPayload!
+  upsertAnswer(where: AnswerWhereUniqueInput!, create: AnswerCreateInput!, update: AnswerUpdateInput!): Answer!
+  deleteAnswer(where: AnswerWhereUniqueInput!): Answer
+  deleteManyAnswers(where: AnswerWhereInput): BatchPayload!
   createEmployee(data: EmployeeCreateInput!): Employee!
   updateEmployee(data: EmployeeUpdateInput!, where: EmployeeWhereUniqueInput!): Employee
   updateManyEmployees(data: EmployeeUpdateManyMutationInput!, where: EmployeeWhereInput): BatchPayload!
@@ -433,12 +585,12 @@ type Mutation {
   upsertFamily(where: FamilyWhereUniqueInput!, create: FamilyCreateInput!, update: FamilyUpdateInput!): Family!
   deleteFamily(where: FamilyWhereUniqueInput!): Family
   deleteManyFamilies(where: FamilyWhereInput): BatchPayload!
-  createPeople(data: PeopleCreateInput!): People!
-  updatePeople(data: PeopleUpdateInput!, where: PeopleWhereUniqueInput!): People
-  updateManyPeoples(data: PeopleUpdateManyMutationInput!, where: PeopleWhereInput): BatchPayload!
-  upsertPeople(where: PeopleWhereUniqueInput!, create: PeopleCreateInput!, update: PeopleUpdateInput!): People!
-  deletePeople(where: PeopleWhereUniqueInput!): People
-  deleteManyPeoples(where: PeopleWhereInput): BatchPayload!
+  createPerson(data: PersonCreateInput!): Person!
+  updatePerson(data: PersonUpdateInput!, where: PersonWhereUniqueInput!): Person
+  updateManyPersons(data: PersonUpdateManyMutationInput!, where: PersonWhereInput): BatchPayload!
+  upsertPerson(where: PersonWhereUniqueInput!, create: PersonCreateInput!, update: PersonUpdateInput!): Person!
+  deletePerson(where: PersonWhereUniqueInput!): Person
+  deleteManyPersons(where: PersonWhereInput): BatchPayload!
   createQuestion(data: QuestionCreateInput!): Question!
   updateQuestion(data: QuestionUpdateInput!, where: QuestionWhereUniqueInput!): Question
   updateManyQuestions(data: QuestionUpdateManyMutationInput!, where: QuestionWhereInput): BatchPayload!
@@ -470,91 +622,173 @@ type PageInfo {
   endCursor: String
 }
 
-type People {
+type Person {
   id: ID!
   person_name: String!
   family: Family!
 }
 
-type PeopleConnection {
+type PersonConnection {
   pageInfo: PageInfo!
-  edges: [PeopleEdge]!
-  aggregate: AggregatePeople!
+  edges: [PersonEdge]!
+  aggregate: AggregatePerson!
 }
 
-input PeopleCreateInput {
+input PersonCreateInput {
   id: ID
   person_name: String!
-  family: FamilyCreateOneInput!
+  family: FamilyCreateOneWithoutFamily_membersInput!
 }
 
-input PeopleCreateOneInput {
-  create: PeopleCreateInput
-  connect: PeopleWhereUniqueInput
+input PersonCreateManyWithoutFamilyInput {
+  create: [PersonCreateWithoutFamilyInput!]
+  connect: [PersonWhereUniqueInput!]
 }
 
-type PeopleEdge {
-  node: People!
+input PersonCreateOneInput {
+  create: PersonCreateInput
+  connect: PersonWhereUniqueInput
+}
+
+input PersonCreateWithoutFamilyInput {
+  id: ID
+  person_name: String!
+}
+
+type PersonEdge {
+  node: Person!
   cursor: String!
 }
 
-enum PeopleOrderByInput {
+enum PersonOrderByInput {
   id_ASC
   id_DESC
   person_name_ASC
   person_name_DESC
 }
 
-type PeoplePreviousValues {
+type PersonPreviousValues {
   id: ID!
   person_name: String!
 }
 
-type PeopleSubscriptionPayload {
-  mutation: MutationType!
-  node: People
-  updatedFields: [String!]
-  previousValues: PeoplePreviousValues
+input PersonScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  person_name: String
+  person_name_not: String
+  person_name_in: [String!]
+  person_name_not_in: [String!]
+  person_name_lt: String
+  person_name_lte: String
+  person_name_gt: String
+  person_name_gte: String
+  person_name_contains: String
+  person_name_not_contains: String
+  person_name_starts_with: String
+  person_name_not_starts_with: String
+  person_name_ends_with: String
+  person_name_not_ends_with: String
+  AND: [PersonScalarWhereInput!]
+  OR: [PersonScalarWhereInput!]
+  NOT: [PersonScalarWhereInput!]
 }
 
-input PeopleSubscriptionWhereInput {
+type PersonSubscriptionPayload {
+  mutation: MutationType!
+  node: Person
+  updatedFields: [String!]
+  previousValues: PersonPreviousValues
+}
+
+input PersonSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: PeopleWhereInput
-  AND: [PeopleSubscriptionWhereInput!]
-  OR: [PeopleSubscriptionWhereInput!]
-  NOT: [PeopleSubscriptionWhereInput!]
+  node: PersonWhereInput
+  AND: [PersonSubscriptionWhereInput!]
+  OR: [PersonSubscriptionWhereInput!]
+  NOT: [PersonSubscriptionWhereInput!]
 }
 
-input PeopleUpdateDataInput {
+input PersonUpdateDataInput {
   person_name: String
-  family: FamilyUpdateOneRequiredInput
+  family: FamilyUpdateOneRequiredWithoutFamily_membersInput
 }
 
-input PeopleUpdateInput {
+input PersonUpdateInput {
   person_name: String
-  family: FamilyUpdateOneRequiredInput
+  family: FamilyUpdateOneRequiredWithoutFamily_membersInput
 }
 
-input PeopleUpdateManyMutationInput {
+input PersonUpdateManyDataInput {
   person_name: String
 }
 
-input PeopleUpdateOneRequiredInput {
-  create: PeopleCreateInput
-  update: PeopleUpdateDataInput
-  upsert: PeopleUpsertNestedInput
-  connect: PeopleWhereUniqueInput
+input PersonUpdateManyMutationInput {
+  person_name: String
 }
 
-input PeopleUpsertNestedInput {
-  update: PeopleUpdateDataInput!
-  create: PeopleCreateInput!
+input PersonUpdateManyWithoutFamilyInput {
+  create: [PersonCreateWithoutFamilyInput!]
+  delete: [PersonWhereUniqueInput!]
+  connect: [PersonWhereUniqueInput!]
+  set: [PersonWhereUniqueInput!]
+  disconnect: [PersonWhereUniqueInput!]
+  update: [PersonUpdateWithWhereUniqueWithoutFamilyInput!]
+  upsert: [PersonUpsertWithWhereUniqueWithoutFamilyInput!]
+  deleteMany: [PersonScalarWhereInput!]
+  updateMany: [PersonUpdateManyWithWhereNestedInput!]
 }
 
-input PeopleWhereInput {
+input PersonUpdateManyWithWhereNestedInput {
+  where: PersonScalarWhereInput!
+  data: PersonUpdateManyDataInput!
+}
+
+input PersonUpdateOneInput {
+  create: PersonCreateInput
+  update: PersonUpdateDataInput
+  upsert: PersonUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: PersonWhereUniqueInput
+}
+
+input PersonUpdateWithoutFamilyDataInput {
+  person_name: String
+}
+
+input PersonUpdateWithWhereUniqueWithoutFamilyInput {
+  where: PersonWhereUniqueInput!
+  data: PersonUpdateWithoutFamilyDataInput!
+}
+
+input PersonUpsertNestedInput {
+  update: PersonUpdateDataInput!
+  create: PersonCreateInput!
+}
+
+input PersonUpsertWithWhereUniqueWithoutFamilyInput {
+  where: PersonWhereUniqueInput!
+  update: PersonUpdateWithoutFamilyDataInput!
+  create: PersonCreateWithoutFamilyInput!
+}
+
+input PersonWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -584,28 +818,28 @@ input PeopleWhereInput {
   person_name_ends_with: String
   person_name_not_ends_with: String
   family: FamilyWhereInput
-  AND: [PeopleWhereInput!]
-  OR: [PeopleWhereInput!]
-  NOT: [PeopleWhereInput!]
+  AND: [PersonWhereInput!]
+  OR: [PersonWhereInput!]
+  NOT: [PersonWhereInput!]
 }
 
-input PeopleWhereUniqueInput {
+input PersonWhereUniqueInput {
   id: ID
 }
 
 type Query {
-  answers(where: AnswersWhereUniqueInput!): Answers
-  answerses(where: AnswersWhereInput, orderBy: AnswersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Answers]!
-  answersesConnection(where: AnswersWhereInput, orderBy: AnswersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AnswersConnection!
+  answer(where: AnswerWhereUniqueInput!): Answer
+  answers(where: AnswerWhereInput, orderBy: AnswerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Answer]!
+  answersConnection(where: AnswerWhereInput, orderBy: AnswerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AnswerConnection!
   employee(where: EmployeeWhereUniqueInput!): Employee
   employees(where: EmployeeWhereInput, orderBy: EmployeeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Employee]!
   employeesConnection(where: EmployeeWhereInput, orderBy: EmployeeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EmployeeConnection!
   family(where: FamilyWhereUniqueInput!): Family
   families(where: FamilyWhereInput, orderBy: FamilyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Family]!
   familiesConnection(where: FamilyWhereInput, orderBy: FamilyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FamilyConnection!
-  people(where: PeopleWhereUniqueInput!): People
-  peoples(where: PeopleWhereInput, orderBy: PeopleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [People]!
-  peoplesConnection(where: PeopleWhereInput, orderBy: PeopleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PeopleConnection!
+  person(where: PersonWhereUniqueInput!): Person
+  persons(where: PersonWhereInput, orderBy: PersonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Person]!
+  personsConnection(where: PersonWhereInput, orderBy: PersonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PersonConnection!
   question(where: QuestionWhereUniqueInput!): Question
   questions(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Question]!
   questionsConnection(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QuestionConnection!
@@ -630,14 +864,25 @@ type QuestionConnection {
 
 input QuestionCreateInput {
   id: ID
-  survey: SurveyCreateOneInput!
+  survey: SurveyCreateOneWithoutQuestionsInput!
   family: FamilyCreateOneInput!
   question_text: String!
+}
+
+input QuestionCreateManyWithoutSurveyInput {
+  create: [QuestionCreateWithoutSurveyInput!]
+  connect: [QuestionWhereUniqueInput!]
 }
 
 input QuestionCreateOneInput {
   create: QuestionCreateInput
   connect: QuestionWhereUniqueInput
+}
+
+input QuestionCreateWithoutSurveyInput {
+  id: ID
+  family: FamilyCreateOneInput!
+  question_text: String!
 }
 
 type QuestionEdge {
@@ -655,6 +900,40 @@ enum QuestionOrderByInput {
 type QuestionPreviousValues {
   id: ID!
   question_text: String!
+}
+
+input QuestionScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  question_text: String
+  question_text_not: String
+  question_text_in: [String!]
+  question_text_not_in: [String!]
+  question_text_lt: String
+  question_text_lte: String
+  question_text_gt: String
+  question_text_gte: String
+  question_text_contains: String
+  question_text_not_contains: String
+  question_text_starts_with: String
+  question_text_not_starts_with: String
+  question_text_ends_with: String
+  question_text_not_ends_with: String
+  AND: [QuestionScalarWhereInput!]
+  OR: [QuestionScalarWhereInput!]
+  NOT: [QuestionScalarWhereInput!]
 }
 
 type QuestionSubscriptionPayload {
@@ -676,19 +955,40 @@ input QuestionSubscriptionWhereInput {
 }
 
 input QuestionUpdateDataInput {
-  survey: SurveyUpdateOneRequiredInput
+  survey: SurveyUpdateOneRequiredWithoutQuestionsInput
   family: FamilyUpdateOneRequiredInput
   question_text: String
 }
 
 input QuestionUpdateInput {
-  survey: SurveyUpdateOneRequiredInput
+  survey: SurveyUpdateOneRequiredWithoutQuestionsInput
   family: FamilyUpdateOneRequiredInput
+  question_text: String
+}
+
+input QuestionUpdateManyDataInput {
   question_text: String
 }
 
 input QuestionUpdateManyMutationInput {
   question_text: String
+}
+
+input QuestionUpdateManyWithoutSurveyInput {
+  create: [QuestionCreateWithoutSurveyInput!]
+  delete: [QuestionWhereUniqueInput!]
+  connect: [QuestionWhereUniqueInput!]
+  set: [QuestionWhereUniqueInput!]
+  disconnect: [QuestionWhereUniqueInput!]
+  update: [QuestionUpdateWithWhereUniqueWithoutSurveyInput!]
+  upsert: [QuestionUpsertWithWhereUniqueWithoutSurveyInput!]
+  deleteMany: [QuestionScalarWhereInput!]
+  updateMany: [QuestionUpdateManyWithWhereNestedInput!]
+}
+
+input QuestionUpdateManyWithWhereNestedInput {
+  where: QuestionScalarWhereInput!
+  data: QuestionUpdateManyDataInput!
 }
 
 input QuestionUpdateOneRequiredInput {
@@ -698,9 +998,25 @@ input QuestionUpdateOneRequiredInput {
   connect: QuestionWhereUniqueInput
 }
 
+input QuestionUpdateWithoutSurveyDataInput {
+  family: FamilyUpdateOneRequiredInput
+  question_text: String
+}
+
+input QuestionUpdateWithWhereUniqueWithoutSurveyInput {
+  where: QuestionWhereUniqueInput!
+  data: QuestionUpdateWithoutSurveyDataInput!
+}
+
 input QuestionUpsertNestedInput {
   update: QuestionUpdateDataInput!
   create: QuestionCreateInput!
+}
+
+input QuestionUpsertWithWhereUniqueWithoutSurveyInput {
+  where: QuestionWhereUniqueInput!
+  update: QuestionUpdateWithoutSurveyDataInput!
+  create: QuestionCreateWithoutSurveyInput!
 }
 
 input QuestionWhereInput {
@@ -744,10 +1060,10 @@ input QuestionWhereUniqueInput {
 }
 
 type Subscription {
-  answers(where: AnswersSubscriptionWhereInput): AnswersSubscriptionPayload
+  answer(where: AnswerSubscriptionWhereInput): AnswerSubscriptionPayload
   employee(where: EmployeeSubscriptionWhereInput): EmployeeSubscriptionPayload
   family(where: FamilySubscriptionWhereInput): FamilySubscriptionPayload
-  people(where: PeopleSubscriptionWhereInput): PeopleSubscriptionPayload
+  person(where: PersonSubscriptionWhereInput): PersonSubscriptionPayload
   question(where: QuestionSubscriptionWhereInput): QuestionSubscriptionPayload
   survey(where: SurveySubscriptionWhereInput): SurveySubscriptionPayload
 }
@@ -757,6 +1073,8 @@ type Survey {
   dateTaken: DateTime!
   survey_name: String!
   employee: Employee!
+  questions(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Question!]
+  answers(where: AnswerWhereInput, orderBy: AnswerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Answer!]
 }
 
 type SurveyConnection {
@@ -768,12 +1086,45 @@ type SurveyConnection {
 input SurveyCreateInput {
   id: ID
   survey_name: String!
-  employee: EmployeeCreateOneInput!
+  employee: EmployeeCreateOneWithoutSurveysInput!
+  questions: QuestionCreateManyWithoutSurveyInput
+  answers: AnswerCreateManyWithoutSurveyInput
 }
 
-input SurveyCreateOneInput {
-  create: SurveyCreateInput
+input SurveyCreateManyWithoutEmployeeInput {
+  create: [SurveyCreateWithoutEmployeeInput!]
+  connect: [SurveyWhereUniqueInput!]
+}
+
+input SurveyCreateOneWithoutAnswersInput {
+  create: SurveyCreateWithoutAnswersInput
   connect: SurveyWhereUniqueInput
+}
+
+input SurveyCreateOneWithoutQuestionsInput {
+  create: SurveyCreateWithoutQuestionsInput
+  connect: SurveyWhereUniqueInput
+}
+
+input SurveyCreateWithoutAnswersInput {
+  id: ID
+  survey_name: String!
+  employee: EmployeeCreateOneWithoutSurveysInput!
+  questions: QuestionCreateManyWithoutSurveyInput
+}
+
+input SurveyCreateWithoutEmployeeInput {
+  id: ID
+  survey_name: String!
+  questions: QuestionCreateManyWithoutSurveyInput
+  answers: AnswerCreateManyWithoutSurveyInput
+}
+
+input SurveyCreateWithoutQuestionsInput {
+  id: ID
+  survey_name: String!
+  employee: EmployeeCreateOneWithoutSurveysInput!
+  answers: AnswerCreateManyWithoutSurveyInput
 }
 
 type SurveyEdge {
@@ -796,6 +1147,48 @@ type SurveyPreviousValues {
   survey_name: String!
 }
 
+input SurveyScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  dateTaken: DateTime
+  dateTaken_not: DateTime
+  dateTaken_in: [DateTime!]
+  dateTaken_not_in: [DateTime!]
+  dateTaken_lt: DateTime
+  dateTaken_lte: DateTime
+  dateTaken_gt: DateTime
+  dateTaken_gte: DateTime
+  survey_name: String
+  survey_name_not: String
+  survey_name_in: [String!]
+  survey_name_not_in: [String!]
+  survey_name_lt: String
+  survey_name_lte: String
+  survey_name_gt: String
+  survey_name_gte: String
+  survey_name_contains: String
+  survey_name_not_contains: String
+  survey_name_starts_with: String
+  survey_name_not_starts_with: String
+  survey_name_ends_with: String
+  survey_name_not_ends_with: String
+  AND: [SurveyScalarWhereInput!]
+  OR: [SurveyScalarWhereInput!]
+  NOT: [SurveyScalarWhereInput!]
+}
+
 type SurveySubscriptionPayload {
   mutation: MutationType!
   node: Survey
@@ -814,30 +1207,89 @@ input SurveySubscriptionWhereInput {
   NOT: [SurveySubscriptionWhereInput!]
 }
 
-input SurveyUpdateDataInput {
-  survey_name: String
-  employee: EmployeeUpdateOneRequiredInput
-}
-
 input SurveyUpdateInput {
   survey_name: String
-  employee: EmployeeUpdateOneRequiredInput
+  employee: EmployeeUpdateOneRequiredWithoutSurveysInput
+  questions: QuestionUpdateManyWithoutSurveyInput
+  answers: AnswerUpdateManyWithoutSurveyInput
+}
+
+input SurveyUpdateManyDataInput {
+  survey_name: String
 }
 
 input SurveyUpdateManyMutationInput {
   survey_name: String
 }
 
-input SurveyUpdateOneRequiredInput {
-  create: SurveyCreateInput
-  update: SurveyUpdateDataInput
-  upsert: SurveyUpsertNestedInput
+input SurveyUpdateManyWithoutEmployeeInput {
+  create: [SurveyCreateWithoutEmployeeInput!]
+  delete: [SurveyWhereUniqueInput!]
+  connect: [SurveyWhereUniqueInput!]
+  set: [SurveyWhereUniqueInput!]
+  disconnect: [SurveyWhereUniqueInput!]
+  update: [SurveyUpdateWithWhereUniqueWithoutEmployeeInput!]
+  upsert: [SurveyUpsertWithWhereUniqueWithoutEmployeeInput!]
+  deleteMany: [SurveyScalarWhereInput!]
+  updateMany: [SurveyUpdateManyWithWhereNestedInput!]
+}
+
+input SurveyUpdateManyWithWhereNestedInput {
+  where: SurveyScalarWhereInput!
+  data: SurveyUpdateManyDataInput!
+}
+
+input SurveyUpdateOneRequiredWithoutAnswersInput {
+  create: SurveyCreateWithoutAnswersInput
+  update: SurveyUpdateWithoutAnswersDataInput
+  upsert: SurveyUpsertWithoutAnswersInput
   connect: SurveyWhereUniqueInput
 }
 
-input SurveyUpsertNestedInput {
-  update: SurveyUpdateDataInput!
-  create: SurveyCreateInput!
+input SurveyUpdateOneRequiredWithoutQuestionsInput {
+  create: SurveyCreateWithoutQuestionsInput
+  update: SurveyUpdateWithoutQuestionsDataInput
+  upsert: SurveyUpsertWithoutQuestionsInput
+  connect: SurveyWhereUniqueInput
+}
+
+input SurveyUpdateWithoutAnswersDataInput {
+  survey_name: String
+  employee: EmployeeUpdateOneRequiredWithoutSurveysInput
+  questions: QuestionUpdateManyWithoutSurveyInput
+}
+
+input SurveyUpdateWithoutEmployeeDataInput {
+  survey_name: String
+  questions: QuestionUpdateManyWithoutSurveyInput
+  answers: AnswerUpdateManyWithoutSurveyInput
+}
+
+input SurveyUpdateWithoutQuestionsDataInput {
+  survey_name: String
+  employee: EmployeeUpdateOneRequiredWithoutSurveysInput
+  answers: AnswerUpdateManyWithoutSurveyInput
+}
+
+input SurveyUpdateWithWhereUniqueWithoutEmployeeInput {
+  where: SurveyWhereUniqueInput!
+  data: SurveyUpdateWithoutEmployeeDataInput!
+}
+
+input SurveyUpsertWithoutAnswersInput {
+  update: SurveyUpdateWithoutAnswersDataInput!
+  create: SurveyCreateWithoutAnswersInput!
+}
+
+input SurveyUpsertWithoutQuestionsInput {
+  update: SurveyUpdateWithoutQuestionsDataInput!
+  create: SurveyCreateWithoutQuestionsInput!
+}
+
+input SurveyUpsertWithWhereUniqueWithoutEmployeeInput {
+  where: SurveyWhereUniqueInput!
+  update: SurveyUpdateWithoutEmployeeDataInput!
+  create: SurveyCreateWithoutEmployeeInput!
 }
 
 input SurveyWhereInput {
@@ -878,6 +1330,12 @@ input SurveyWhereInput {
   survey_name_ends_with: String
   survey_name_not_ends_with: String
   employee: EmployeeWhereInput
+  questions_every: QuestionWhereInput
+  questions_some: QuestionWhereInput
+  questions_none: QuestionWhereInput
+  answers_every: AnswerWhereInput
+  answers_some: AnswerWhereInput
+  answers_none: AnswerWhereInput
   AND: [SurveyWhereInput!]
   OR: [SurveyWhereInput!]
   NOT: [SurveyWhereInput!]

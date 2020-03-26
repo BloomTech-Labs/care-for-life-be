@@ -1,9 +1,13 @@
 type Query {
     info: String!
     # - SELECT BY COMMUNITY FIELDS INCLUDE MORTALITY RATE
-    family(filter: String): Family!
+    family(filter: String): [Family!]!
     families: [Family!]!
     
+    employee(filter: String): [Employee!]!
+    employees: [Employee!]!
+    surveys: [Survey!]!
+    survey(filter: String!): [Survey!]
     # - SELECT FAMILIES WHERE VULNERABLE
     # - SELECT COMMUNITY ASSESSMENTS IN ASCENDING ORDER  
 }
@@ -14,18 +18,22 @@ type Mutation {
     # Update Family
 
     # Add People to a Family
-    addPerson(person_name: String!, family_id: ID!): People!
+    addPerson(person_name: String!, family_id: ID!): Person!
     # Update People
 
     # Add Survey - ??? - Frontend?
+    addSurvey(survey_name: String!, employee_id: ID!): Survey!
 
     # Add Questions - ??? - Frontend?
+    addQuestion(question_text: String!, survey_id: ID!, family_id: ID!): Question!
 
     # Add Answers
+    addAnswer(answer: String!, question_id: ID!, family_id: ID, respondent_id: ID, survey_id: ID!): Answer!
 
     # Change Answers
 
     # Add Employees
+    addEmployee(name: String!, type: String!): Employee!
 
     # Change Employees (User information)
 
@@ -35,9 +43,10 @@ type Mutation {
 type Family {
     id: ID!
     family_name: String!
+    family_members: [Person!]!
 }
 
-type People {
+type Person {
     id: ID!
     person_name: String!
     family: Family!
@@ -48,7 +57,8 @@ type Survey {
     dateTaken: String! 
     survey_name: String!
     employee: Employee!
-    # questions: [Question!]! OR a query by survey ID
+    questions: [Question!]! 
+    answers: [Answer!]!
 }
 
 # Employees are our users
@@ -56,6 +66,7 @@ type Employee {
     id: ID!
     name: String!
     type: String!
+    surveys: [Survey!]!
 }
 
 type AuthPayload {
@@ -68,13 +79,15 @@ type Question {
     survey: Survey!
     family: Family!
     question_text: String!
+    
 }
 
-type Answers {
+type Answer {
     id: ID!
     dateTaken: String! 
     answer: String!
     question: Question!
-    family: Family!
-    respondent: People!
+    family: Family
+    respondent: Person
+    survey: Survey!
 } 
