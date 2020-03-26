@@ -63,6 +63,29 @@ function employees(parent, args, context, info) {
     return surveys
     
 }
+
+function answers(parent, args, context, info) {
+    return context.prisma.answers()
+  }
+
+  
+async function answer(parent, args, context, info) {
+    const where = args.filter ? {
+        OR: [
+            { answer_name_contains: args.filter }
+        ]
+    } : {}
+
+    console.log("Where:", where)
+
+    const answers = await context.prisma.answers({
+        where
+    })
+
+    console.log("Answers:", answers)
+    return answers
+    
+}
   
 module.exports = {
     family,
@@ -70,6 +93,7 @@ module.exports = {
     employees,
     employee,
     surveys,
-    survey
-
+    survey,
+    answer,
+    answers
 }

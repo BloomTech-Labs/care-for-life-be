@@ -8,6 +8,8 @@ type Query {
     employees: [Employee!]!
     surveys: [Survey!]!
     survey(filter: String!): [Survey!]
+    answer(filter: String!): [Answer!]
+    answers: [Answer!]!
     # - SELECT FAMILIES WHERE VULNERABLE
     # - SELECT COMMUNITY ASSESSMENTS IN ASCENDING ORDER  
 }
