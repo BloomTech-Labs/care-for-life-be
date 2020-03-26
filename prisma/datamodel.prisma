@@ -1,3 +1,4 @@
+
 type Family {
     family_id: ID! @id
     family_name: String!
@@ -11,7 +12,7 @@ type People {
 
 type Survey {
     survey_id: ID! @id
-    dateTaken: DateTime! @createdAt
+    dateTaken: DateTime! @createdAt 
     survey_name: String!
     employee: Employee!
     # questions: [Question!]! OR a query by survey ID
@@ -23,6 +24,7 @@ type Employee {
     name: String!
     type: String!
 }
+
 
 
 type Question {
