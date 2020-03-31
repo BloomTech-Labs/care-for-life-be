@@ -1,0 +1,6 @@
+EnvironmentName=production
+
+ApolloDockerImage=lambdaschoollabs/careforfile-apollo:latest
+
+OAuthTokenEndpoint=https://dev-384670.okta.com/oauth2/default/v1/token
+OAuthClientID=0oa4zi41jRnaxQ3Wy4x6
