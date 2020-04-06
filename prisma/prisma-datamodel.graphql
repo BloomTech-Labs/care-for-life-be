@@ -1,10 +1,59 @@
-type User {
-  id: ID! @id
-  profile: Profile
+# type User {
+#   id: ID! @id
+#   profile: Profile
+# }
+
+# type Profile {
+#   id: ID! @id
+#   favorite_color: String
+#   favorite_shape: String
+# }
+
+type Family {
+    id: ID! @id
+    family_name: String!
+    family_members: [Person!]!
 }
 
-type Profile {
-  id: ID! @id
-  favorite_color: String
-  favorite_shape: String
+type Person {
+    id: ID! @id
+    person_name: String!
+    family: Family!
 }
+
+type Survey {
+    id: ID! @id
+    dateTaken: DateTime! @createdAt 
+    survey_name: String!
+    employee: Employee!
+    questions: [Question!]! 
+    answers: [Answer!]!
+    
+}
+
+type Employee {
+    id: ID! @id
+    name: String!
+    type: String!
+    surveys: [Survey!]!
+}
+
+type Question {
+    id: ID! @id
+    survey: Survey!
+    family: Family!
+    question_text: String!
+}
+
+type Answer {
+    id: ID! @id
+    dateTaken: DateTime! @createdAt
+    answer: String!
+    question: Question!
+    family: Family
+    respondent: Person
+    survey: Survey!
+} 
+
+  
+

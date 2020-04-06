@@ -22,6 +22,7 @@ async function main() {
     resolvers,
     typeDefs: gql(typeDefs),
     context,
+    // front-end url will get placed within the cors property of the server when they are deployed
     cors: true,
     dataSources: () => ({})
   });

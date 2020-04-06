@@ -3,32 +3,606 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateProfile {
+/* GraphQL */ `type AggregateAnswer {
   count: Int!
 }
 
-type AggregateUser {
+type AggregateEmployee {
   count: Int!
+}
+
+type AggregateFamily {
+  count: Int!
+}
+
+type AggregatePerson {
+  count: Int!
+}
+
+type AggregateQuestion {
+  count: Int!
+}
+
+type AggregateSurvey {
+  count: Int!
+}
+
+type Answer {
+  id: ID!
+  dateTaken: DateTime!
+  answer: String!
+  question: Question!
+  family: Family
+  respondent: Person
+  survey: Survey!
+}
+
+type AnswerConnection {
+  pageInfo: PageInfo!
+  edges: [AnswerEdge]!
+  aggregate: AggregateAnswer!
+}
+
+input AnswerCreateInput {
+  id: ID
+  answer: String!
+  question: QuestionCreateOneInput!
+  family: FamilyCreateOneInput
+  respondent: PersonCreateOneInput
+  survey: SurveyCreateOneWithoutAnswersInput!
+}
+
+input AnswerCreateManyWithoutSurveyInput {
+  create: [AnswerCreateWithoutSurveyInput!]
+  connect: [AnswerWhereUniqueInput!]
+}
+
+input AnswerCreateWithoutSurveyInput {
+  id: ID
+  answer: String!
+  question: QuestionCreateOneInput!
+  family: FamilyCreateOneInput
+  respondent: PersonCreateOneInput
+}
+
+type AnswerEdge {
+  node: Answer!
+  cursor: String!
+}
+
+enum AnswerOrderByInput {
+  id_ASC
+  id_DESC
+  dateTaken_ASC
+  dateTaken_DESC
+  answer_ASC
+  answer_DESC
+}
+
+type AnswerPreviousValues {
+  id: ID!
+  dateTaken: DateTime!
+  answer: String!
+}
+
+input AnswerScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  dateTaken: DateTime
+  dateTaken_not: DateTime
+  dateTaken_in: [DateTime!]
+  dateTaken_not_in: [DateTime!]
+  dateTaken_lt: DateTime
+  dateTaken_lte: DateTime
+  dateTaken_gt: DateTime
+  dateTaken_gte: DateTime
+  answer: String
+  answer_not: String
+  answer_in: [String!]
+  answer_not_in: [String!]
+  answer_lt: String
+  answer_lte: String
+  answer_gt: String
+  answer_gte: String
+  answer_contains: String
+  answer_not_contains: String
+  answer_starts_with: String
+  answer_not_starts_with: String
+  answer_ends_with: String
+  answer_not_ends_with: String
+  AND: [AnswerScalarWhereInput!]
+  OR: [AnswerScalarWhereInput!]
+  NOT: [AnswerScalarWhereInput!]
+}
+
+type AnswerSubscriptionPayload {
+  mutation: MutationType!
+  node: Answer
+  updatedFields: [String!]
+  previousValues: AnswerPreviousValues
+}
+
+input AnswerSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AnswerWhereInput
+  AND: [AnswerSubscriptionWhereInput!]
+  OR: [AnswerSubscriptionWhereInput!]
+  NOT: [AnswerSubscriptionWhereInput!]
+}
+
+input AnswerUpdateInput {
+  answer: String
+  question: QuestionUpdateOneRequiredInput
+  family: FamilyUpdateOneInput
+  respondent: PersonUpdateOneInput
+  survey: SurveyUpdateOneRequiredWithoutAnswersInput
+}
+
+input AnswerUpdateManyDataInput {
+  answer: String
+}
+
+input AnswerUpdateManyMutationInput {
+  answer: String
+}
+
+input AnswerUpdateManyWithoutSurveyInput {
+  create: [AnswerCreateWithoutSurveyInput!]
+  delete: [AnswerWhereUniqueInput!]
+  connect: [AnswerWhereUniqueInput!]
+  set: [AnswerWhereUniqueInput!]
+  disconnect: [AnswerWhereUniqueInput!]
+  update: [AnswerUpdateWithWhereUniqueWithoutSurveyInput!]
+  upsert: [AnswerUpsertWithWhereUniqueWithoutSurveyInput!]
+  deleteMany: [AnswerScalarWhereInput!]
+  updateMany: [AnswerUpdateManyWithWhereNestedInput!]
+}
+
+input AnswerUpdateManyWithWhereNestedInput {
+  where: AnswerScalarWhereInput!
+  data: AnswerUpdateManyDataInput!
+}
+
+input AnswerUpdateWithoutSurveyDataInput {
+  answer: String
+  question: QuestionUpdateOneRequiredInput
+  family: FamilyUpdateOneInput
+  respondent: PersonUpdateOneInput
+}
+
+input AnswerUpdateWithWhereUniqueWithoutSurveyInput {
+  where: AnswerWhereUniqueInput!
+  data: AnswerUpdateWithoutSurveyDataInput!
+}
+
+input AnswerUpsertWithWhereUniqueWithoutSurveyInput {
+  where: AnswerWhereUniqueInput!
+  update: AnswerUpdateWithoutSurveyDataInput!
+  create: AnswerCreateWithoutSurveyInput!
+}
+
+input AnswerWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  dateTaken: DateTime
+  dateTaken_not: DateTime
+  dateTaken_in: [DateTime!]
+  dateTaken_not_in: [DateTime!]
+  dateTaken_lt: DateTime
+  dateTaken_lte: DateTime
+  dateTaken_gt: DateTime
+  dateTaken_gte: DateTime
+  answer: String
+  answer_not: String
+  answer_in: [String!]
+  answer_not_in: [String!]
+  answer_lt: String
+  answer_lte: String
+  answer_gt: String
+  answer_gte: String
+  answer_contains: String
+  answer_not_contains: String
+  answer_starts_with: String
+  answer_not_starts_with: String
+  answer_ends_with: String
+  answer_not_ends_with: String
+  question: QuestionWhereInput
+  family: FamilyWhereInput
+  respondent: PersonWhereInput
+  survey: SurveyWhereInput
+  AND: [AnswerWhereInput!]
+  OR: [AnswerWhereInput!]
+  NOT: [AnswerWhereInput!]
+}
+
+input AnswerWhereUniqueInput {
+  id: ID
 }
 
 type BatchPayload {
   count: Long!
 }
 
+scalar DateTime
+
+type Employee {
+  id: ID!
+  name: String!
+  type: String!
+  surveys(where: SurveyWhereInput, orderBy: SurveyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Survey!]
+}
+
+type EmployeeConnection {
+  pageInfo: PageInfo!
+  edges: [EmployeeEdge]!
+  aggregate: AggregateEmployee!
+}
+
+input EmployeeCreateInput {
+  id: ID
+  name: String!
+  type: String!
+  surveys: SurveyCreateManyWithoutEmployeeInput
+}
+
+input EmployeeCreateOneWithoutSurveysInput {
+  create: EmployeeCreateWithoutSurveysInput
+  connect: EmployeeWhereUniqueInput
+}
+
+input EmployeeCreateWithoutSurveysInput {
+  id: ID
+  name: String!
+  type: String!
+}
+
+type EmployeeEdge {
+  node: Employee!
+  cursor: String!
+}
+
+enum EmployeeOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  type_ASC
+  type_DESC
+}
+
+type EmployeePreviousValues {
+  id: ID!
+  name: String!
+  type: String!
+}
+
+type EmployeeSubscriptionPayload {
+  mutation: MutationType!
+  node: Employee
+  updatedFields: [String!]
+  previousValues: EmployeePreviousValues
+}
+
+input EmployeeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: EmployeeWhereInput
+  AND: [EmployeeSubscriptionWhereInput!]
+  OR: [EmployeeSubscriptionWhereInput!]
+  NOT: [EmployeeSubscriptionWhereInput!]
+}
+
+input EmployeeUpdateInput {
+  name: String
+  type: String
+  surveys: SurveyUpdateManyWithoutEmployeeInput
+}
+
+input EmployeeUpdateManyMutationInput {
+  name: String
+  type: String
+}
+
+input EmployeeUpdateOneRequiredWithoutSurveysInput {
+  create: EmployeeCreateWithoutSurveysInput
+  update: EmployeeUpdateWithoutSurveysDataInput
+  upsert: EmployeeUpsertWithoutSurveysInput
+  connect: EmployeeWhereUniqueInput
+}
+
+input EmployeeUpdateWithoutSurveysDataInput {
+  name: String
+  type: String
+}
+
+input EmployeeUpsertWithoutSurveysInput {
+  update: EmployeeUpdateWithoutSurveysDataInput!
+  create: EmployeeCreateWithoutSurveysInput!
+}
+
+input EmployeeWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  surveys_every: SurveyWhereInput
+  surveys_some: SurveyWhereInput
+  surveys_none: SurveyWhereInput
+  AND: [EmployeeWhereInput!]
+  OR: [EmployeeWhereInput!]
+  NOT: [EmployeeWhereInput!]
+}
+
+input EmployeeWhereUniqueInput {
+  id: ID
+}
+
+type Family {
+  id: ID!
+  family_name: String!
+  family_members(where: PersonWhereInput, orderBy: PersonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Person!]
+}
+
+type FamilyConnection {
+  pageInfo: PageInfo!
+  edges: [FamilyEdge]!
+  aggregate: AggregateFamily!
+}
+
+input FamilyCreateInput {
+  id: ID
+  family_name: String!
+  family_members: PersonCreateManyWithoutFamilyInput
+}
+
+input FamilyCreateOneInput {
+  create: FamilyCreateInput
+  connect: FamilyWhereUniqueInput
+}
+
+input FamilyCreateOneWithoutFamily_membersInput {
+  create: FamilyCreateWithoutFamily_membersInput
+  connect: FamilyWhereUniqueInput
+}
+
+input FamilyCreateWithoutFamily_membersInput {
+  id: ID
+  family_name: String!
+}
+
+type FamilyEdge {
+  node: Family!
+  cursor: String!
+}
+
+enum FamilyOrderByInput {
+  id_ASC
+  id_DESC
+  family_name_ASC
+  family_name_DESC
+}
+
+type FamilyPreviousValues {
+  id: ID!
+  family_name: String!
+}
+
+type FamilySubscriptionPayload {
+  mutation: MutationType!
+  node: Family
+  updatedFields: [String!]
+  previousValues: FamilyPreviousValues
+}
+
+input FamilySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: FamilyWhereInput
+  AND: [FamilySubscriptionWhereInput!]
+  OR: [FamilySubscriptionWhereInput!]
+  NOT: [FamilySubscriptionWhereInput!]
+}
+
+input FamilyUpdateDataInput {
+  family_name: String
+  family_members: PersonUpdateManyWithoutFamilyInput
+}
+
+input FamilyUpdateInput {
+  family_name: String
+  family_members: PersonUpdateManyWithoutFamilyInput
+}
+
+input FamilyUpdateManyMutationInput {
+  family_name: String
+}
+
+input FamilyUpdateOneInput {
+  create: FamilyCreateInput
+  update: FamilyUpdateDataInput
+  upsert: FamilyUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: FamilyWhereUniqueInput
+}
+
+input FamilyUpdateOneRequiredInput {
+  create: FamilyCreateInput
+  update: FamilyUpdateDataInput
+  upsert: FamilyUpsertNestedInput
+  connect: FamilyWhereUniqueInput
+}
+
+input FamilyUpdateOneRequiredWithoutFamily_membersInput {
+  create: FamilyCreateWithoutFamily_membersInput
+  update: FamilyUpdateWithoutFamily_membersDataInput
+  upsert: FamilyUpsertWithoutFamily_membersInput
+  connect: FamilyWhereUniqueInput
+}
+
+input FamilyUpdateWithoutFamily_membersDataInput {
+  family_name: String
+}
+
+input FamilyUpsertNestedInput {
+  update: FamilyUpdateDataInput!
+  create: FamilyCreateInput!
+}
+
+input FamilyUpsertWithoutFamily_membersInput {
+  update: FamilyUpdateWithoutFamily_membersDataInput!
+  create: FamilyCreateWithoutFamily_membersInput!
+}
+
+input FamilyWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  family_name: String
+  family_name_not: String
+  family_name_in: [String!]
+  family_name_not_in: [String!]
+  family_name_lt: String
+  family_name_lte: String
+  family_name_gt: String
+  family_name_gte: String
+  family_name_contains: String
+  family_name_not_contains: String
+  family_name_starts_with: String
+  family_name_not_starts_with: String
+  family_name_ends_with: String
+  family_name_not_ends_with: String
+  family_members_every: PersonWhereInput
+  family_members_some: PersonWhereInput
+  family_members_none: PersonWhereInput
+  AND: [FamilyWhereInput!]
+  OR: [FamilyWhereInput!]
+  NOT: [FamilyWhereInput!]
+}
+
+input FamilyWhereUniqueInput {
+  id: ID
+}
+
 scalar Long
 
 type Mutation {
-  createProfile(data: ProfileCreateInput!): Profile!
-  updateProfile(data: ProfileUpdateInput!, where: ProfileWhereUniqueInput!): Profile
-  updateManyProfiles(data: ProfileUpdateManyMutationInput!, where: ProfileWhereInput): BatchPayload!
-  upsertProfile(where: ProfileWhereUniqueInput!, create: ProfileCreateInput!, update: ProfileUpdateInput!): Profile!
-  deleteProfile(where: ProfileWhereUniqueInput!): Profile
-  deleteManyProfiles(where: ProfileWhereInput): BatchPayload!
-  createUser(data: UserCreateInput!): User!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  deleteUser(where: UserWhereUniqueInput!): User
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createAnswer(data: AnswerCreateInput!): Answer!
+  updateAnswer(data: AnswerUpdateInput!, where: AnswerWhereUniqueInput!): Answer
+  updateManyAnswers(data: AnswerUpdateManyMutationInput!, where: AnswerWhereInput): BatchPayload!
+  upsertAnswer(where: AnswerWhereUniqueInput!, create: AnswerCreateInput!, update: AnswerUpdateInput!): Answer!
+  deleteAnswer(where: AnswerWhereUniqueInput!): Answer
+  deleteManyAnswers(where: AnswerWhereInput): BatchPayload!
+  createEmployee(data: EmployeeCreateInput!): Employee!
+  updateEmployee(data: EmployeeUpdateInput!, where: EmployeeWhereUniqueInput!): Employee
+  updateManyEmployees(data: EmployeeUpdateManyMutationInput!, where: EmployeeWhereInput): BatchPayload!
+  upsertEmployee(where: EmployeeWhereUniqueInput!, create: EmployeeCreateInput!, update: EmployeeUpdateInput!): Employee!
+  deleteEmployee(where: EmployeeWhereUniqueInput!): Employee
+  deleteManyEmployees(where: EmployeeWhereInput): BatchPayload!
+  createFamily(data: FamilyCreateInput!): Family!
+  updateFamily(data: FamilyUpdateInput!, where: FamilyWhereUniqueInput!): Family
+  updateManyFamilies(data: FamilyUpdateManyMutationInput!, where: FamilyWhereInput): BatchPayload!
+  upsertFamily(where: FamilyWhereUniqueInput!, create: FamilyCreateInput!, update: FamilyUpdateInput!): Family!
+  deleteFamily(where: FamilyWhereUniqueInput!): Family
+  deleteManyFamilies(where: FamilyWhereInput): BatchPayload!
+  createPerson(data: PersonCreateInput!): Person!
+  updatePerson(data: PersonUpdateInput!, where: PersonWhereUniqueInput!): Person
+  updateManyPersons(data: PersonUpdateManyMutationInput!, where: PersonWhereInput): BatchPayload!
+  upsertPerson(where: PersonWhereUniqueInput!, create: PersonCreateInput!, update: PersonUpdateInput!): Person!
+  deletePerson(where: PersonWhereUniqueInput!): Person
+  deleteManyPersons(where: PersonWhereInput): BatchPayload!
+  createQuestion(data: QuestionCreateInput!): Question!
+  updateQuestion(data: QuestionUpdateInput!, where: QuestionWhereUniqueInput!): Question
+  updateManyQuestions(data: QuestionUpdateManyMutationInput!, where: QuestionWhereInput): BatchPayload!
+  upsertQuestion(where: QuestionWhereUniqueInput!, create: QuestionCreateInput!, update: QuestionUpdateInput!): Question!
+  deleteQuestion(where: QuestionWhereUniqueInput!): Question
+  deleteManyQuestions(where: QuestionWhereInput): BatchPayload!
+  createSurvey(data: SurveyCreateInput!): Survey!
+  updateSurvey(data: SurveyUpdateInput!, where: SurveyWhereUniqueInput!): Survey
+  updateManySurveys(data: SurveyUpdateManyMutationInput!, where: SurveyWhereInput): BatchPayload!
+  upsertSurvey(where: SurveyWhereUniqueInput!, create: SurveyCreateInput!, update: SurveyUpdateInput!): Survey!
+  deleteSurvey(where: SurveyWhereUniqueInput!): Survey
+  deleteManySurveys(where: SurveyWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -48,97 +622,57 @@ type PageInfo {
   endCursor: String
 }
 
-type Profile {
+type Person {
   id: ID!
-  favorite_color: String
-  favorite_shape: String
+  person_name: String!
+  family: Family!
 }
 
-type ProfileConnection {
+type PersonConnection {
   pageInfo: PageInfo!
-  edges: [ProfileEdge]!
-  aggregate: AggregateProfile!
+  edges: [PersonEdge]!
+  aggregate: AggregatePerson!
 }
 
-input ProfileCreateInput {
+input PersonCreateInput {
   id: ID
-  favorite_color: String
-  favorite_shape: String
+  person_name: String!
+  family: FamilyCreateOneWithoutFamily_membersInput!
 }
 
-input ProfileCreateOneInput {
-  create: ProfileCreateInput
-  connect: ProfileWhereUniqueInput
+input PersonCreateManyWithoutFamilyInput {
+  create: [PersonCreateWithoutFamilyInput!]
+  connect: [PersonWhereUniqueInput!]
 }
 
-type ProfileEdge {
-  node: Profile!
+input PersonCreateOneInput {
+  create: PersonCreateInput
+  connect: PersonWhereUniqueInput
+}
+
+input PersonCreateWithoutFamilyInput {
+  id: ID
+  person_name: String!
+}
+
+type PersonEdge {
+  node: Person!
   cursor: String!
 }
 
-enum ProfileOrderByInput {
+enum PersonOrderByInput {
   id_ASC
   id_DESC
-  favorite_color_ASC
-  favorite_color_DESC
-  favorite_shape_ASC
-  favorite_shape_DESC
+  person_name_ASC
+  person_name_DESC
 }
 
-type ProfilePreviousValues {
+type PersonPreviousValues {
   id: ID!
-  favorite_color: String
-  favorite_shape: String
+  person_name: String!
 }
 
-type ProfileSubscriptionPayload {
-  mutation: MutationType!
-  node: Profile
-  updatedFields: [String!]
-  previousValues: ProfilePreviousValues
-}
-
-input ProfileSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: ProfileWhereInput
-  AND: [ProfileSubscriptionWhereInput!]
-  OR: [ProfileSubscriptionWhereInput!]
-  NOT: [ProfileSubscriptionWhereInput!]
-}
-
-input ProfileUpdateDataInput {
-  favorite_color: String
-  favorite_shape: String
-}
-
-input ProfileUpdateInput {
-  favorite_color: String
-  favorite_shape: String
-}
-
-input ProfileUpdateManyMutationInput {
-  favorite_color: String
-  favorite_shape: String
-}
-
-input ProfileUpdateOneInput {
-  create: ProfileCreateInput
-  update: ProfileUpdateDataInput
-  upsert: ProfileUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: ProfileWhereUniqueInput
-}
-
-input ProfileUpsertNestedInput {
-  update: ProfileUpdateDataInput!
-  create: ProfileCreateInput!
-}
-
-input ProfileWhereInput {
+input PersonScalarWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -153,111 +687,222 @@ input ProfileWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  favorite_color: String
-  favorite_color_not: String
-  favorite_color_in: [String!]
-  favorite_color_not_in: [String!]
-  favorite_color_lt: String
-  favorite_color_lte: String
-  favorite_color_gt: String
-  favorite_color_gte: String
-  favorite_color_contains: String
-  favorite_color_not_contains: String
-  favorite_color_starts_with: String
-  favorite_color_not_starts_with: String
-  favorite_color_ends_with: String
-  favorite_color_not_ends_with: String
-  favorite_shape: String
-  favorite_shape_not: String
-  favorite_shape_in: [String!]
-  favorite_shape_not_in: [String!]
-  favorite_shape_lt: String
-  favorite_shape_lte: String
-  favorite_shape_gt: String
-  favorite_shape_gte: String
-  favorite_shape_contains: String
-  favorite_shape_not_contains: String
-  favorite_shape_starts_with: String
-  favorite_shape_not_starts_with: String
-  favorite_shape_ends_with: String
-  favorite_shape_not_ends_with: String
-  AND: [ProfileWhereInput!]
-  OR: [ProfileWhereInput!]
-  NOT: [ProfileWhereInput!]
+  person_name: String
+  person_name_not: String
+  person_name_in: [String!]
+  person_name_not_in: [String!]
+  person_name_lt: String
+  person_name_lte: String
+  person_name_gt: String
+  person_name_gte: String
+  person_name_contains: String
+  person_name_not_contains: String
+  person_name_starts_with: String
+  person_name_not_starts_with: String
+  person_name_ends_with: String
+  person_name_not_ends_with: String
+  AND: [PersonScalarWhereInput!]
+  OR: [PersonScalarWhereInput!]
+  NOT: [PersonScalarWhereInput!]
 }
 
-input ProfileWhereUniqueInput {
+type PersonSubscriptionPayload {
+  mutation: MutationType!
+  node: Person
+  updatedFields: [String!]
+  previousValues: PersonPreviousValues
+}
+
+input PersonSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PersonWhereInput
+  AND: [PersonSubscriptionWhereInput!]
+  OR: [PersonSubscriptionWhereInput!]
+  NOT: [PersonSubscriptionWhereInput!]
+}
+
+input PersonUpdateDataInput {
+  person_name: String
+  family: FamilyUpdateOneRequiredWithoutFamily_membersInput
+}
+
+input PersonUpdateInput {
+  person_name: String
+  family: FamilyUpdateOneRequiredWithoutFamily_membersInput
+}
+
+input PersonUpdateManyDataInput {
+  person_name: String
+}
+
+input PersonUpdateManyMutationInput {
+  person_name: String
+}
+
+input PersonUpdateManyWithoutFamilyInput {
+  create: [PersonCreateWithoutFamilyInput!]
+  delete: [PersonWhereUniqueInput!]
+  connect: [PersonWhereUniqueInput!]
+  set: [PersonWhereUniqueInput!]
+  disconnect: [PersonWhereUniqueInput!]
+  update: [PersonUpdateWithWhereUniqueWithoutFamilyInput!]
+  upsert: [PersonUpsertWithWhereUniqueWithoutFamilyInput!]
+  deleteMany: [PersonScalarWhereInput!]
+  updateMany: [PersonUpdateManyWithWhereNestedInput!]
+}
+
+input PersonUpdateManyWithWhereNestedInput {
+  where: PersonScalarWhereInput!
+  data: PersonUpdateManyDataInput!
+}
+
+input PersonUpdateOneInput {
+  create: PersonCreateInput
+  update: PersonUpdateDataInput
+  upsert: PersonUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: PersonWhereUniqueInput
+}
+
+input PersonUpdateWithoutFamilyDataInput {
+  person_name: String
+}
+
+input PersonUpdateWithWhereUniqueWithoutFamilyInput {
+  where: PersonWhereUniqueInput!
+  data: PersonUpdateWithoutFamilyDataInput!
+}
+
+input PersonUpsertNestedInput {
+  update: PersonUpdateDataInput!
+  create: PersonCreateInput!
+}
+
+input PersonUpsertWithWhereUniqueWithoutFamilyInput {
+  where: PersonWhereUniqueInput!
+  update: PersonUpdateWithoutFamilyDataInput!
+  create: PersonCreateWithoutFamilyInput!
+}
+
+input PersonWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  person_name: String
+  person_name_not: String
+  person_name_in: [String!]
+  person_name_not_in: [String!]
+  person_name_lt: String
+  person_name_lte: String
+  person_name_gt: String
+  person_name_gte: String
+  person_name_contains: String
+  person_name_not_contains: String
+  person_name_starts_with: String
+  person_name_not_starts_with: String
+  person_name_ends_with: String
+  person_name_not_ends_with: String
+  family: FamilyWhereInput
+  AND: [PersonWhereInput!]
+  OR: [PersonWhereInput!]
+  NOT: [PersonWhereInput!]
+}
+
+input PersonWhereUniqueInput {
   id: ID
 }
 
 type Query {
-  profile(where: ProfileWhereUniqueInput!): Profile
-  profiles(where: ProfileWhereInput, orderBy: ProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Profile]!
-  profilesConnection(where: ProfileWhereInput, orderBy: ProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProfileConnection!
-  user(where: UserWhereUniqueInput!): User
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  answer(where: AnswerWhereUniqueInput!): Answer
+  answers(where: AnswerWhereInput, orderBy: AnswerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Answer]!
+  answersConnection(where: AnswerWhereInput, orderBy: AnswerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AnswerConnection!
+  employee(where: EmployeeWhereUniqueInput!): Employee
+  employees(where: EmployeeWhereInput, orderBy: EmployeeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Employee]!
+  employeesConnection(where: EmployeeWhereInput, orderBy: EmployeeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EmployeeConnection!
+  family(where: FamilyWhereUniqueInput!): Family
+  families(where: FamilyWhereInput, orderBy: FamilyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Family]!
+  familiesConnection(where: FamilyWhereInput, orderBy: FamilyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FamilyConnection!
+  person(where: PersonWhereUniqueInput!): Person
+  persons(where: PersonWhereInput, orderBy: PersonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Person]!
+  personsConnection(where: PersonWhereInput, orderBy: PersonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PersonConnection!
+  question(where: QuestionWhereUniqueInput!): Question
+  questions(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Question]!
+  questionsConnection(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QuestionConnection!
+  survey(where: SurveyWhereUniqueInput!): Survey
+  surveys(where: SurveyWhereInput, orderBy: SurveyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Survey]!
+  surveysConnection(where: SurveyWhereInput, orderBy: SurveyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SurveyConnection!
   node(id: ID!): Node
 }
 
-type Subscription {
-  profile(where: ProfileSubscriptionWhereInput): ProfileSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-}
-
-type User {
+type Question {
   id: ID!
-  profile: Profile
+  survey: Survey!
+  family: Family!
+  question_text: String!
 }
 
-type UserConnection {
+type QuestionConnection {
   pageInfo: PageInfo!
-  edges: [UserEdge]!
-  aggregate: AggregateUser!
+  edges: [QuestionEdge]!
+  aggregate: AggregateQuestion!
 }
 
-input UserCreateInput {
+input QuestionCreateInput {
   id: ID
-  profile: ProfileCreateOneInput
+  survey: SurveyCreateOneWithoutQuestionsInput!
+  family: FamilyCreateOneInput!
+  question_text: String!
 }
 
-type UserEdge {
-  node: User!
+input QuestionCreateManyWithoutSurveyInput {
+  create: [QuestionCreateWithoutSurveyInput!]
+  connect: [QuestionWhereUniqueInput!]
+}
+
+input QuestionCreateOneInput {
+  create: QuestionCreateInput
+  connect: QuestionWhereUniqueInput
+}
+
+input QuestionCreateWithoutSurveyInput {
+  id: ID
+  family: FamilyCreateOneInput!
+  question_text: String!
+}
+
+type QuestionEdge {
+  node: Question!
   cursor: String!
 }
 
-enum UserOrderByInput {
+enum QuestionOrderByInput {
   id_ASC
   id_DESC
+  question_text_ASC
+  question_text_DESC
 }
 
-type UserPreviousValues {
+type QuestionPreviousValues {
   id: ID!
+  question_text: String!
 }
 
-type UserSubscriptionPayload {
-  mutation: MutationType!
-  node: User
-  updatedFields: [String!]
-  previousValues: UserPreviousValues
-}
-
-input UserSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: UserWhereInput
-  AND: [UserSubscriptionWhereInput!]
-  OR: [UserSubscriptionWhereInput!]
-  NOT: [UserSubscriptionWhereInput!]
-}
-
-input UserUpdateInput {
-  profile: ProfileUpdateOneInput
-}
-
-input UserWhereInput {
+input QuestionScalarWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -272,13 +917,431 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  profile: ProfileWhereInput
-  AND: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  NOT: [UserWhereInput!]
+  question_text: String
+  question_text_not: String
+  question_text_in: [String!]
+  question_text_not_in: [String!]
+  question_text_lt: String
+  question_text_lte: String
+  question_text_gt: String
+  question_text_gte: String
+  question_text_contains: String
+  question_text_not_contains: String
+  question_text_starts_with: String
+  question_text_not_starts_with: String
+  question_text_ends_with: String
+  question_text_not_ends_with: String
+  AND: [QuestionScalarWhereInput!]
+  OR: [QuestionScalarWhereInput!]
+  NOT: [QuestionScalarWhereInput!]
 }
 
-input UserWhereUniqueInput {
+type QuestionSubscriptionPayload {
+  mutation: MutationType!
+  node: Question
+  updatedFields: [String!]
+  previousValues: QuestionPreviousValues
+}
+
+input QuestionSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: QuestionWhereInput
+  AND: [QuestionSubscriptionWhereInput!]
+  OR: [QuestionSubscriptionWhereInput!]
+  NOT: [QuestionSubscriptionWhereInput!]
+}
+
+input QuestionUpdateDataInput {
+  survey: SurveyUpdateOneRequiredWithoutQuestionsInput
+  family: FamilyUpdateOneRequiredInput
+  question_text: String
+}
+
+input QuestionUpdateInput {
+  survey: SurveyUpdateOneRequiredWithoutQuestionsInput
+  family: FamilyUpdateOneRequiredInput
+  question_text: String
+}
+
+input QuestionUpdateManyDataInput {
+  question_text: String
+}
+
+input QuestionUpdateManyMutationInput {
+  question_text: String
+}
+
+input QuestionUpdateManyWithoutSurveyInput {
+  create: [QuestionCreateWithoutSurveyInput!]
+  delete: [QuestionWhereUniqueInput!]
+  connect: [QuestionWhereUniqueInput!]
+  set: [QuestionWhereUniqueInput!]
+  disconnect: [QuestionWhereUniqueInput!]
+  update: [QuestionUpdateWithWhereUniqueWithoutSurveyInput!]
+  upsert: [QuestionUpsertWithWhereUniqueWithoutSurveyInput!]
+  deleteMany: [QuestionScalarWhereInput!]
+  updateMany: [QuestionUpdateManyWithWhereNestedInput!]
+}
+
+input QuestionUpdateManyWithWhereNestedInput {
+  where: QuestionScalarWhereInput!
+  data: QuestionUpdateManyDataInput!
+}
+
+input QuestionUpdateOneRequiredInput {
+  create: QuestionCreateInput
+  update: QuestionUpdateDataInput
+  upsert: QuestionUpsertNestedInput
+  connect: QuestionWhereUniqueInput
+}
+
+input QuestionUpdateWithoutSurveyDataInput {
+  family: FamilyUpdateOneRequiredInput
+  question_text: String
+}
+
+input QuestionUpdateWithWhereUniqueWithoutSurveyInput {
+  where: QuestionWhereUniqueInput!
+  data: QuestionUpdateWithoutSurveyDataInput!
+}
+
+input QuestionUpsertNestedInput {
+  update: QuestionUpdateDataInput!
+  create: QuestionCreateInput!
+}
+
+input QuestionUpsertWithWhereUniqueWithoutSurveyInput {
+  where: QuestionWhereUniqueInput!
+  update: QuestionUpdateWithoutSurveyDataInput!
+  create: QuestionCreateWithoutSurveyInput!
+}
+
+input QuestionWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  survey: SurveyWhereInput
+  family: FamilyWhereInput
+  question_text: String
+  question_text_not: String
+  question_text_in: [String!]
+  question_text_not_in: [String!]
+  question_text_lt: String
+  question_text_lte: String
+  question_text_gt: String
+  question_text_gte: String
+  question_text_contains: String
+  question_text_not_contains: String
+  question_text_starts_with: String
+  question_text_not_starts_with: String
+  question_text_ends_with: String
+  question_text_not_ends_with: String
+  AND: [QuestionWhereInput!]
+  OR: [QuestionWhereInput!]
+  NOT: [QuestionWhereInput!]
+}
+
+input QuestionWhereUniqueInput {
+  id: ID
+}
+
+type Subscription {
+  answer(where: AnswerSubscriptionWhereInput): AnswerSubscriptionPayload
+  employee(where: EmployeeSubscriptionWhereInput): EmployeeSubscriptionPayload
+  family(where: FamilySubscriptionWhereInput): FamilySubscriptionPayload
+  person(where: PersonSubscriptionWhereInput): PersonSubscriptionPayload
+  question(where: QuestionSubscriptionWhereInput): QuestionSubscriptionPayload
+  survey(where: SurveySubscriptionWhereInput): SurveySubscriptionPayload
+}
+
+type Survey {
+  id: ID!
+  dateTaken: DateTime!
+  survey_name: String!
+  employee: Employee!
+  questions(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Question!]
+  answers(where: AnswerWhereInput, orderBy: AnswerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Answer!]
+}
+
+type SurveyConnection {
+  pageInfo: PageInfo!
+  edges: [SurveyEdge]!
+  aggregate: AggregateSurvey!
+}
+
+input SurveyCreateInput {
+  id: ID
+  survey_name: String!
+  employee: EmployeeCreateOneWithoutSurveysInput!
+  questions: QuestionCreateManyWithoutSurveyInput
+  answers: AnswerCreateManyWithoutSurveyInput
+}
+
+input SurveyCreateManyWithoutEmployeeInput {
+  create: [SurveyCreateWithoutEmployeeInput!]
+  connect: [SurveyWhereUniqueInput!]
+}
+
+input SurveyCreateOneWithoutAnswersInput {
+  create: SurveyCreateWithoutAnswersInput
+  connect: SurveyWhereUniqueInput
+}
+
+input SurveyCreateOneWithoutQuestionsInput {
+  create: SurveyCreateWithoutQuestionsInput
+  connect: SurveyWhereUniqueInput
+}
+
+input SurveyCreateWithoutAnswersInput {
+  id: ID
+  survey_name: String!
+  employee: EmployeeCreateOneWithoutSurveysInput!
+  questions: QuestionCreateManyWithoutSurveyInput
+}
+
+input SurveyCreateWithoutEmployeeInput {
+  id: ID
+  survey_name: String!
+  questions: QuestionCreateManyWithoutSurveyInput
+  answers: AnswerCreateManyWithoutSurveyInput
+}
+
+input SurveyCreateWithoutQuestionsInput {
+  id: ID
+  survey_name: String!
+  employee: EmployeeCreateOneWithoutSurveysInput!
+  answers: AnswerCreateManyWithoutSurveyInput
+}
+
+type SurveyEdge {
+  node: Survey!
+  cursor: String!
+}
+
+enum SurveyOrderByInput {
+  id_ASC
+  id_DESC
+  dateTaken_ASC
+  dateTaken_DESC
+  survey_name_ASC
+  survey_name_DESC
+}
+
+type SurveyPreviousValues {
+  id: ID!
+  dateTaken: DateTime!
+  survey_name: String!
+}
+
+input SurveyScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  dateTaken: DateTime
+  dateTaken_not: DateTime
+  dateTaken_in: [DateTime!]
+  dateTaken_not_in: [DateTime!]
+  dateTaken_lt: DateTime
+  dateTaken_lte: DateTime
+  dateTaken_gt: DateTime
+  dateTaken_gte: DateTime
+  survey_name: String
+  survey_name_not: String
+  survey_name_in: [String!]
+  survey_name_not_in: [String!]
+  survey_name_lt: String
+  survey_name_lte: String
+  survey_name_gt: String
+  survey_name_gte: String
+  survey_name_contains: String
+  survey_name_not_contains: String
+  survey_name_starts_with: String
+  survey_name_not_starts_with: String
+  survey_name_ends_with: String
+  survey_name_not_ends_with: String
+  AND: [SurveyScalarWhereInput!]
+  OR: [SurveyScalarWhereInput!]
+  NOT: [SurveyScalarWhereInput!]
+}
+
+type SurveySubscriptionPayload {
+  mutation: MutationType!
+  node: Survey
+  updatedFields: [String!]
+  previousValues: SurveyPreviousValues
+}
+
+input SurveySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SurveyWhereInput
+  AND: [SurveySubscriptionWhereInput!]
+  OR: [SurveySubscriptionWhereInput!]
+  NOT: [SurveySubscriptionWhereInput!]
+}
+
+input SurveyUpdateInput {
+  survey_name: String
+  employee: EmployeeUpdateOneRequiredWithoutSurveysInput
+  questions: QuestionUpdateManyWithoutSurveyInput
+  answers: AnswerUpdateManyWithoutSurveyInput
+}
+
+input SurveyUpdateManyDataInput {
+  survey_name: String
+}
+
+input SurveyUpdateManyMutationInput {
+  survey_name: String
+}
+
+input SurveyUpdateManyWithoutEmployeeInput {
+  create: [SurveyCreateWithoutEmployeeInput!]
+  delete: [SurveyWhereUniqueInput!]
+  connect: [SurveyWhereUniqueInput!]
+  set: [SurveyWhereUniqueInput!]
+  disconnect: [SurveyWhereUniqueInput!]
+  update: [SurveyUpdateWithWhereUniqueWithoutEmployeeInput!]
+  upsert: [SurveyUpsertWithWhereUniqueWithoutEmployeeInput!]
+  deleteMany: [SurveyScalarWhereInput!]
+  updateMany: [SurveyUpdateManyWithWhereNestedInput!]
+}
+
+input SurveyUpdateManyWithWhereNestedInput {
+  where: SurveyScalarWhereInput!
+  data: SurveyUpdateManyDataInput!
+}
+
+input SurveyUpdateOneRequiredWithoutAnswersInput {
+  create: SurveyCreateWithoutAnswersInput
+  update: SurveyUpdateWithoutAnswersDataInput
+  upsert: SurveyUpsertWithoutAnswersInput
+  connect: SurveyWhereUniqueInput
+}
+
+input SurveyUpdateOneRequiredWithoutQuestionsInput {
+  create: SurveyCreateWithoutQuestionsInput
+  update: SurveyUpdateWithoutQuestionsDataInput
+  upsert: SurveyUpsertWithoutQuestionsInput
+  connect: SurveyWhereUniqueInput
+}
+
+input SurveyUpdateWithoutAnswersDataInput {
+  survey_name: String
+  employee: EmployeeUpdateOneRequiredWithoutSurveysInput
+  questions: QuestionUpdateManyWithoutSurveyInput
+}
+
+input SurveyUpdateWithoutEmployeeDataInput {
+  survey_name: String
+  questions: QuestionUpdateManyWithoutSurveyInput
+  answers: AnswerUpdateManyWithoutSurveyInput
+}
+
+input SurveyUpdateWithoutQuestionsDataInput {
+  survey_name: String
+  employee: EmployeeUpdateOneRequiredWithoutSurveysInput
+  answers: AnswerUpdateManyWithoutSurveyInput
+}
+
+input SurveyUpdateWithWhereUniqueWithoutEmployeeInput {
+  where: SurveyWhereUniqueInput!
+  data: SurveyUpdateWithoutEmployeeDataInput!
+}
+
+input SurveyUpsertWithoutAnswersInput {
+  update: SurveyUpdateWithoutAnswersDataInput!
+  create: SurveyCreateWithoutAnswersInput!
+}
+
+input SurveyUpsertWithoutQuestionsInput {
+  update: SurveyUpdateWithoutQuestionsDataInput!
+  create: SurveyCreateWithoutQuestionsInput!
+}
+
+input SurveyUpsertWithWhereUniqueWithoutEmployeeInput {
+  where: SurveyWhereUniqueInput!
+  update: SurveyUpdateWithoutEmployeeDataInput!
+  create: SurveyCreateWithoutEmployeeInput!
+}
+
+input SurveyWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  dateTaken: DateTime
+  dateTaken_not: DateTime
+  dateTaken_in: [DateTime!]
+  dateTaken_not_in: [DateTime!]
+  dateTaken_lt: DateTime
+  dateTaken_lte: DateTime
+  dateTaken_gt: DateTime
+  dateTaken_gte: DateTime
+  survey_name: String
+  survey_name_not: String
+  survey_name_in: [String!]
+  survey_name_not_in: [String!]
+  survey_name_lt: String
+  survey_name_lte: String
+  survey_name_gt: String
+  survey_name_gte: String
+  survey_name_contains: String
+  survey_name_not_contains: String
+  survey_name_starts_with: String
+  survey_name_not_starts_with: String
+  survey_name_ends_with: String
+  survey_name_not_ends_with: String
+  employee: EmployeeWhereInput
+  questions_every: QuestionWhereInput
+  questions_some: QuestionWhereInput
+  questions_none: QuestionWhereInput
+  answers_every: AnswerWhereInput
+  answers_some: AnswerWhereInput
+  answers_none: AnswerWhereInput
+  AND: [SurveyWhereInput!]
+  OR: [SurveyWhereInput!]
+  NOT: [SurveyWhereInput!]
+}
+
+input SurveyWhereUniqueInput {
   id: ID
 }
 `
