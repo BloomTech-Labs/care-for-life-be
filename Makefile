@@ -54,11 +54,12 @@ docker-clean: clean
 	-docker system prune -f
 
 local-up: apollo-build
-	@printf "$(OK_COLOR)"																																												&& \
+	@export $$(cat .env | xargs)																																								&& \
+	 printf "$(OK_COLOR)" 																																											&& \
 	 printf "\n%s\n" "======================================================================================"		&& \
 	 printf "%s\n"   "= Bringing up Prismatopia"																																&& \
 	 printf "%s\n"   "======================================================================================"		&& \
-	 printf "$(NO_COLOR)"
+	 printf "$(NO_COLOR)" 																																											&& \
 	 docker-compose up --build --abort-on-container-exit
 
 # =================================================================
@@ -426,8 +427,9 @@ AWS_PRISMA_SERVICE_ARN_EXPORT := $(APPLICATION_NAME)-$(ENVIRONMENT_NAME)-PrismaS
 AWS_PRISMA_SERVICE_ARN := $$(aws cloudformation list-exports --query 'Exports[?Name==`$(AWS_PRISMA_SERVICE_ARN_EXPORT)`].Value' --output text)
 
 aws-prisma-update-service: aws-env-banner
-	@export PRISMA_SERVICE_ARN=$(AWS_PRISMA_SERVICE_ARN) && \
-	 echo PRISMA_SERVICE_ARN: $${PRISMA_SERVICE_ARN} && \
+	@echo PRISMA_SERVICE_ARN: ${AWS_PRISMA_SERVICE_ARN} 																																										&& \
+	 export PRISMA_SERVICE_ARN=$(AWS_PRISMA_SERVICE_ARN) 																																										&& \
+	 echo PRISMA_SERVICE_ARN: $${PRISMA_SERVICE_ARN} 																																												&& \
 	 aws ecs update-service --cluster $(APPLICATION_NAME)-$(ENVIRONMENT_NAME) --service "$${AWS_PRISMA_SERVICE_ARN}" --force-new-deployment
 
 # =================================================================
@@ -442,5 +444,5 @@ aws-apollo-update-service: aws-env-banner
 	 printf "%s\n"   "= Updating the Apollo service"													   																&& \
 	 printf "%s"     "======================================================================================"		&& \
 	 printf "$(NO_COLOR)"																																												&& \
-	 export APOLLO_SERVICE_ARN=$(AWS_APOLLO_SERVICE_ARN) 																														&& \
-	 aws ecs update-service --cluster $(APPLICATION_NAME)-$(ENVIRONMENT_NAME) --service "$${AWS_APOLLO_SERVICE_ARN}" --force-new-deployment
+	 export APOLLO_SERVICE_ARN=$(AWS_APOLLO_SERVICE_ARN) 																												&& \
+	 aws ecs update-service --cluster $(APPLICATION_NAME)-$(ENVIRONMENT_NAME) --service "$${APOLLO_SERVICE_ARN}" --force-new-deployment
