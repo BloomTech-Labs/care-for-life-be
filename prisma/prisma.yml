@@ -1,6 +1,7 @@
 datamodel: prisma-datamodel.graphql
 
-endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: ${env:PRISMA_ENDPOINT}
+endpoint: https://us1.prisma.sh/nicholas-sandomeno-9043c5/care-for-life-be/dev
 secret: ${env:PRISMA_SECRET}
 
 # Generate the schema and client for Apollo to use
