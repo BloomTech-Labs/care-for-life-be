@@ -72,7 +72,7 @@ prisma-generate: env-PRISMA_ENDPOINT env-PRISMA_SECRET
 	 cd prisma && yarn install && yarn generate
 
 local-prisma-deploy: env-PRISMA_MANAGEMENT_API_SECRET
-	 echo															&& \
+	@echo															&& \
 	 echo Deploying Prisma schema			&& \
 	 cd prisma && yarn install 				&& \
 	 yarn deploy
