@@ -1,36 +1,54 @@
 // @ts-check
 
 /**
- * @param {{ where: import('../generated/prisma-client').UserWhereUniqueInput }} args
+ * @param {{ where: import('../generated/prisma-client').FamilyWhereUniqueInput }} args
  * @param {{ prisma: import('../generated/prisma-client').Prisma }} context
  * @returns { Promise }
  */
-const user = async (_, args, context) => {
-  console.log("Query.user.args: %j", args)
+const family = async (_, args, context) => {
+  console.log("Query.family.args: %j", args)
 
-  const user = await context.prisma.user(args.where);
+  const family = await context.prisma.family(args.where);
 
-  console.log("Query.user: %j", user)
+  console.log("Query.family: %j", family)
   
-  return user;
+  return family;
 };
 
 /**
- * @param {{ where: import('../generated/prisma-client').UserWhereInput }} args
+ * @param {{ where: import('../generated/prisma-client').FamilyWhereInput }} args
  * @param {{ prisma: import('../generated/prisma-client').Prisma }} context
  * @returns { Promise }
  */
-const users = async (_, args, context) => {
-  console.log("Query.user.args: %j", args)
+const families = async (_, args, context) => {
+  console.log("Query.families.args: %j", args)
 
-  const user = await context.prisma.users(args);
+  const family = await context.prisma.families(args);
 
-  console.log("Query.user: %j", user)
+  console.log("Query.user: %j", family)
   
-  return user;
+  return family;
 };
 
+// Single person
+/**
+ * @param {{ where: import('../generated/prisma-client').PersonWhereUniqueInput }} args
+ * @param {{ prisma: import('../generated/prisma-client').Prisma }} context
+ * @returns { Promise }
+ */
+const person = async (_, args, context) => {
+  console.log("Query.person.args: %j", args)
+
+  const person = await context.prisma.person(args.where);
+
+  console.log("Query.person: %j", person)
+  
+  return person;
+};
+
+
 module.exports = {
-  user,
-  users
+  family,
+  families,
+  person
 };

@@ -1,18 +1,33 @@
 // @ts-check
 
 /**
- * @param {{ data: import('../generated/prisma-client').UserCreateInput }} args
+ * @param {{ data: import('../generated/prisma-client').FamilyCreateInput }} args
  * @param {{ prisma: import('../generated/prisma-client').Prisma }} context
- * @returns { import('../generated/prisma-client').UserPromise }
+ * @returns { import('../generated/prisma-client').FamilyPromise }
  */
-const createUser = (_, args, context) => {
-  console.log("createUser.args: %j", args)
+const createFamily = (_, args, context) => {
+  console.log("createFamily.args: %j", args)
 
-  const user = context.prisma.createUser(args.data);  
+  const family = context.prisma.createFamily(args.data);  
 
-  return user;
+  return family;
 };
 
+/**
+ * @param {{ data: import('../generated/prisma-client').PersonCreateInput }} args
+ * @param {{ prisma: import('../generated/prisma-client').Prisma }} context
+ * @returns { import('../generated/prisma-client').PersonPromise }
+ */
+
+ const createPerson = (_, args, context) => {
+   console.log("createPerson.args: %j", args)
+
+   const person = context.prisma.createPerson(args.data)
+
+   return person
+ }
+
 module.exports = {
-  createUser,
+  createFamily,
+  createPerson,
 };
