@@ -7,12 +7,15 @@
 
 const Query = require('./Query');
 const Mutation = require('./Mutation');
-const User = require('./User');
+const Family = require('./Family.js');
+const Person = require('./Person');
 
 const resolvers = {
   Query,
   Mutation,
-  User,
+  Family,
+  Person,
+
 };
 
 module.exports = resolvers;
