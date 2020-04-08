@@ -2,11 +2,7 @@ EnvironmentName=production
 
 ApolloDockerImage=lambdaschoollabs/careforlife-apollo:latest
 
-OAuthTokenEndpoint=https://dev-384670.okta.com/oauth2/default/v1/token
-OAuthClientID=0oa4zi41jRnaxQ3Wy4x6
-
-JwksUri=https://dev-384670.okta.com/oauth2/default/v1/keys
-
-JwtIssuer=https://dev-384670.okta.com/oauth2/default
+JwksUri=https://okta.careforlife.dev/oauth2/default/v1/keys
+JwtIssuer=https://okta.careforlife.dev/oauth2/default
 
 LogLevel=debug

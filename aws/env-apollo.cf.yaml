@@ -29,26 +29,15 @@ Parameters:
     Type: Number
     Description: The port that the Prisma service will be listening on
 
-  OAuthTokenEndpoint:
-    Type: String
-    Description: 'Endpoint for validating OAuth tokens (See: https://tools.ietf.org/html/rfc8414)'
-
-  OAuthClientID:
-    Type: String
-    Description: The ID of this OAuth client
-
   JwksUri:
     Type: String
-    Description: 'The URI for retrieving the JWKS for JWT validation (See: https://tools.ietf.org/html/rfc8414)'
 
   JwtIssuer:
     Type: String
-    Description: The string used to validate the issuer field in the JWT
 
   LogLevel:
     Type: String
-    Description: 'The log level for the Apollo service logger'
-    Default: 'info'
+    Default: info
 
 Conditions:
   IsProductionEnvironment: !Equals [ !Ref EnvironmentName, production ]
@@ -66,7 +55,7 @@ Resources:
       NetworkMode: awsvpc
       RequiresCompatibilities:
         - FARGATE
-      Family: apollo
+      Family: !Sub ${ApplicationName}-${EnvironmentName}-apollo
       Cpu: '1024'
       Memory: '2048'
       ExecutionRoleArn:
@@ -92,31 +81,30 @@ Resources:
               awslogs-group: !Ref LogGroup
               awslogs-region: !Ref AWS::Region
               awslogs-stream-prefix: apollo
+          Secrets:
+            - Name: PRISMA_SECRET
+              ValueFrom:
+                Fn::ImportValue: !Sub ${ApplicationName}-${EnvironmentName}-PrismaServiceAPISecretArn
           Environment:
             - Name: PORT
               Value: !Ref ApolloServicePort
+
             - Name: GRAPHQL_API_PATH
               Value: /
+
             - Name: PRISMA_ENDPOINT
               Value:
                 Fn::If:
                   - IsProductionEnvironment
                   - !Sub "http://prisma.private.${ApplicationDomainNamespace}:${PrismaServicePort}"
                   - !Sub "http://prisma.private.${EnvironmentName}.${ApplicationDomainNamespace}:${PrismaServicePort}"
-            - Name: PRISMA_SECRET
-              Value:
-                Fn::Sub:
-                  - '{{resolve:secretsmanager:${PrismaServiceAPISecret}:SecretString}}'
-                  - PrismaServiceAPISecret:
-                      Fn::ImportValue: !Sub ${ApplicationName}-${EnvironmentName}-PrismaServiceAPISecret
-            - Name: OAUTH_TOKEN_ENDPOINT
-              Value: !Ref OAuthTokenEndpoint
-            - Name: OAUTH_CLIENT_ID
-              Value: !Ref OAuthClientID
+
             - Name: JWKS_URI
               Value: !Ref JwksUri
+
             - Name: JWT_ISSUER
               Value: !Ref JwtIssuer
+
             - Name: LOG_LEVEL
               Value: !Ref LogLevel
 
