@@ -1,0 +1,8 @@
+EnvironmentName=production
+
+ApolloDockerImage=lambdaschoollabs/careforlife-apollo:latest
+
+JwksUri=https://okta.careforlife.dev/oauth2/default/v1/keys
+JwtIssuer=https://okta.careforlife.dev/oauth2/default
+
+LogLevel=debug

@@ -1,0 +1,5 @@
+ApplicationName=careforlife
+ApplicationDomainNamespace=careforlife.dev
+
+ApolloServicePort=8000
+PrismaServicePort=8000

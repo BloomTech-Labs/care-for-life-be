@@ -1,0 +1,13 @@
+# QUERIES :
+
+# import Query.user from "generated/prisma.graphql"
+# import Query.users from "generated/prisma.graphql"
+# import Mutation.createUser from "generated/prisma.graphql"
+
+# import Query.family from "generated/prisma.graphql"
+# import Query.families from "generated/prisma.graphql"
+# import Mutation.createFamily from "generated/prisma.graphql"
+
+# import Query.person from "generated/prisma.graphql"
+# import Query.persons from "generated/prisma.graphql"
+# import Mutation.createPerson from "generated/prisma.graphql"
