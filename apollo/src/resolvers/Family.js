@@ -9,7 +9,7 @@
 const family_members = async (parent, _, context) => {
     console.log("Family.person.parent: %j", parent)
   
-    const person = await context.prisma.family({id: parent.id}).family_members();
+    const family_members = await context.prisma.family({id: parent.id}).family_members();
   
     console.log("User.profile: %j", family_members)
     

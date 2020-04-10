@@ -9,12 +9,20 @@ const Query = require('./Query');
 const Mutation = require('./Mutation');
 const Family = require('./Family.js');
 const Person = require('./Person');
+const Question = require('./Question');
+const Answer = require('./Answer')
+const Survey = require('./Survey')
+const Employee = require('./Employee')
 
 const resolvers = {
   Query,
   Mutation,
   Family,
   Person,
+  Question,
+  Answer,
+  Survey,
+  Employee
 
 };
 
