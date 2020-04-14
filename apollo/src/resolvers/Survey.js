@@ -36,10 +36,33 @@
     return answers;
   };
 
+  const family = async (parent, _, context) => {
+    console.log("Survey.family.parent: %j", parent)
+  
+    const family = await context.prisma.survey({id: parent.id}).family();
+  
+    console.log("User.profile: %j", family)
+    
+    return family;
+  };
+  
+  const person = async (parent, _, context) => {
+    console.log("Survey.person.parent: %j", parent)
+  
+    const person = await context.prisma.survey({id: parent.id}).person();
+  
+    console.log("User.profile: %j", person)
+    
+    return person;
+  };
+
+
 
   module.exports = {
   employee,
   questions,
-  answers
+  answers,
+  family,
+  person
 
 };

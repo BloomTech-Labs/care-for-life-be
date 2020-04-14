@@ -13,12 +13,14 @@ type Family {
     id: ID! @id
     family_name: String!
     family_members: [Person!]!
+    surveys: [Survey!]!
 }
 
 type Person {
     id: ID! @id
     person_name: String!
     family: Family!
+    surveys: [Survey!]!
 }
 
 type Survey {
@@ -28,7 +30,8 @@ type Survey {
     employee: Employee!
     questions: [Question!]! 
     answers: [Answer!]!
-    
+    family: Family!
+    person: Person
 }
 
 type Employee {
