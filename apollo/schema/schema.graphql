@@ -3,6 +3,7 @@
 # import Query.family from "generated/prisma.graphql"
 # import Query.families from "generated/prisma.graphql"
 # import Mutation.createFamily from "generated/prisma.graphql"
+# import Mutation.deleteManyFamilies from "generated/prisma.graphql"
 
 # import Query.person from "generated/prisma.graphql"
 # import Query.persons from "generated/prisma.graphql"
