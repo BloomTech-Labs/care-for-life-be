@@ -9,7 +9,10 @@
   },
   "scripts": {
     "server": "nodemon index.js",
-    "test": "jest --watchAll --runInBand",
+    "coverage": "npm test -- --coverage --watchAll=false || true",
+    "test": "cross-env NODE_ENV=testing node_modules/.bin/jest",
+    "test -CI": "jest --watch=all",
+    "test:debug": "node --inspect-brk node_modules/jest/bin/jest.js --runInBand"
     "eslint": "eslint --fix ./src"
   },
   "jest": {
