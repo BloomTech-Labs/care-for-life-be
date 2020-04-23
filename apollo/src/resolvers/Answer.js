@@ -15,16 +15,6 @@ const survey = async (parent, _, context) => {
     return survey;
   };
 
-  const family = async (parent, _, context) => {
-    console.log("Question.family.parent: %j", parent)
-  
-    const family = await context.prisma.answer({id: parent.id}).family();
-  
-    console.log("User.profile: %j", family)
-    
-    return family;
-  };
-
   const question = async (parent, _, context) => {
     console.log("Question.survey.parent: %j", parent)
   
@@ -48,7 +38,6 @@ const survey = async (parent, _, context) => {
 
   module.exports = {
   survey,
-  family,
   question,
   respondent
 

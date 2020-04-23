@@ -9,7 +9,6 @@ type Family {
 type Person {
     id: ID! @id
     person_name: String!
-    family: Family!
     surveys: [Survey!]!
     dateCreated: DateTime! @createdAt 
 }
@@ -19,20 +18,20 @@ type Survey {
     dateTaken: DateTime! @createdAt 
     # Can get rid of this in next iteration
     survey_name: String!
-    employee: String
+    employee: Employee!
     questions: [Question!] 
     answers: [Answer!] 
     # Can get rid of this in next iteration
 }
 
 # Use in next iteration
-type CompletedSurvey {
-    id: ID! @id
-    dateTaken: DateTime! @createdAt
-    answers: [Answer!]!
-    originalSurvey: Survey!
-    family: Family
-}
+# type CompletedSurvey {
+#    id: ID! @id
+#    dateTaken: DateTime! @createdAt
+#    answers: [Answer!]!
+#    originalSurvey: Survey!
+#    family: Family
+# }
 
 # Can get rid of entire employee table
 type Employee {
@@ -58,17 +57,8 @@ type Answer {
     dateTaken: DateTime! @createdAt
     answer: String!
     question: Question!
-    family: Family!
     respondent: Person
     survey: Survey!
-    # Probably don't need Survey as question is tied to Survey.
 } 
-
-
-type AuthPayload {
-    id: ID! @id
-    employee: Employee
-    token: String
-}
   
 

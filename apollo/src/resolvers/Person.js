@@ -6,15 +6,7 @@
  * @returns { Promise }
  */
 
-const family = async (parent, _, context) => {
-    console.log("Person.family.parent: %j", parent)
-  
-    const family = await context.prisma.person({id: parent.id}).family();
-  
-    console.log("Person.family: %j", family)
-    
-    return family;
-  };
+
 
   const surveys = async (parent, _, context) => {
     console.log("Person.surveys.parent: %j", parent)
@@ -27,6 +19,5 @@ const family = async (parent, _, context) => {
   };
 
 module.exports = {
-  family,
   surveys
 };
