@@ -9,8 +9,11 @@ function getRandomInt(min, max) {
 
 async function main() {
   // Generate a bunch of random users
+  // for (var i = 0; i < 100; i++) {
+  //   await prisma.createUser({});
+  // }
   for (var i = 0; i < 100; i++) {
-    await prisma.createUser({});
+    await prisma.createFamily({});
   }
 }
 

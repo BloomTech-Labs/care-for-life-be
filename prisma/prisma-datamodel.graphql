@@ -1,19 +1,9 @@
-# type User {
-#   id: ID! @id
-#   profile: Profile
-# }
-
-# type Profile {
-#   id: ID! @id
-#   favorite_color: String
-#   favorite_shape: String
-# }
-
 type Family {
     id: ID! @id
     family_name: String!
     family_members: [Person!]!
     surveys: [Survey!]!
+    dateCreated: DateTime! @createdAt 
 }
 
 type Person {
@@ -21,31 +11,46 @@ type Person {
     person_name: String!
     family: Family!
     surveys: [Survey!]!
+    dateCreated: DateTime! @createdAt 
 }
 
 type Survey {
     id: ID! @id
     dateTaken: DateTime! @createdAt 
+    # Can get rid of this in next iteration
     survey_name: String!
-    employee: Employee!
-    questions: [Question!]! 
-    answers: [Answer!]!
-    family: Family!
-    person: Person
+    employee: String
+    questions: [Question!] 
+    answers: [Answer!] 
+    # Can get rid of this in next iteration
 }
 
+# Use in next iteration
+type CompletedSurvey {
+    id: ID! @id
+    dateTaken: DateTime! @createdAt
+    answers: [Answer!]!
+    originalSurvey: Survey!
+    family: Family
+}
+
+# Can get rid of entire employee table
 type Employee {
     id: ID! @id
     name: String!
     type: String!
     surveys: [Survey!]!
+    dateCreated: DateTime! @createdAt 
 }
 
 type Question {
     id: ID! @id
     survey: Survey!
-    family: Family!
-    question_text: String!
+    family: Family
+    # Can also probably go away, doesn't just need to be non-nullable
+    question_id: String!
+    question_text: String
+    dateTaken: DateTime! @createdAt 
 }
 
 type Answer {
@@ -53,10 +58,17 @@ type Answer {
     dateTaken: DateTime! @createdAt
     answer: String!
     question: Question!
-    family: Family
+    family: Family!
     respondent: Person
     survey: Survey!
+    # Probably don't need Survey as question is tied to Survey.
 } 
 
+
+type AuthPayload {
+    id: ID! @id
+    employee: Employee
+    token: String
+}
   
 
