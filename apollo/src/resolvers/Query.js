@@ -46,6 +46,16 @@ const person = async (_, args, context) => {
   return person;
 };
 
+const persons = async (_, args, context) => {
+  console.log("Query.persons.args: %j", args)
+
+  const persons = await context.prisma.persons(args);
+
+  console.log("Query.persons: %j", persons)
+  
+  return persons;
+};
+
 /**
  * @param {{ where: import('../generated/prisma-client').SurveyWhereUniqueInput }} args
  * @param {{ prisma: import('../generated/prisma-client').Prisma }} context
@@ -179,6 +189,7 @@ module.exports = {
   family,
   families,
   person,
+  persons,
   survey,
   surveys,
   question,

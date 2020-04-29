@@ -11,6 +11,7 @@ type Person {
     person_name: String!
     surveys: [Survey!]!
     dateCreated: DateTime! @createdAt 
+    family: Family
 }
 
 type Survey {
