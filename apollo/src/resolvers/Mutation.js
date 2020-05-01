@@ -84,6 +84,14 @@ const createAnswer = (_, args, context) => {
   return answer
 }
 
+const createCompletedSurvey = (_, args, context) => {
+  console.log("createCompletedSurvey.args: %j", args)
+
+  const completedSurvey = context.prisma.createCompletedSurvey(args.data)
+
+  return completedSurvey;
+}
+
 module.exports = {
   createFamily,
   createPerson,
@@ -91,6 +99,6 @@ module.exports = {
   createQuestion,
   createEmployee,
   createAnswer,
-
+  createCompletedSurvey
 
 };

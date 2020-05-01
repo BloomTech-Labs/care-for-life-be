@@ -5,16 +5,6 @@
  * @returns { Promise }
  */
 
-const survey = async (parent, _, context) => {
-    console.log("Question.survey.parent: %j", parent)
-  
-    const survey = await context.prisma.answer({id: parent.id}).survey();
-  
-    console.log("User.profile: %j", survey)
-    
-    return survey;
-  };
-
   const question = async (parent, _, context) => {
     console.log("Question.survey.parent: %j", parent)
   
@@ -37,7 +27,6 @@ const survey = async (parent, _, context) => {
 
 
   module.exports = {
-  survey,
   question,
   respondent
 

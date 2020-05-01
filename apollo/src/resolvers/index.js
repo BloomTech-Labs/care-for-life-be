@@ -13,6 +13,7 @@ const Question = require('./Question');
 const Answer = require('./Answer')
 const Survey = require('./Survey')
 const Employee = require('./Employee')
+const CompletedSurvey = require('./CompletedSurvey')
 
 const resolvers = {
   Query,
@@ -22,8 +23,8 @@ const resolvers = {
   Question,
   Answer,
   Survey,
-  Employee
-
+  Employee,
+  CompletedSurvey
 };
 
 module.exports = resolvers;

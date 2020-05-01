@@ -1,15 +1,15 @@
 type Family {
     id: ID! @id
     family_name: String!
-    family_members: [Person!]!
-    surveys: [Survey!]!
+    family_members: [Person]
+    completed_surveys: [CompletedSurvey]
     dateCreated: DateTime! @createdAt 
 }
 
 type Person {
     id: ID! @id
     person_name: String!
-    surveys: [Survey!]!
+    completed_surveys: [CompletedSurvey]
     dateCreated: DateTime! @createdAt 
     family: Family
 }
@@ -26,13 +26,14 @@ type Survey {
 }
 
 # Use in next iteration
-# type CompletedSurvey {
-#    id: ID! @id
-#    dateTaken: DateTime! @createdAt
-#    answers: [Answer!]!
-#    originalSurvey: Survey!
-#    family: Family
-# }
+ type CompletedSurvey {
+    id: ID! @id
+    dateTaken: DateTime! @createdAt
+    answers: [Answer!]
+    originalSurvey: Survey!
+    family: Family
+    employee: Employee
+ }
 
 # Can get rid of entire employee table
 type Employee {
@@ -59,7 +60,7 @@ type Answer {
     answer: String!
     question: Question!
     respondent: Person
-    survey: Survey!
+
 } 
   
 

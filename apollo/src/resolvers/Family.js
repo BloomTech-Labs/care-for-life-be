@@ -16,17 +16,17 @@ const family_members = async (parent, _, context) => {
     return family_members;
   };
 
-  const surveys = async (parent, _, context) => {
-    console.log("Family.surveys.parent: %j", parent)
+  const completed_surveys = async (parent, _, context) => {
+    console.log("Family.person.parent: %j", parent)
   
-    const surveys = await context.prisma.family({id: parent.id}).surveys();
+    const completed_surveys = await context.prisma.family({id: parent.id}).completed_surveys();
   
-    console.log("User.profile: %j", surveys)
+    console.log("User.profile: %j", completed_surveys)
     
-    return surveys;
+    return completed_surveys;
   };
 
   module.exports = {
   family_members,
-  surveys
+  completed_surveys
 };
