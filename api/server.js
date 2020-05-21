@@ -10,6 +10,7 @@ const zoneRouter = require('../zones/zones-router');
 const rolesRouter = require('../roles/roles-router');
 const familiesRouter = require('../families/families-router');
 const surveysRouter = require('../surveys/surveys-router');
+const individualsRouter = require('../individuals/individuals-router');
 
 
 server.use(express.json());
@@ -23,6 +24,7 @@ server.use('/api/zones', zoneRouter);
 server.use('/api/roles', rolesRouter);
 server.use('/api/families', familiesRouter);
 server.use('/api/surveys', surveysRouter);
+server.use('/api/individuals', individualsRouter);
 
 // --- logger middleware --- //
 function logger(req, res, next) {
