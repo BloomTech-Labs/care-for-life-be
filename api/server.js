@@ -6,6 +6,7 @@ const server = express();
 
 // routers 
 const communitiesRouter = require('../communities/communities-router.js');
+const zoneRouter = require('../zones/zones-router');
 
 server.use(express.json());
 server.use(helmet());
@@ -14,6 +15,7 @@ server.use(logger);
 
 // --- router paths --- //
 server.use('/api/communities', communitiesRouter);
+server.use('/api/zones', zoneRouter);
 
 // --- logger middleware --- //
 function logger(req, res, next) {
