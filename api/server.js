@@ -11,6 +11,7 @@ const rolesRouter = require('../roles/roles-router');
 const familiesRouter = require('../families/families-router');
 const surveysRouter = require('../surveys/surveys-router');
 const individualsRouter = require('../individuals/individuals-router');
+const questionsRouter = require('../questions/questions-router');
 
 
 server.use(express.json());
@@ -25,6 +26,7 @@ server.use('/api/roles', rolesRouter);
 server.use('/api/families', familiesRouter);
 server.use('/api/surveys', surveysRouter);
 server.use('/api/individuals', individualsRouter);
+server.use('/api/questions', questionsRouter);
 
 // --- logger middleware --- //
 function logger(req, res, next) {
