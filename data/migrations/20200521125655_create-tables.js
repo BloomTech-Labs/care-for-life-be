@@ -59,12 +59,6 @@ exports.up = function (knex) {
                 .references('community.id')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
-            // tbl.integer('field_officer_id')
-            //     .unsigned()
-            //     .notNullable()
-            //     .references('worker.id')
-            //     .onUpdate('CASCADE')
-            //     .onDelete('CASCADE');
             // created at timestamp 
             tbl.timestamp("created at").defaultTo(knex.fn.now());
         })

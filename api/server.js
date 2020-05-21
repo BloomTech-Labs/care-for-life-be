@@ -8,6 +8,7 @@ const server = express();
 const communitiesRouter = require('../communities/communities-router.js');
 const zoneRouter = require('../zones/zones-router');
 const rolesRouter = require('../roles/roles-router');
+const familiesRouter = require('../families/families-router');
 
 server.use(express.json());
 server.use(helmet());
@@ -18,6 +19,7 @@ server.use(logger);
 server.use('/api/communities', communitiesRouter);
 server.use('/api/zones', zoneRouter);
 server.use('/api/roles', rolesRouter);
+server.use('/api/families', familiesRouter)
 
 // --- logger middleware --- //
 function logger(req, res, next) {
