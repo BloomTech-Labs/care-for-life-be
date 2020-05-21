@@ -162,6 +162,12 @@ exports.up = function (knex) {
                 .references('question.id')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
+            tbl.integer('completed_survey_id')
+                .unsigned()
+                .notNullable()
+                .references('completed_survey.id')
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
             tbl.integer('family_id')
                 .unsigned()
                 .notNullable()
