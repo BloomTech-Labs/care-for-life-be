@@ -5,7 +5,7 @@ module.exports = {
     client: 'pg',
     connection: {
       host: '127.0.0.1',
-      database: 'careforlife',
+      database: 'care_for_life',
       user: process.env.USERNAME,
       password: process.env.PASSWORD,
     },
@@ -21,7 +21,7 @@ module.exports = {
     client: 'pg',
     connection: {
       host: '127.0.0.1',
-      database: 'careforlife-testing',
+      database: 'careforlifetesting',
       user: process.env.USERNAME,
       password: process.env.PASSWORD,
     },
