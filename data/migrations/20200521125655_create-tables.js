@@ -86,6 +86,7 @@ exports.up = function (knex) {
             // potentially add a survey_type?
         })
         .createTable('survey_role', tbl => {
+            tbl.increments();
             tbl.integer('survey_id')
                 .unsigned()
                 .notNullable()
