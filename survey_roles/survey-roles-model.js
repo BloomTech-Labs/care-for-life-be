@@ -6,6 +6,7 @@ module.exports = {
     findBy,
     findBySurveyId,
     findByRoleId,
+    findById,
     update,
     remove
 };
@@ -29,6 +30,10 @@ function findBySurveyId(id) {
 
 function findByRoleId(id) {
     return db('survey_role').where('role_id', id);
+}
+
+function findById(id) {
+    return db('survey_role').where('id', id);
 }
 
 function update(id, changes) {
