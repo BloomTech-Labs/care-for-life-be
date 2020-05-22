@@ -15,18 +15,9 @@ exports.up = function (knex) {
                 .onDelete('CASCADE');
             tbl.unique(['zone_letter', 'community_id'])
         })
-        // .createTable('supervisor_role', tbl => {
-        //     tbl.increments();
-        //     tbl.string('supervisor_role', 50).notNullable().unique();
-        // })
         .createTable('role', tbl => {
             tbl.increments();
             tbl.string('role', 50).notNullable().unique();
-            // tbl.integer('supervisor_role_id')
-            //     .unsigned()
-            //     .references('supervisor_role.id')
-            //     .onUpdate('CASCADE')
-            //     .onDelete('CASCADE');
         })
         .createTable('worker', tbl => {
             tbl.increments();
@@ -68,12 +59,6 @@ exports.up = function (knex) {
                 .references('community.id')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
-            // tbl.integer('field_officer_id')
-            //     .unsigned()
-            //     .notNullable()
-            //     .references('worker.id')
-            //     .onUpdate('CASCADE')
-            //     .onDelete('CASCADE');
             // created at timestamp 
             tbl.timestamp("created at").defaultTo(knex.fn.now());
         })
@@ -101,6 +86,7 @@ exports.up = function (knex) {
             // potentially add a survey_type?
         })
         .createTable('survey_role', tbl => {
+            tbl.increments();
             tbl.integer('survey_id')
                 .unsigned()
                 .notNullable()
@@ -160,6 +146,12 @@ exports.up = function (knex) {
                 .unsigned()
                 .notNullable()
                 .references('question.id')
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+            tbl.integer('completed_survey_id')
+                .unsigned()
+                .notNullable()
+                .references('completed_survey.id')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
             tbl.integer('family_id')

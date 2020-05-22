@@ -1,12 +1,13 @@
 require('dotenv').config();
 
+///
+
 module.exports = {
   development: {
     client: 'pg',
     connection: {
-      host: '127.0.0.1',
       database: 'care_for_life',
-      user: process.env.USERNAME,
+      user: process.env.USERNAME || 'postgres',
       password: process.env.PASSWORD,
     },
     migrations: {
@@ -20,7 +21,6 @@ module.exports = {
   testing: {
     client: 'pg',
     connection: {
-      host: '127.0.0.1',
       database: 'careforlifetesting',
       user: process.env.USERNAME,
       password: process.env.PASSWORD,
