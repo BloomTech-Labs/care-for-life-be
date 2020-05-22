@@ -12,6 +12,18 @@ router.get('/', (req, res) => {
         })
 });
 
+router.get('/:id', (req, res) => {
+    const id = req.params.id;
+    SurveyRoles.findById(id)
+        .then(role => {
+            res.status(200).json(role);
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ message: 'could not find survey role' })
+        })
+})
+
 router.get('/surveyId/:id', (req, res) => {
     const id = req.params.id;
     SurveyRoles.findBySurveyId(id)
