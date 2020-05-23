@@ -77,4 +77,3 @@ https://care-for-life.herokuapp.com/
 |PUT   |/api/responses/:id   |Updates response object. Request body: { id: id, response: 'response', question_id: questionId, completed_survey_id: surveyid, family_id: famId, individual_id: indivId(nullable) } Returns updated object.    |
 |DELETE   |/api/responses/:id   |Deletes response object associated with ID in URL. Returns success message.   |
 |   |   |   |
-|   |   |   |
