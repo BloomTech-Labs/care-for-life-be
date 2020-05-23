@@ -24,6 +24,7 @@ router.get('/:id', (req, res) => {
         })
 })
 
+// *** 
 router.get('/:id/questions', (req, res) => {
     const id = req.params.id;
     CS.findSurveyQuestions(id)

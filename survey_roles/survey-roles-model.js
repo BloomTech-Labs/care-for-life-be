@@ -41,7 +41,7 @@ function update(id, changes) {
         .where('id', id)
         .update(changes, 'id')
         .then(() => {
-            return findById(id);
+            return findBy(id);
         });
 
 }
