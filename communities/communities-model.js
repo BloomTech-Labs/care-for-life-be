@@ -1,45 +1,8 @@
 const db = require('../data/db-config.js');
 
 module.exports = {
-	add,
-	find,
-	findBy,
-	findById,
-	update,
-	remove,
 	findCommunityDetails
 };
-
-async function find() {
-	return db('community')
-}
-
-function findBy(filter) {
-	return db('community').where(filter);
-}
-
-async function add(community) {
-	const [id] = await db('community').insert(community, 'id');
-	return findById(id);
-}
-
-function findById(id) {
-	return db('community').where('id', id).first();
-}
-
-function update(id, changes) {
-	return db('community')
-		.where('id', id)
-		.update(changes, 'id')
-		.then(() => {
-			return findById(id);
-		});
-
-}
-
-function remove(id) {
-	return db('community').where('id', id).del()
-}
 
 
 async function findCommunityDetails(id) {

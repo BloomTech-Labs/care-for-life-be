@@ -1,6 +1,8 @@
 const router = require('express').Router();
 
 const Zones = require('./zones-model.js');
+const Helpers = require('../data/db-helpers.js');
+
 
 router.get('/', (req, res) => {
     Zones.find()
@@ -14,7 +16,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const id = req.params.id;
-    Zones.findById(id)
+    Helpers.findById(id, 'zone')
         .then(user => {
             if (user == undefined) {
                 res.status(404).json({ message: 'could not find zone' })
@@ -29,7 +31,7 @@ router.get('/:id', (req, res) => {
 
 router.get('/comm/:id', (req, res) => {
     const id = req.params.id;
-    Zones.findByCommId(id)
+    Helpers.findBySomething(id, 'community_id', 'zone')
         .then(zones => {
             res.status(200).json(zones);
         })
@@ -41,7 +43,7 @@ router.get('/comm/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const zone = req.body;
-    Zones.add(zone)
+    Helpers.add(zone, 'zone')
         .then(zone => {
             res.status(200).json(zone);
         })
@@ -54,7 +56,7 @@ router.put('/:id', (req, res) => {
     const id = req.params.id
     const changes = req.body;
     if (id && changes) {
-        Zones.update(id, changes)
+        Helpers.update(id, changes, 'zone')
             .then(zone => {
                 res.status(201).json(zone);
             })
@@ -69,7 +71,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
-    Zones.remove(id)
+    Helpers.remove(id, 'zone')
         .then(removed => {
             if (removed) {
                 res.status(200).json({ message: 'zone successfully deleted' });

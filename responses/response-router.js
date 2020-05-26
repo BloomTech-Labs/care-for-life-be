@@ -1,6 +1,8 @@
 const router = require('express').Router();
 
 const Responses = require('./response-model.js');
+const Helpers = require('../data/db-helpers.js');
+
 
 router.get('/', (req, res) => {
     Responses.find()
@@ -15,7 +17,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const id = req.params.id;
     if (id) {
-        Responses.findById(id)
+        Helpers.findById(id, 'response')
             .then(response => {
                 res.status(200).json(response);
             })
@@ -44,7 +46,7 @@ router.get('/question/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const response = req.body;
-    Responses.add(response)
+    Helpers.add(response, 'response')
         .then(response => {
             res.status(200).json(response);
         })
@@ -57,7 +59,7 @@ router.put('/:id', (req, res) => {
     const id = req.params.id
     const changes = req.body;
     if (id && changes) {
-        Responses.update(id, changes)
+        Helpers.update(id, changes, 'response')
             .then(response => {
                 res.status(201).json(response);
             })
@@ -71,7 +73,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
-    Responses.remove(id)
+    Helpers.remove(id, 'response')
         .then(removed => {
             if (removed) {
                 res.status(200).json({ message: 'Response successfully deleted' });

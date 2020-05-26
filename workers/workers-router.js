@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-const Workers = require('./workers-model.js');
+const Helpers = require('../data/db-helpers.js');
 
 router.get('/', (req, res) => {
-    Workers.find()
-        .then(workers => {
-            res.status(200).json(workers);
+    Helpers.find('worker')
+        .then(worker => {
+            res.status(200).json(worker);
         })
         .catch(err => {
             res.status(401).send(err);
@@ -14,9 +14,9 @@ router.get('/', (req, res) => {
 
 router.get('/role/:role', (req, res) => {
     const role = req.params.role;
-    Workers.findByRole(role)
-        .then(workers => {
-            res.status(200).json(workers);
+    Helpers.findBySomething(role,'role_name','worker')
+        .then(worker => {
+            res.status(200).json(worker);
         })
         .catch(err => {
             console.log(err)
@@ -26,7 +26,7 @@ router.get('/role/:role', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const id = req.params.id;
-    Workers.findById(id)
+    Helpers.findById(id,'worker')
         .then(worker => {
             res.status(200).json(worker);
         })
@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const survey = req.body;
-    Workers.add(survey)
+    Helpers.add(survey,'worker')
         .then(worker => {
             res.status(200).json(worker);
         })
@@ -52,7 +52,7 @@ router.put('/:id', (req, res) => {
     const id = req.params.id
     const changes = req.body;
     if (id && changes) {
-        Workers.update(id, changes)
+        Helpers.update(id, changes,'worker')
             .then(worker => {
                 res.status(201).json(worker);
             })
@@ -67,7 +67,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
-    Workers.remove(id)
+    Helpers.remove(id,'worker')
         .then(removed => {
             if (removed) {
                 res.status(200).json({ message: 'Worker successfully deleted' });

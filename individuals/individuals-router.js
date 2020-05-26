@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const Individuals = require('./individuals-model.js');
+const Helpers = require('../data/db-helpers.js');
 
 router.get('/', (req, res) => {
     Individuals.find()
@@ -15,7 +16,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const id = req.params.id;
     if (id) {
-        Individuals.findById(id)
+        Helpers.findById(id, 'individual')
             .then(individual => {
                 if (individual == undefined) {
                     res.status(404).json({ message: 'could not find individual' })
@@ -34,7 +35,7 @@ router.get('/:id', (req, res) => {
 router.get('/family/:id', (req, res) => {
     const id = req.params.id;
     if (id) {
-        Individuals.findByFamilyId(id)
+        Helpers.findBySomething(id, 'family_id', 'individual')
             .then(individuals => {
                 if (individuals == undefined) {
                     res.status(404).json({ message: 'could not find individuals' })
@@ -52,7 +53,7 @@ router.get('/family/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const individual = req.body;
-    Individuals.add(individual)
+    Helpers.add(individual, 'individual')
         .then(individual => {
             res.status(200).json(individual);
         })
@@ -65,7 +66,7 @@ router.put('/:id', (req, res) => {
     const id = req.params.id
     const changes = req.body;
     if (id && changes) {
-        Individuals.update(id, changes)
+        Helpers.update(id, changes, 'individual')
             .then(individual => {
                 res.status(201).json(individual);
             })
@@ -80,7 +81,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
-    Individuals.remove(id)
+    Helpers.remove(id, 'individual')
         .then(removed => {
             if (removed) {
                 res.status(200).json({ message: 'individual successfully deleted' });
@@ -89,7 +90,7 @@ router.delete('/:id', (req, res) => {
             }
         })
         .catch(err => {
-            res.status(500).json({ message: 'Could not delete individual' })
+            res.status(500).json({ message: 'Could not delete individual', error:err })
         })
 })
 

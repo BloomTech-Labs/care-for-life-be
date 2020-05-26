@@ -1,9 +1,9 @@
 const router = require('express').Router();
 
-const SurveyRoles = require('./survey-roles-model.js');
+const Helpers = require('../data/db-helpers.js');
 
 router.get('/', (req, res) => {
-    SurveyRoles.find()
+    Helpers.find('survey_role')
         .then(roles => {
             res.status(200).json(roles);
         })
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const id = req.params.id;
-    SurveyRoles.findById(id)
+    Helpers.findById(id, 'survey_role')
         .then(role => {
             res.status(200).json(role);
         })
@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
 
 router.get('/surveyId/:id', (req, res) => {
     const id = req.params.id;
-    SurveyRoles.findBySurveyId(id)
+    Helpers.findBySomething(id, 'survey_id', 'survey_role')
         .then(role => {
             res.status(200).json(role);
         })
@@ -38,7 +38,7 @@ router.get('/surveyId/:id', (req, res) => {
 
 router.get('/roleId/:id', (req, res) => {
     const id = req.params.id;
-    SurveyRoles.findByRoleId(id)
+    Helpers.findBySomething(id, 'role_id', 'survey_role')
         .then(role => {
             res.status(200).json(role);
         })
@@ -50,7 +50,7 @@ router.get('/roleId/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const role = req.body;
-    SurveyRoles.add(role)
+    Helpers.add(role, 'survey_role')
         .then(role => {
             res.status(200).json(role);
         })
@@ -64,7 +64,7 @@ router.put('/:id', (req, res) => {
     const id = req.params.id
     const changes = req.body;
     if (id && changes) {
-        SurveyRoles.update(id, changes)
+        Helpers.update(id, changes, 'survey_role')
             .then(role => {
                 res.status(201).json(role);
             })
@@ -79,7 +79,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
-    SurveyRoles.remove(id)
+    Helpers.remove(id, 'survey_role')
         .then(removed => {
             if (removed) {
                 res.status(200).json({ message: 'User successfully deleted' });

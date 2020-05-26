@@ -16,12 +16,16 @@ const responsesRouter = require('../responses/response-router');
 const workersRouter = require('../workers/workers-router');
 const surveyRolesRouter = require('../survey_roles/survey-roles-router');
 const completedSurveysRouter = require('../completed_surveys/completed-surveys-router');
+// const authenticator = require("../auth/authenticator.js");
+
 
 
 server.use(express.json());
 server.use(helmet());
 server.use(cors());
+// server.use(authenticator);
 server.use(logger);
+
 
 // --- router paths --- //
 server.use('/api/communities', communitiesRouter);

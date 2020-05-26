@@ -1,9 +1,10 @@
 const router = require('express').Router();
 
-const Roles = require('./roles-model.js');
+const Helpers = require('../data/db-helpers.js');
+
 
 router.get('/', (req, res) => {
-    Roles.find()
+    Helpers.find('role')
         .then(roles => {
             res.status(200).json(roles);
         })
@@ -14,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const id = req.params.id;
-    Roles.findById(id)
+    Helpers.findById(id, 'role')
         .then(role => {
             res.status(200).json(role);
         })
@@ -26,7 +27,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const role = req.body;
-    Roles.add(role)
+    Helpers.add(role, 'role')
         .then(role => {
             res.status(200).json(role);
         })
@@ -40,7 +41,7 @@ router.put('/:id', (req, res) => {
     const id = req.params.id
     const changes = req.body;
     if (id && changes) {
-        Roles.update(id, changes)
+        Helpers.update(id, changes, 'role')
             .then(role => {
                 res.status(201).json(role);
             })
@@ -55,7 +56,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
-    Roles.remove(id)
+    Helpers.remove(id, 'role')
         .then(removed => {
             if (removed) {
                 res.status(200).json({ message: 'User successfully deleted' });

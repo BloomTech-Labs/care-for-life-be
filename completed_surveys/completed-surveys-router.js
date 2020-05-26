@@ -1,9 +1,11 @@
 const router = require('express').Router();
 
 const CS = require('./completed-surveys-model.js');
+const Helpers = require('../data/db-helpers.js');
+
 
 router.get('/', (req, res) => {
-    CS.find()
+    Helpers.find('completed_survey')
         .then(surveys => {
             res.status(200).json(surveys);
         })
@@ -24,22 +26,22 @@ router.get('/:id', (req, res) => {
         })
 })
 
-// *** 
-router.get('/:id/questions', (req, res) => {
-    const id = req.params.id;
-    CS.findSurveyQuestions(id)
-        .then(surveyQuestions => {
-            res.status(200).json(surveyQuestions);
-        })
-        .catch(err => {
-            console.log(err)
-            res.status(500).json({ message: 'could not find survey questions' })
-        })
-})
+// // *** 
+// router.get('/:id/questions', (req, res) => {
+//     const id = req.params.id;
+//     CS.findSurveyQuestions(id)
+//         .then(surveyQuestions => {
+//             res.status(200).json(surveyQuestions);
+//         })
+//         .catch(err => {
+//             console.log(err)
+//             res.status(500).json({ message: 'could not find survey questions' })
+//         })
+// })
 
 router.post('/', (req, res) => {
     const survey = req.body;
-    CS.add(survey)
+    Helpers.add(survey,'completed_survey')
         .then(survey => {
             res.status(200).json(survey);
         })
@@ -53,7 +55,7 @@ router.put('/:id', (req, res) => {
     const id = req.params.id
     const changes = req.body;
     if (id && changes) {
-        CS.update(id, changes)
+        Helpers.update(id, changes,'completed_survey')
             .then(survey => {
                 res.status(201).json(survey);
             })
@@ -68,7 +70,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
-    CS.remove(id)
+    Helpers.remove(id,'completed_survey')
         .then(removed => {
             if (removed) {
                 res.status(200).json({ message: 'Survey successfully deleted' });

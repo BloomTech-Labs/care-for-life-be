@@ -18,6 +18,8 @@ exports.up = function (knex) {
         .createTable('role', tbl => {
             tbl.increments();
             tbl.string('role', 50).notNullable().unique();
+            tbl.string('title', 50).unique();
+            tbl.unique(['role', 'title']);
         })
         .createTable('worker', tbl => {
             tbl.increments();
@@ -184,6 +186,7 @@ exports.down = function (knex) {
     return knex.schema
         .dropTableIfExists('response')
         .dropTableIfExists('question')
+        .dropTableIfExists('question_type')
         .dropTableIfExists('completed_survey')
         .dropTableIfExists('survey_role')
         .dropTableIfExists('survey')

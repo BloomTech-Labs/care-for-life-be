@@ -1,12 +1,9 @@
 const db = require('../data/db-config.js');
 
 module.exports = {
-    add,
     find,
-    findBy,
-    findById,
-    update,
-    remove
+    findByQuestionId,
+
 };
 
 async function find() {
@@ -19,16 +16,8 @@ async function find() {
     // return await arrId.map(id => findUserDetails(id))
 }
 
-function findBy(filter) {
-    return db('question').where(filter);
-}
 
-async function add(question) {
-    const [id] = await db('question').insert(question, 'id');
-    return findById(id);
-}
-
-function findById(id) {
+function findByQuestionId(id) {
     return db('question as q')
         .where('q.id', id)
         .join('survey as s', 's.id', 'q.survey_id')
@@ -36,16 +25,3 @@ function findById(id) {
         .first()
 }
 
-function update(id, changes) {
-    return db('question')
-        .where('id', id)
-        .update(changes, 'id')
-        .then(() => {
-            return findById(id);
-        });
-
-}
-
-function remove(id) {
-    return db('question').where('id', id).del()
-}

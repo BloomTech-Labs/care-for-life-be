@@ -1,8 +1,12 @@
 const router = require('express').Router();
+
 const Comm = require('./communities-model.js');
+const Helpers = require('../data/db-helpers.js');
+
+
 
 router.get('/', (req, res) => {
-    Comm.find()
+    Helpers.find('community')
         .then(communities => {
             res.status(200).json(communities);
         })
@@ -13,7 +17,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const id = req.params.id;
-    Comm.findById(id)
+    Helpers.findById(id,'community')
         .then(community => {
             res.status(200).json(community);
         })
@@ -24,7 +28,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const community = req.body;
-    Comm.add(community)
+    Helpers.add(community,'community')
         .then(community => {
             res.status(200).json(community);
         })
@@ -37,7 +41,7 @@ router.put('/:id', (req, res) => {
     const id = req.params.id
     const changes = req.body;
     if (id && changes) {
-        Comm.update(id, changes)
+        Helpers.update(id, changes,'community')
             .then(community => {
                 res.status(201).json(community);
             })
@@ -52,7 +56,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
-    Comm.remove(id)
+    Helpers.remove(id,'community')
         .then(removed => {
             if (removed) {
                 res.status(200).json({ message: 'Community successfully deleted' });

@@ -7,7 +7,7 @@ module.exports = {
     client: 'pg',
     connection: {
       database: 'care_for_life',
-      user: process.env.USERNAME || 'postgres',
+      user:'postgres',
       password: process.env.PASSWORD,
     },
     migrations: {

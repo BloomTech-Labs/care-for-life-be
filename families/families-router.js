@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const Fams = require('./families-model.js');
+const Helpers = require('../data/db-helpers.js');
 
 router.get('/', (req, res) => {
     Fams.find()
@@ -14,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.get('/zone/:zoneId', (req, res) => {
     let zoneId = req.params.zoneId;
-    Fams.findByZone(zoneId)
+    Helpers.findBySomething(zoneId, 'zone_id', 'family')
         .then(fams => {
             res.status(200).json(fams);
         })
@@ -26,7 +27,7 @@ router.get('/zone/:zoneId', (req, res) => {
 router.get('/:id', (req, res) => {
     const id = req.params.id;
     if (id) {
-        Fams.findById(id)
+        Helpers.findById(id, 'family')
             .then(family => {
                 if (family == undefined) {
                     res.status(404).json({ message: 'could not find family' })
@@ -44,7 +45,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const family = req.body;
-    Fams.add(family)
+    Helpers.add(family, 'family')
         .then(family => {
             res.status(200).json(family);
         })
@@ -57,7 +58,7 @@ router.put('/:id', (req, res) => {
     const id = req.params.id
     const changes = req.body;
     if (id && changes) {
-        Fams.update(id, changes)
+        Helpers.update(id, changes, 'family')
             .then(family => {
                 res.status(201).json(family);
             })
@@ -72,7 +73,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
-    Fams.remove(id)
+    Helpers.remove(id, 'family')
         .then(removed => {
             if (removed) {
                 res.status(200).json({ message: 'family successfully deleted' });
