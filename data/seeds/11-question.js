@@ -2,7 +2,8 @@ const faker = require('faker');
 
 const createFakeQuestion = () => ({
   question: faker.hacker.phrase() + '?',
-  survey_id: Math.floor(Math.random() * 7) + 1
+  survey_id: Math.floor(Math.random() * 7) + 1,
+  question_type: Math.floor(Math.random() * 3) + 1
 })
 
 exports.seed = function (knex) {

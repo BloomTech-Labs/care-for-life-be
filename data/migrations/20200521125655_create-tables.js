@@ -129,6 +129,11 @@ exports.up = function (knex) {
             // completed at timestamp
             tbl.timestamp("completed at").defaultTo(knex.fn.now());
         })
+        .createTable('question_type', tbl => {
+            tbl.increments();
+            tbl.string('type', 150)
+                .notNullable();
+        })
         .createTable('question', tbl => {
             tbl.increments();
             tbl.text('question', 150).notNullable();
@@ -136,6 +141,13 @@ exports.up = function (knex) {
                 .unsigned()
                 .notNullable()
                 .references('survey.id')
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+            tbl.integer('question_type')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable('question_type')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
         })
