@@ -3,7 +3,7 @@ exports.seed = function (knex) {
     {
       first_name: 'Jane',
       last_name: 'Doe',
-      username: 'jdoe1',
+      email: 'jdoe1@yahoo.com',
       password: 'jdoe1',
       role_name: 'supervisor_agriculture',
       zone_id: 1,
@@ -12,7 +12,7 @@ exports.seed = function (knex) {
     {
       first_name: 'Jeff',
       last_name: 'Doe',
-      username: 'jeffdoe1',
+      email: 'jeffdoe1@yahoo.com',
       password: 'jeffdoe1',
       role_name: 'supervisor_health',
       zone_id: 2,
@@ -21,7 +21,7 @@ exports.seed = function (knex) {
     {
       first_name: 'Brookims',
       last_name: 'Jarvis',
-      username: 'brookims23',
+      email: 'brookims23@yahoo.com',
       password: 'brookims23',
       role_name: 'supervisor_health',
       zone_id: 7,
@@ -30,7 +30,7 @@ exports.seed = function (knex) {
     {
       first_name: 'Hayden',
       last_name: 'Black',
-      username: 'hayden0',
+      email: 'hayden0@yahoo.com',
       password: 'hayden',
       role_name: 'supervisor_income_generation',
       zone_id: 5,
@@ -39,7 +39,7 @@ exports.seed = function (knex) {
     {
       first_name: 'John',
       last_name: 'Doe',
-      username: 'johndoe',
+      email: 'johndoe@yahoo.com',
       password: 'johndoe',
       role_name: 'promoter',
       zone_id: 2,
@@ -48,7 +48,7 @@ exports.seed = function (knex) {
     {
       first_name: 'Bill',
       last_name: 'Smith',
-      username: 'billsmith',
+      email: 'billsmith@yahoo.com',
       password: 'billsmith',
       role_name: 'teacher',
       zone_id: 5,
@@ -57,7 +57,7 @@ exports.seed = function (knex) {
     {
       first_name: 'Chad',
       last_name: 'Jones',
-      username: 'chadjones',
+      email: 'chadjones@yahoo.com',
       password: 'chadjones',
       role_name: 'field officer',
       zone_id: 7,
@@ -66,7 +66,7 @@ exports.seed = function (knex) {
     {
       first_name: 'Susan',
       last_name: 'Smith',
-      username: 'susan12',
+      email: 'susan12@yahoo.com',
       password: 'susan12',
       role_name: 'field manager',
       zone_id: 11,

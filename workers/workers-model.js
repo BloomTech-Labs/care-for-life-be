@@ -24,11 +24,11 @@ async function add(worker) {
 }
 
 function findById(id) {
-    return db('worker').where('id', id).select("id", "first_name", "last_name", "username", "password", "role_name", "zone_id", "community_id").first();
+    return db('worker').where('id', id).select("id", "first_name", "last_name", "email", "password", "role_name", "zone_id", "community_id").first();
 }
 
 function findByRole(role) {
-    return db('worker').where('role_name', role).select("id", "first_name", "last_name", "username", "password", "role_name", "zone_id", "community_id");
+    return db('worker').where('role_name', role).select("id", "first_name", "last_name", "email", "password", "role_name", "zone_id", "community_id");
 }
 
 function update(id, changes) {

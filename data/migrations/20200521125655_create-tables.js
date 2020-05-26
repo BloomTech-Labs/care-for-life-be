@@ -23,7 +23,7 @@ exports.up = function (knex) {
             tbl.increments();
             tbl.string('first_name', 50).notNullable();
             tbl.string('last_name', 50).notNullable();
-            tbl.string('username', 50).notNullable().unique();
+            tbl.string('email', 50).notNullable().unique();
             tbl.string('password', 50).notNullable();
             tbl.string('role_name')
                 .notNullable()
