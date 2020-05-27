@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
     const survey = req.body;
     Surveys.add(survey)
         .then(survey => {
-            res.status(200).json(survey);
+            res.status(201).json(survey);
         })
         .catch(err => {
             console.log(err)

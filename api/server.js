@@ -21,7 +21,7 @@ const completedSurveysRouter = require('../completed_surveys/completed-surveys-r
 server.use(express.json());
 server.use(helmet());
 server.use(cors());
-server.use(logger);
+// server.use(logger);
 
 // --- router paths --- //
 server.use('/api/communities', communitiesRouter);
@@ -37,13 +37,13 @@ server.use('/api/surveyRoles', surveyRolesRouter);
 server.use('/api/completedSurveys', completedSurveysRouter);
 
 // --- logger middleware --- //
-function logger(req, res, next) {
-    const date = new Date(Date.now());
-    console.log(`METHOD: ${req.method}`);
-    console.log(`URL: ${req.originalUrl}`);
-    console.log(`DATE: ${date.toDateString()}, ${date.toTimeString()}`);
-    next();
-}
+// function logger(req, res, next) {
+//     const date = new Date(Date.now());
+//     console.log(`METHOD: ${req.method}`);
+//     console.log(`URL: ${req.originalUrl}`);
+//     console.log(`DATE: ${date.toDateString()}, ${date.toTimeString()}`);
+//     next();
+// }
 
 server.get("/", (req, res) => {
     res.status(200).json({ api: "running" });
