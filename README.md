@@ -1,16 +1,34 @@
-## Care For Life Backend 
+# Care for Life Backend 
+Backend for Lambda Labs: Care for Life
 
 ## DEPLOY URL: 
 https://care-for-life.herokuapp.com/
 
 ## Environment Variables: 
-
+```
 1. PORT=5500
 2. NODE_ENV=development
 3. USERNAME=postgres username
 4. PASSWORD=postgres password
+```
+## Table of Contents
 
-## Endpoints
+- [Auth Routes](#auth-routes)
+
+  - [Register User](#register)
+  - [Login User](#login)
+
+- [Communities Routes](#communities-routes)
+
+  - [Get Community](#get-community)
+  - [Get Community by Id](#get-community-by-id)
+  - [Update Communities](#update-community)
+  - [Delete Communities](#delete-community)
+
+
+# AUTH ROUTES
+## **REGISTER**
+## **LOGIN**
 
 |Method   |URL   |Description   |
 |---|---|---|
