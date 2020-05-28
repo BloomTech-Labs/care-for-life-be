@@ -27,8 +27,8 @@ https://care-for-life.herokuapp.com/
 
 
 # AUTH ROUTES
-## **REGISTER**
-## **LOGIN**
+### **REGISTER**
+### **LOGIN**
 
 |Method   |URL   |Description   |
 |---|---|---|
