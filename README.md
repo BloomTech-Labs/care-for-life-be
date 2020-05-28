@@ -14,14 +14,15 @@ https://care-for-life.herokuapp.com/
 ## Table of Contents
 
 - [Auth Routes](#auth-routes)
-
-  - [Register User](#register)
-  - [Login User](#login)
-
 - [Communities Routes](#community-routes)
 - [Zone Routes](#zone-routes)
 - [Role Routes](#role-routes)
-
+- [Worker Routes](#worker-routes)
+- [Family Routes](#family-routes)
+- [Individual Routes](#individual-routes)
+- [Survey Routes](#survey-routes)
+- [Question Routes](#question-routes)
+- [Response Routes](#response-routes)
 
 ## AUTH ROUTES
 ### **REGISTER**
@@ -58,24 +59,44 @@ https://care-for-life.herokuapp.com/
 |POST   |/api/roles   |Creates a new role object    |
 |PUT   |/api/roles/:id   |Updates role object using info from request body: { id: id, role: 'role_name' }   |
 |DELETE   |/api/roles/:id   |Deletes role from database using specified ID from URL. Returns success message.    |
+
+## WORKER ROUTES
+
+|Method   |URL   |Description   |
+|---|---|---|
 |GET   |/api/workers   |Returns an array of workers.   |
 |GET   |/api/workers/:id   |Returns worker object associated with specified ID from URL   |
 |GET   |/api/workers/role/:role_name   |Returns an array of workers associated with role name specified in URL   |
 |POST   |/api/workers   |Creates a new worker object, request body: { first_name: 'firstname', last_name: 'lastname', username: 'username', password: 'password', role_name: 'rolename', zone_id: zoneid, community_id: commId } Returns new object.   |
 |PUT   |/api/workers/:id   |Updates worker object, request body: { id: id, first_name: 'firstname', last_name: 'lastname', username: 'username', password: 'password', role_name: 'rolename', zone_id: zoneid, community_id: commId } Returns new object.   |
 |DELETE   |/api/workers/:id   |Deletes worker object associated with ID specified in URL. Returns success message   |
+
+## FAMILY ROUTES
+
+|Method   |URL   |Description   |
+|---|---|---|
 |GET   |/api/families   |Returns an array of families.   |
 |GET   |/api/families/:id   |Returns family object associated with ID specified in URL   |
 |GET   |/api/families/zone/:zoneId   |Returns an array of families associated with the zone ID specified in URL   |
 |POST   |/api/families   |Creates a new family object. Request body: { family_name: 'famname', zone_id: zoneId, community_id: commId } Returns new object.  |
 |PUT   |/api/families/:id   |Updates family object associated to specified ID in URL. Request body: { id: id, family_name: 'famname', zone_id: zoneId, community_id: commId } Returns updated object.   |
 |DELETE   |/api/families/:id   |Deletes family object associated with ID specified in URL. Returns success message.   |
+
+## INDIVIDUAL ROUTES
+
+|Method   |URL   |Description   |
+|---|---|---|
 |GET   |/api/individuals   |Returns an array of individuals   |
 |GET   |/api/individuals/:id   |Returns individual object associated with ID in URL   |
 |GET   |/api/individuals/family/:id   |Returns an array of individuals associated with family ID specified in URL   |
 |POST   |/api/individuals   |Creates a new individual object. Request body: { first_name: 'firstname', last_name: 'lastname', family_id: famId, date_of_birth: dob, gender: gender, hoh: boolean, relation_to_hoh: string, marital_status: string } Returns new object  |
 |PUT   |/api/individuals/:id   |Updates an individual object. Request body: { id: id, first_name: 'firstname', last_name: 'lastname', family_id: famId, date_of_birth: dob, gender: gender, hoh: boolean, relation_to_hoh: string, marital_status: string } Returns updated object   |
 |DELETE   |/api/individuals/:id   |Deletes individual object associated with specified ID in URL. Returns success message   |
+
+## SURVEY ROUTES
+
+|Method   |URL   |Description   |
+|---|---|---|
 |GET   |/api/surveys   |Returns an array of surveys   |
 |GET   |/api/surveys/:id   |Returns survey object associated with specified ID in URL   |
 |GET   |/api/surveys/:id/questions   |Returns an object with survey name, including an array of questions associated with survey ID specified in URL   |
@@ -93,11 +114,22 @@ https://care-for-life.herokuapp.com/
 |POST   |/api/completedSurveys   |Creates a new completed survey object. Request body: { survey_id: surveyId, supervisor_id: workerId, family_id: famId, individualId: indivId(nullable) } Returns new object |
 |PUT   |/api/completedSurveys/:id   |Updates completed survey object. Request body: { id: id, survey_id: surveyId, supervisor_id: workerId, family_id: famId, individualId: indivId(nullable) } Returns updated object.  |
 |DELETE   |/api/completedSurveys/:id   |Deletes completed survey object from ID in URL. Returns success message.   |
+
+
+## QUESTION ROUTES
+
+|Method   |URL   |Description   |
+|---|---|---|
 |GET   |/api/questions   |Returns an array of all survey questions for all surveys from the database   |
 |GET   |/api/questions/:id   |Returns question object associated to specified ID in URL   |
 |POST   |/api/questions/   |Creates a new question object. Request body: { question: 'question text', survey_id: surveyId } Returns new object.  |
 |PUT   |/api/questions/:id   |Updates question object. Request body: { id: id, question: 'question text', survey_id: surveyId } Returns updated object.   |
 |DELETE   |/api/questions/:id   |Deletes question from database. Returns success message.   |
+
+## RESPONSE ROUTES
+
+|Method   |URL   |Description   |
+|---|---|---|
 |GET   |/api/responses   |Returns an array of all of the responses to every survey in the database.   |
 |GET   |/api/responses/:id   |Returns specific response associated with ID in URL   |
 |GET   |/api/responses/question/:id   |Returns all responses to specific question ID specified in URL   |
