@@ -184,6 +184,7 @@ exports.down = function (knex) {
     return knex.schema
         .dropTableIfExists('response')
         .dropTableIfExists('question')
+        .dropTableIfExists('question_type')
         .dropTableIfExists('completed_survey')
         .dropTableIfExists('survey_role')
         .dropTableIfExists('survey')
@@ -191,7 +192,6 @@ exports.down = function (knex) {
         .dropTableIfExists('family')
         .dropTableIfExists('worker')
         .dropTableIfExists('role')
-        .dropTableIfExists('supervisor_role')
         .dropTableIfExists('zone')
         .dropTableIfExists('community')
 };
