@@ -22,6 +22,9 @@
   "devDependencies": {
     "nodemon": "^2.0.4"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
