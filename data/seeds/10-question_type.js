@@ -12,6 +12,9 @@ exports.seed = function (knex) {
           type: 'yes or no'
         },
         {
+          type: 'numerical'
+        },
+        {
           type: 'custom input'
         }
       ]);

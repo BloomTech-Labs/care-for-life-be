@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
             res.status(200).json(individuals);
         })
         .catch(err => {
-            res.status(401).send(err);
+            res.status(500).send(err);
         })
 });
 
@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
     if (id) {
         Individuals.findById(id)
             .then(individual => {
-                if (individual == undefined) {
+                if (!individual) {
                     res.status(404).json({ message: 'could not find individual' })
                 }
                 res.status(200).json(individual);

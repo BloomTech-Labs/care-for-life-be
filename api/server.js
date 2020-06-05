@@ -16,7 +16,7 @@ const responsesRouter = require('../responses/response-router');
 const workersRouter = require('../workers/workers-router');
 const surveyRolesRouter = require('../survey_roles/survey-roles-router');
 const completedSurveysRouter = require('../completed_surveys/completed-surveys-router');
-
+const authRouter = require('../auth/auth-router');
 
 server.use(express.json());
 server.use(helmet());
@@ -24,6 +24,7 @@ server.use(cors());
 // server.use(logger);
 
 // --- router paths --- //
+server.use('/auth', authRouter);
 server.use('/api/communities', communitiesRouter);
 server.use('/api/zones', zoneRouter);
 server.use('/api/roles', rolesRouter);
@@ -35,6 +36,7 @@ server.use('/api/responses', responsesRouter);
 server.use('/api/workers', workersRouter);
 server.use('/api/surveyRoles', surveyRolesRouter);
 server.use('/api/completedSurveys', completedSurveysRouter);
+
 
 // --- logger middleware --- //
 // function logger(req, res, next) {
@@ -48,5 +50,6 @@ server.use('/api/completedSurveys', completedSurveysRouter);
 server.get("/", (req, res) => {
     res.status(200).json({ api: "running" });
 });
+
 
 module.exports = server;
