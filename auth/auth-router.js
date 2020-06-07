@@ -8,7 +8,6 @@ router.get('/login', (req, res) => {
     axios.post(`https://dev-815303.okta.com/oauth2/default/v1/introspect?client_id=0oadb0iolJz1QUG2c4x6&token=${token}&token_type_hint=id_token`)
         .then(response => {
             console.log(response.data)
-            // res.status(200).json(response.data)
             db.login(response.data.username)
                 .then((user) => {
                     if (user.length > 1) {
