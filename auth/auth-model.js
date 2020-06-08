@@ -4,6 +4,6 @@ module.exports = {
     login
 };
 
-async function login(email) {
-    return await db('worker').where({ email })
+function login(email) {
+    return db('worker').where({ email })
 }
