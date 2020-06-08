@@ -12,17 +12,19 @@ router.get('/login', (req, res) => {
             db.login(response.data.username)
                 .then((user) => {
                     // check if user is returned
-                    if (user.length > 1) {
+                    if (user.length > 0) {
                         res.status(200).json({
                             isRegistered: true,
-                            name: response.data.name,
+                            first_name: response.data.name.split(' ').slice(0, -1).join(' '),
+                            last_name: response.data.name.split(' ').slice(-1).join(' '),
                             email: response.data.username
                         })
                         // if array is empty
                     } else {
                         res.status(200).json({
                             isRegistered: false,
-                            name: response.data.name,
+                            first_name: response.data.name.split(' ').slice(0, -1).join(' '),
+                            last_name: response.data.name.split(' ').slice(-1).join(' '),
                             email: response.data.username
                         })
                     }
