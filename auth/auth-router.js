@@ -12,7 +12,7 @@ router.get('/login', (req, res) => {
             db.login(response.data.username)
                 .then((user) => {
                     // check if user is returned
-                    if (user.length > 1) {
+                    if (user.length > 0) {
                         res.status(200).json({
                             isRegistered: true,
                             name: response.data.name,
