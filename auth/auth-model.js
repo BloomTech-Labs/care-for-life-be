@@ -5,5 +5,5 @@ module.exports = {
 };
 
 function login(email) {
-    return db('worker').where({ email })
+    return db('worker').where(email)
 }
