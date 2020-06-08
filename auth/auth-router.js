@@ -2,6 +2,15 @@ const router = require('express').Router();
 const axios = require('axios');
 const db = require('./auth-model');
 
+const login = (response, isRegistered) => {
+    return {
+        isRegistered: isRegistered,
+        first_name: response.data.name.split(' ').slice(0, -1).join(' '),
+        last_name: response.data.name.split(' ').slice(-1).join(' '),
+        email: response.data.username
+    }
+}
+
 router.get('/login', (req, res) => {
     const token = req.headers.authorization;
     console.log('token', token)
@@ -13,20 +22,14 @@ router.get('/login', (req, res) => {
                 .then((user) => {
                     // check if user is returned
                     if (user.length > 0) {
-                        res.status(200).json({
-                            isRegistered: true,
-                            first_name: response.data.name.split(' ').slice(0, -1).join(' '),
-                            last_name: response.data.name.split(' ').slice(-1).join(' '),
-                            email: response.data.username
-                        })
+                        res.status(200).json(
+                            login(response, true)
+                        )
                         // if array is empty
                     } else {
-                        res.status(200).json({
-                            isRegistered: false,
-                            first_name: response.data.name.split(' ').slice(0, -1).join(' '),
-                            last_name: response.data.name.split(' ').slice(-1).join(' '),
-                            email: response.data.username
-                        })
+                        res.status(200).json(
+                            login(response, false)
+                        )
                     }
                 })
                 .catch(err => res.status(400).json(err.message))
