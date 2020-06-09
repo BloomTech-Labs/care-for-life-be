@@ -67,7 +67,7 @@ https://care-for-life.herokuapp.com/
 |GET   |/api/workers   |Returns an array of workers.   |
 |GET   |/api/workers/:id   |Returns worker object associated with specified ID from URL   |
 |GET   |/api/workers/role/:role_name   |Returns an array of workers associated with role name specified in URL   |
-|POST   |/api/workers   |Creates a new worker object, request body: { first_name: 'firstname', last_name: 'lastname', username: 'username', password: 'password', role_name: 'rolename', zone_id: zoneid, community_id: commId } Returns new object.   |
+|POST   |/api/workers   |Creates a new worker object, request body: { first_name: 'firstname', last_name: 'lastname', email: 'email', password: 'password', role_name: 'rolename', zone_id: zoneid, community_id: commId } Returns new object.   |
 |PUT   |/api/workers/:id   |Updates worker object, request body: { id: id, first_name: 'firstname', last_name: 'lastname', username: 'username', password: 'password', role_name: 'rolename', zone_id: zoneid, community_id: commId } Returns new object.   |
 |DELETE   |/api/workers/:id   |Deletes worker object associated with ID specified in URL. Returns success message   |
 
