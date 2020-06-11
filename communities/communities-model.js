@@ -28,6 +28,14 @@ async function find() {
 	return results;
 }
 
+async function findCommZones() {
+	return db('community')
+		.then(community => {
+			return db('zone')
+
+		})
+}
+
 function findBy(filter) {
 	return db('community').where(filter);
 }

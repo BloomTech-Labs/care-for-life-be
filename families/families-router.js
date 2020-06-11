@@ -15,11 +15,12 @@ router.get('/', (req, res) => {
 router.get('/zone/:zoneId', (req, res) => {
     let zoneId = req.params.zoneId;
     Fams.findByZone(zoneId)
-        .then(fams => {
-            res.status(200).json(fams);
+        .then(async fams => {
+            await res.status(200).json(fams);
         })
         .catch(err => {
-            res.status(401).send(err);
+            console.log(err)
+            res.status(500).send(err);
         })
 });
 
@@ -40,6 +41,19 @@ router.get('/:id', (req, res) => {
     } else {
         res.status(404).json({ message: 'No such family' });
     }
+})
+
+///// FIND MEMBERS BY ID
+router.get('/:id/members', (req, res) => {
+    const id = req.params.id;
+    Fams.findMembersById(id)
+        .then(family => {
+            res.status(200).json(family);
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ message: 'could not find family' })
+        })
 })
 
 router.post('/', (req, res) => {

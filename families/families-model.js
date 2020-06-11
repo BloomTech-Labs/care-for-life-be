@@ -7,7 +7,8 @@ module.exports = {
     findById,
     update,
     remove,
-    findByZone
+    findByZone,
+    findMembersById
 };
 
 async function find() {
@@ -25,12 +26,49 @@ async function add(user) {
     return findById(id);
 }
 
-function findByZone(zoneId) {
-    return db('family').where('zone_id', zoneId);
+function findByFamilyId(id) {
+    return db('individual').where('family_id', id);
+}
+
+async function findByZone(zoneId) {
+
+    const families = await db('family').where('zone_id', zoneId);
+    const members = await db('individual')
+
+    const mapped = families.map((e, i) => {
+        return members.filter((el) => {
+            return el.family_id == families[i].id
+        })
+    })
+
+    const results = families.map((e, i) => {
+        return {
+            id: e.id,
+            family_name: e.family_name,
+            members: mapped[i]
+        }
+    })
+    return results;
 }
 
 function findById(id) {
     return db('family').where('id', id).first();
+}
+
+function findMembersById(id) {
+    return db('family')
+        .where('id', id)
+        .first()
+        .then(family => {
+            return db('individual as i')
+                .where('i.family_id', id)
+                .then(members => {
+                    return {
+                        ...family,
+                        members
+                    }
+                })
+        })
 }
 
 function update(id, changes) {
