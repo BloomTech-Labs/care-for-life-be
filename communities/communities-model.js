@@ -10,8 +10,22 @@ module.exports = {
 	findCommunityDetails
 };
 
+
 async function find() {
-	return db('community')
+	const comm = await db('community');
+	const zones = await db('zone');
+	const mapped = comm.map((e, i) => {
+		return zones.filter(el => el.community_id == comm[i].id)
+	})
+
+	const results = comm.map((el, i) => {
+		return {
+			id: el.id,
+			community: el.community,
+			zones: mapped[i]
+		}
+	})
+	return results;
 }
 
 function findBy(filter) {
