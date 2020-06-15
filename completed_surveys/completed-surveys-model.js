@@ -12,11 +12,6 @@ async function find() {
     return db('completed_survey')
 }
 
-async function add(survey) {
-    const [id] = await db('completed_survey').insert(survey, 'id');
-    return findById(id);
-}
-
 function findById(id) {
     return db('completed_survey as cs')
         .where('cs.id', id)
@@ -26,6 +21,11 @@ function findById(id) {
         .join('survey as s', 's.id', 'cs.survey_id')
         .select("cs.id", "cs.survey_id", "s.survey_name", "cs.supervisor_id", 'w.first_name as supervisor_name', "cs.family_id", "f.family_name", "cs.individual_id", "i.first_name as individuals_first_name")
         .first();
+}
+
+async function add(survey) {
+    const [id] = await db('completed_survey').insert(survey, 'id');
+    return findById(id);
 }
 
 function update(id, changes) {
