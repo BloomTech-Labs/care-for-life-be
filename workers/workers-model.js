@@ -14,8 +14,8 @@ async function find() {
     return db('worker')
 }
 
-function findBy(filter) {
-    return db('worker').where(filter);
+function findBy({ email }) {
+    return db('worker').where({ email: email });
 }
 
 async function add(worker) {
