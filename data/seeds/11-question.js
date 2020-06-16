@@ -332,7 +332,7 @@ exports.seed = function (knex) {
   question:'If yes, what are their symptoms?',
   survey_id: 2,
   question_type:4
-},
+}
   ]);
 };
 
