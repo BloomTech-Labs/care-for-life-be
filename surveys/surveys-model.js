@@ -42,7 +42,7 @@ function findSurveyQuestions(id) {
         .then(survey => {
             return db('question as q')
                 .where('q.survey_id', survey.id)
-                .select('q.question', 'q.id')
+                .select('q.question', 'q.id', 'q.question_type')
                 .then(sq => {
                     return {
                         ...survey,
