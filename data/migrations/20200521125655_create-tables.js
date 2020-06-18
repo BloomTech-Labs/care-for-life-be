@@ -76,6 +76,7 @@ exports.up = function (knex) {
             tbl.boolean('hoh').notNullable();
             tbl.string('relation_to_hoh');
             tbl.string('marital_status').notNullable();
+            tbl.boolean('promoter');
             // created at timestamp
             tbl.timestamp("created at").defaultTo(knex.fn.now());
         })
