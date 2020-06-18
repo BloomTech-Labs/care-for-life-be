@@ -15,18 +15,10 @@ describe('experience-router', function () {
         })
     })
 
-    describe('Get /api/surveys', function () {
-        it('Should be an object', async function () {
+    describe('POST /api/surveys', function () {
+        it('Should post and return a 201', async function () {
             let res = await request(server).post("/api/surveys").send(survey)
             expect(res.status).toBe(201);
         })
     })
-
-    describe('/api/surveys', function () {
-        it('Should return 200', async function () {
-            let res = await request(server).post("/api/surveys").send(survey);
-            expect.objectContaining(survey);
-        })
-    })
-
 });

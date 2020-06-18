@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
     const survey = req.body;
     Workers.add(survey)
         .then(worker => {
-            res.status(200).json(worker);
+            res.status(201).json(worker);
         })
         .catch(err => {
             console.log(err)
