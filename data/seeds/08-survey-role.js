@@ -11,15 +11,15 @@ exports.seed = function (knex) {
     },
     {
       survey_id: 3,
-      role_id: 7,
+      role_id: 3,
     },
     {
       survey_id: 4,
-      role_id: 7,
+      role_id: 6,
     },
     {
       survey_id: 5,
-      role_id: 7,
+      role_id: 5,
     },
     {
       survey_id: 6,

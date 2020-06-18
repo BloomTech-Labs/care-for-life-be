@@ -36,7 +36,7 @@ exports.seed = function (knex) {
       first_name: 'John',
       last_name: 'Doe',
       email: 'johndoe@yahoo.com',
-      role_name: 'promoter',
+      role_name: 'field_manager',
       zone_id: 2,
       community_id: 1
     },
@@ -52,7 +52,7 @@ exports.seed = function (knex) {
       first_name: 'Chad',
       last_name: 'Jones',
       email: 'chadjones@yahoo.com',
-      role_name: 'field officer',
+      role_name: 'field_officer',
       zone_id: 7,
       community_id: 2
     },
@@ -60,7 +60,7 @@ exports.seed = function (knex) {
       first_name: 'Susan',
       last_name: 'Smith',
       email: 'susan12@yahoo.com',
-      role_name: 'field manager',
+      role_name: 'field_manager',
       zone_id: 11,
       community_id: 3
     }
