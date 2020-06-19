@@ -5,7 +5,7 @@ exports.seed = function (knex) {
     { role: 'supervisor_health' },
     { role: 'supervisor_income_generation' },
     { role: 'teacher' },
-    { role: 'field manager' },
-    { role: 'field officer' }
+    { role: 'field_manager' },
+    { role: 'field_officer' }
   ]);
 };
