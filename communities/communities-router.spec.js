@@ -19,7 +19,7 @@ describe('communities router', () => {
             let res = await request(server).get('/api/communities/1')
             expect(res.status).toBe(200)
         })
-        it('should return 200', async () => {
+        it('should return community with corresponding ID in URL', async () => {
             let res = await request(server).get('/api/communities/1')
             expect(res.text[6]).toBe('1')
         })
